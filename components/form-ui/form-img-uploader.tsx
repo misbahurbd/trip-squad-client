@@ -12,7 +12,6 @@ import avatar from "@/assets/img/avatar.jpeg"
 import Image from "next/image"
 import { useState } from "react"
 import { toast } from "sonner"
-import { PlusIcon } from "@radix-ui/react-icons"
 import { HiPhoto } from "react-icons/hi2"
 
 interface FormImageUploaderProps {
@@ -84,6 +83,7 @@ const FormImageUploader: React.FC<FormImageUploaderProps> = ({
               className="bg-background hidden"
               type="file"
               disabled={disabled}
+              accept="image/png, image/jpeg, image/jpg, image/webp"
               onChange={handleChange}
             />
           </FormControl>

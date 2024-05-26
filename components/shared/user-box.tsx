@@ -58,13 +58,13 @@ const UserBox = ({ user }: UserBoxProps) => {
         <DropdownMenuGroup>
           <DropdownMenuItem
             className="cursor-pointer"
-            onClick={() => router.push("/profile")}
+            onClick={() => router.push("/dashboard/profile")}
           >
             Profile
           </DropdownMenuItem>
           <DropdownMenuItem
             className="cursor-pointer"
-            onClick={() => router.push("/settings")}
+            onClick={() => router.push("/dashboard/settings")}
           >
             Settings
           </DropdownMenuItem>

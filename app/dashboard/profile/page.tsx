@@ -1,4 +1,4 @@
-import DeshboardHeader from "@/components/shared/deshboard-header"
+import DashboardHeader from "@/components/shared/dashboard-header"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { getCurrentUser } from "@/services/user.service"
 import Image from "next/image"
@@ -13,8 +13,7 @@ const Profile = async () => {
 
   return (
     <div className="flex flex-col h-full">
-      <DeshboardHeader pageTitle="Profile" />
-
+      <DashboardHeader pageTitle="Profile" />
       <ScrollArea className="grow bg-secondary rounded-tl-lg p-4">
         <div className="space-y-4 mx-auto max-w-2xl p-5 bg-background rounded-md">
           <div className="flex flex-col items-center justify-center gap-3">

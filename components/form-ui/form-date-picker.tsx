@@ -21,8 +21,10 @@ interface FormInputProps {
   form: UseFormReturn<any>
   name: string
   label?: string
+  labelClassName?: string
   placeholder: string
   className?: string
+  fieldClassName?: string
   disabled: boolean
   range?: "future" | "past" | "range"
 }
@@ -32,7 +34,9 @@ const FormDatePicker: React.FC<FormInputProps> = ({
   name,
   label,
   placeholder,
+  labelClassName,
   className,
+  fieldClassName,
   disabled,
   range,
 }) => {
@@ -42,15 +46,17 @@ const FormDatePicker: React.FC<FormInputProps> = ({
       name={name}
       render={({ field }) => (
         <FormItem className={cn("w-full space-y-0.5", className)}>
-          <FormLabel>{label}</FormLabel>
+          <FormLabel className={labelClassName}>{label}</FormLabel>
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>
                 <Button
+                  disabled={disabled}
                   variant={"outline"}
                   className={cn(
                     "w-full pl-3 text-left font-normal",
-                    !field.value && "text-muted-foreground"
+                    !field.value && "text-muted-foreground",
+                    fieldClassName
                   )}
                 >
                   {field.value ? (
@@ -68,6 +74,7 @@ const FormDatePicker: React.FC<FormInputProps> = ({
             >
               <Calendar
                 mode="single"
+                required={true}
                 selected={field.value}
                 onSelect={field.onChange}
                 disabled={date => {

@@ -57,13 +57,6 @@ const CreateTripForm = () => {
         className="w-full flex flex-col gap-3"
       >
         <div className="grid grid-cols-2 gap-4">
-          {/* <FormInput
-            form={form}
-            placeholder="Name"
-            label="Name"
-            name="name"
-            disabled={isLoading}
-          /> */}
           <FormMultiImageUploader
             form={form}
             name="images"
@@ -76,7 +69,6 @@ const CreateTripForm = () => {
             placeholder="Destination"
             label="Destination"
             name="destination"
-            className="col-span-2"
             disabled={isLoading}
           />
           <FormInput
@@ -85,14 +77,6 @@ const CreateTripForm = () => {
             label="Budget"
             name="budget"
             type="number"
-            disabled={isLoading}
-          />
-          <FormSelect
-            form={form}
-            placeholder="Select Trip Type"
-            label="Trip Type"
-            name="tripType"
-            data={travelTripTypes}
             disabled={isLoading}
           />
           <FormDatePicker
@@ -111,6 +95,29 @@ const CreateTripForm = () => {
             range="future"
             disabled={isLoading}
           />
+          <FormInput
+            form={form}
+            placeholder="Location"
+            label="Location"
+            name="location"
+            disabled={isLoading}
+          />
+          <FormSelect
+            form={form}
+            placeholder="Select Trip Type"
+            label="Trip Type"
+            name="tripType"
+            data={travelTripTypes}
+            disabled={isLoading}
+          />
+          <FormTextArea
+            form={form}
+            placeholder="Write trip itinerary..."
+            label="Trip Itinerary"
+            name="itinerary"
+            className="col-span-2"
+            disabled={isLoading}
+          />
           <FormTextArea
             form={form}
             placeholder="Write trip details..."
@@ -121,12 +128,12 @@ const CreateTripForm = () => {
           />
         </div>
         <Button
-          className="mt-2 ml-auto"
+          className="mt-2"
           variant={"default"}
           type="submit"
           disabled={isLoading}
         >
-          Save
+          Create Trip
         </Button>
       </form>
     </Form>

@@ -12,7 +12,12 @@ export function middleware(request: NextRequest) {
     "/reset-password",
   ]
 
-  const privateRoutes = ["/dashboard", "/profile", "/settings"]
+  const privateRoutes = [
+    "/dashboard",
+    "/profile",
+    "/settings",
+    "/request-buddyes",
+  ]
 
   if (currentUser && authRoutes.some(route => pathname.startsWith(route))) {
     return Response.redirect(new URL("/dashboard", request.url))

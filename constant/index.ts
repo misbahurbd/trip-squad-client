@@ -7,48 +7,48 @@ import {
   HiOutlineUserPlus,
 } from "react-icons/hi2"
 
-export const getDeshboardNav = (pathname: string, role: string) => {
+export const getDashboardNav = (pathname: string, role: string) => {
   const navs = [
     {
-      label: "Deshboard",
+      label: "Dashboard",
       href: "/dashboard",
-      active: pathname.startsWith("/dashboard"),
+      active: (pathname = "/dashboard"),
       icon: HiOutlineComputerDesktop,
       userRole: ["Admin", "SuperAdmin", "User"],
     },
     {
       label: "My Trips",
-      href: "/trips",
+      href: "/dashboard/trips",
       icon: HiOutlineMap,
-      active: pathname.startsWith("/trips"),
+      active: pathname.includes("/trips"),
       userRole: ["User"],
     },
     {
       label: "Buddy Requests",
-      href: "/buddy-requests",
+      href: "/dashboard/buddy-requests",
       icon: HiOutlineUserPlus,
-      active: pathname.startsWith("/buddy-requests"),
+      active: pathname.includes("/buddy-requests"),
       userRole: ["User"],
     },
     {
       label: "User Management",
-      href: "/user-management",
+      href: "/dashboard/user-management",
       icon: HiOutlineUserGroup,
-      active: pathname.startsWith("/user-management"),
+      active: pathname.includes("/user-management"),
       userRole: ["Admin"],
     },
     {
       label: "Profile",
-      href: "/profile",
+      href: "/dashboard/profile",
       icon: HiOutlineUserCircle,
-      active: pathname.startsWith("/profile"),
+      active: pathname.includes("/profile"),
       userRole: ["Admin", "SuperAdmin", "User"],
     },
     {
       label: "Settings",
-      href: "/settings",
+      href: "/dashboard/settings",
       icon: HiOutlineCog6Tooth,
-      active: pathname.startsWith("/settings"),
+      active: pathname.includes("/settings"),
       userRole: ["Admin", "SuperAdmin", "User"],
     },
   ]

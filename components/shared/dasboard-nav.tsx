@@ -1,14 +1,14 @@
 "use client"
 
-import { getDeshboardNav } from "@/constant"
+import { getDashboardNav } from "@/constant"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-const DeshboardNav = ({ role }: { role: string }) => {
+const DashboardNav = ({ role }: { role: string }) => {
   const pathname = usePathname()
 
-  const dasboardNavs = getDeshboardNav(pathname, role)
+  const dasboardNavs = getDashboardNav(pathname, role)
 
   return (
     <ul className="space-y-1 pr-2">
@@ -36,4 +36,4 @@ const DeshboardNav = ({ role }: { role: string }) => {
     </ul>
   )
 }
-export default DeshboardNav
+export default DashboardNav

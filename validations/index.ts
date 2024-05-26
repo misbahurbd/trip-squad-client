@@ -122,4 +122,6 @@ export const createTripFormSchema = z.object({
   endDate: z.date({ required_error: "Start date is required" }),
   tripType: z.string().min(1, { message: "Trip type is required" }),
   budget: z.string().min(1, { message: "Budget is required" }),
+  location: z.string().min(1, { message: "Location is required" }),
+  itinerary: z.string().min(1, { message: "Itinerary is required" }),
 })

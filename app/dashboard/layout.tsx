@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { PropsWithChildren } from "react"
 import avatar from "@/assets/img/avatar.jpeg"
-import DeshboardNav from "@/components/shared/desboard-nav"
+import DashboardNav from "@/components/shared/dasboard-nav"
 import LogoutButton from "@/components/form/logout-button"
 
 const DashboardLayout = async ({ children }: PropsWithChildren) => {
@@ -23,7 +23,7 @@ const DashboardLayout = async ({ children }: PropsWithChildren) => {
           </Link>
         </div>
         <ScrollArea className="grow">
-          <DeshboardNav role={currentUser.role} />
+          <DashboardNav role={currentUser.role} />
         </ScrollArea>
         <div className="p-4 flex items-center gap-3">
           <div className="relative size-6 ring-2 ring-primary ring-offset-2 rounded-full">

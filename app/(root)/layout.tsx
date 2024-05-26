@@ -5,7 +5,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main className="bg-background space-y-10">{children}</main>
     </>
   )
 }

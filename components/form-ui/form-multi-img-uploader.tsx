@@ -95,7 +95,7 @@ const FormMultiImageUploader: React.FC<FormMultiImageUploaderProps> = ({
                   className="relative border border-muted-foreground/10 rounded-md overflow-hidden"
                 >
                   {i === 3 && images.length > 4 && (
-                    <span className="bg-white/20 absolute z-10 flex items-center justify-center inset-0 font-semibold from-white text-3xl">
+                    <span className="bg-black/30 absolute z-10 flex items-center justify-center inset-0 font-semibold text-white text-3xl">
                       +{images.length - 4}
                     </span>
                   )}
@@ -125,6 +125,7 @@ const FormMultiImageUploader: React.FC<FormMultiImageUploaderProps> = ({
               className="bg-background hidden"
               type="file"
               multiple
+              accept="image/png, image/jpeg, image/jpg, image/webp"
               disabled={disabled}
               onChange={handleChange}
             />
