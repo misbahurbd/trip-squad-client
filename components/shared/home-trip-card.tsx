@@ -7,6 +7,13 @@ import { CgDollar } from "react-icons/cg"
 import { format } from "date-fns"
 import Link from "next/link"
 import { Button } from "../ui/button"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../ui/carousel"
 
 interface HomeTripProps {
   trip: ITrip
@@ -14,15 +21,31 @@ interface HomeTripProps {
 
 const HomeTripCard: React.FC<HomeTripProps> = ({ trip }) => {
   return (
-    <article className="space-y-2 p-3 rounded-xl bg-background border">
-      <div className="aspect-video relative">
-        <Image
-          src={trip.photos[0]}
-          alt={trip.destination}
-          fill
-          className="object-cover rounded"
-        />
-      </div>
+    <article className="space-y-2 group p-3 rounded-xl bg-background border">
+      {trip.photos.length > 0 && (
+        <Carousel className="w-full">
+          <CarouselContent>
+            {trip.photos.map((photo, index) => (
+              <CarouselItem
+                key={
+                  trip.destination.replace(" ", "-") + "-" + index.toString()
+                }
+              >
+                <div className="aspect-video relative">
+                  <Image
+                    src={photo}
+                    alt={trip.destination}
+                    fill
+                    className="object-cover rounded"
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="!opacity-0 transition group-hover:!opacity-70 left-2" />
+          <CarouselNext className="!opacity-0 transition group-hover:!opacity-70 right-2" />
+        </Carousel>
+      )}
       <h2 className="font-semibold py-1">{trip.destination}</h2>
       <Separator className="opacity-50" />
       <div className="grid grid-cols-2 gap-2">
