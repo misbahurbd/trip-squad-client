@@ -23,7 +23,7 @@ const UserActoinMenu = ({ user }: { user: IUser }) => {
   const handleRoleChange = async (role: "Admin" | "User") => {
     const toastId = toast.loading("Updating role...")
     try {
-      const res = await axiosInstance.put(`/user/update-role/${user.id}`, {
+      const res = await axiosInstance.put(`/users/update-role/${user.id}`, {
         role: role,
       })
       toast.success(res?.message || "Role updated successfully", {
@@ -37,7 +37,7 @@ const UserActoinMenu = ({ user }: { user: IUser }) => {
   const handleStatusChange = async (status: "Active" | "Blocked") => {
     const toastId = toast.loading("Updating status...")
     try {
-      const res = await axiosInstance.put(`/user/update-status/${user.id}`, {
+      const res = await axiosInstance.put(`/users/update-status/${user.id}`, {
         status: status,
       })
       toast.success(res?.message || "Status updated successfully", {

@@ -7,7 +7,7 @@ export const getCurrentUser = async (): Promise<CurrentUser | null> => {
     const session = await getSession()
     if (!session) return null
 
-    const user = await axiosInstance.get("/user/current-user")
+    const user = await axiosInstance.get("/users/current-user")
     return user?.data
   } catch (err) {
     return null

@@ -26,6 +26,10 @@ export function middleware(request: NextRequest) {
   if (!currentUser && privateRoutes.some(route => pathname.startsWith(route))) {
     return Response.redirect(new URL("/login", request.url))
   }
+
+  if (pathname === "/dashboard") {
+    return Response.redirect(new URL("/dashboard/profile", request.url))
+  }
 }
 
 export const config = {

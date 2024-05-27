@@ -24,6 +24,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
       >
         <ChevronLeftIcon className="w-8 h-8" />
       </Button>
+
       <h1 className="text-xl font-semibold mr-auto">{pageTitle}</h1>
       {children && <div>{children}</div>}
     </aside>

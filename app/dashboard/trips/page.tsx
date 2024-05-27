@@ -1,4 +1,3 @@
-import DashboardHeader from "@/components/shared/dashboard-header"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { TbMapPlus } from "react-icons/tb"
@@ -9,6 +8,7 @@ import { ITrip } from "@/interface"
 import TripCard from "@/components/shared/trip-card"
 import { Suspense } from "react"
 import Pagination from "@/components/shared/pagination"
+import DashboardHeader from "@/components/shared/dashboard-header"
 
 const TripsPage = async ({
   searchParams,
@@ -26,7 +26,7 @@ const TripsPage = async ({
     })
     .join("&")
 
-  const trips = await axiosInstance.get(`/trip/get-my-trips?${query}`)
+  const trips = await axiosInstance.get(`/trips/get-my-trips?${query}`)
   const totalPage = Math.ceil(trips?.meta?.total / trips?.meta?.limit)
 
   return (
@@ -36,7 +36,7 @@ const TripsPage = async ({
           className="flex items-center gap-2"
           asChild
         >
-          <Link href={"/trips/create"}>
+          <Link href={"/dashboard/trips/create"}>
             <TbMapPlus className="size-5" />
             <span>Add Trip</span>
           </Link>

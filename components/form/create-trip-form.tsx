@@ -36,7 +36,7 @@ const CreateTripForm = () => {
     Array.from(images).forEach(image => formData.append("images", image))
 
     try {
-      const res = await axiosInstance.post("/trip", formData)
+      const res = await axiosInstance.post("/trips", formData)
       router.refresh()
       toast.success(res?.data?.message || "Trip created successfully!", {
         id: toastid,

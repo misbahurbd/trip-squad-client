@@ -109,7 +109,7 @@ export const createTripFormSchema = z.object({
     .refine(fileList => {
       if (!fileList?.length || fileList.length === 0) return false
       return Array.from(fileList).every(file => file.size <= MAX_UPLOAD_SIZE)
-    }, "Each file size should be less than 1GB.")
+    }, "Each file size should be less than 10MB.")
     .refine(fileList => {
       if (!fileList?.length || fileList.length === 0) return false
       return Array.from(fileList).every(file =>

@@ -13,10 +13,11 @@ import FormInput from "@/components/form-ui/form-input"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import { loginUser } from "@/services/auth.action"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 
 const LoginForm = () => {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = useState(false)
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
@@ -32,7 +33,9 @@ const LoginForm = () => {
     try {
       const res = await loginUser(values)
       toast.success(res?.data?.message || "Login successfully", { id: toaster })
-      router.push("/dashboard")
+      const next = searchParams.get("next")
+      router.push(next ? next : "/dashboard")
+      router.refresh()
     } catch (error: any) {
       console.log(error)
       toast.error(error?.message || "Something went wrong", { id: toaster })

@@ -15,6 +15,19 @@ export interface CurrentUser {
   updatedAt: date
 }
 
+export interface IProfile {
+  id: string
+  name: string
+  email: string
+  mobile: string
+  profilePhoto: string
+  dateOfBirth: string
+  bio: string
+  userId: string
+  createdAt: string
+  updatedAt: string
+}
+
 export interface ITrip {
   id: string
   destination: string
@@ -26,6 +39,15 @@ export interface ITrip {
   budget: number
   isDeleted: boolean
   creatorId: string
+  itinerary: string
+  location: string
+  tripBuddy: ITripBuddy[]
+  createdBy: {
+    username: string
+    email: string
+    profile: IProfile
+    _count: { trip: number }
+  }
   createdAt: string
   updatedAt: string
 }
@@ -45,4 +67,17 @@ export interface IUser {
   role: "Admin" | "User"
   status: "Active" | "Blocked"
   isDeleted: boolean
+}
+
+export interface ITripType {
+  label: string
+  count: number
+}
+
+export interface ITripBuddy {
+  tripId: string
+  userId: string
+  status: "Pending" | "Approved" | "Rejected"
+  createdAt: string
+  updatedAt: string
 }

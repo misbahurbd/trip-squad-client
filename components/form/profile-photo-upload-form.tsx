@@ -35,7 +35,7 @@ const ProfilePhotoUploadForm = ({
     try {
       const formData = new FormData()
       formData.append("profilePhoto", values.profilePhoto)
-      const res = await axiosInstance.put("/profile/profile-photo", formData)
+      const res = await axiosInstance.put("/profiles/profile-photo", formData)
       toast.success(res?.data?.message || "Profile update successfully!", {
         id: toastid,
       })

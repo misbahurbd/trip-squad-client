@@ -34,7 +34,7 @@ const PersonalInfoForm = ({ currentUser }: { currentUser: CurrentUser }) => {
     setIsLoading(true)
     const toastid = toast.loading("Updating profile...")
     try {
-      const res = await axiosInstance.put("/profile", values)
+      const res = await axiosInstance.put("/profiles", values)
       router.refresh()
       toast.success(res.data.message || "Profile update successfully!", {
         id: toastid,

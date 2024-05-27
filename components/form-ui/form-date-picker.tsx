@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils"
 import { format } from "date-fns"
 import { CalendarIcon } from "@radix-ui/react-icons"
 import { Calendar } from "@/components/ui/calendar"
+import { useState } from "react"
 
 interface FormInputProps {
   form: UseFormReturn<any>
@@ -24,6 +25,7 @@ interface FormInputProps {
   labelClassName?: string
   placeholder: string
   className?: string
+  required?: boolean
   fieldClassName?: string
   disabled: boolean
   range?: "future" | "past" | "range"
@@ -37,9 +39,12 @@ const FormDatePicker: React.FC<FormInputProps> = ({
   labelClassName,
   className,
   fieldClassName,
+  required,
   disabled,
   range,
 }) => {
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
     <FormField
       control={form.control}
@@ -47,7 +52,10 @@ const FormDatePicker: React.FC<FormInputProps> = ({
       render={({ field }) => (
         <FormItem className={cn("w-full space-y-0.5", className)}>
           <FormLabel className={labelClassName}>{label}</FormLabel>
-          <Popover>
+          <Popover
+            open={isOpen}
+            onOpenChange={open => setIsOpen(open)}
+          >
             <PopoverTrigger asChild>
               <FormControl>
                 <Button
@@ -60,7 +68,7 @@ const FormDatePicker: React.FC<FormInputProps> = ({
                   )}
                 >
                   {field.value ? (
-                    format(field.value, "PPP")
+                    format(field.value, "MMM d, yyyy")
                   ) : (
                     <span>{placeholder}</span>
                   )}
@@ -74,9 +82,12 @@ const FormDatePicker: React.FC<FormInputProps> = ({
             >
               <Calendar
                 mode="single"
-                required={true}
+                required={required || true}
                 selected={field.value}
-                onSelect={field.onChange}
+                onSelect={data => {
+                  field.onChange(data)
+                  setIsOpen(false)
+                }}
                 disabled={date => {
                   if (range && range == "future") {
                     return (

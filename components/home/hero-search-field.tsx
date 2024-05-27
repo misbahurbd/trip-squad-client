@@ -39,7 +39,7 @@ const HeroSearchField = () => {
   }
 
   return (
-    <div className="absolute w-1/2 bottom-0 translate-y-1/2 bg-white border z-20 py-2 pl-4 pr-3 rounded-full">
+    <div className="absolute w-1/2 bottom-0 translate-y-1/2 bg-white border border-foreground/10 shadow-lg z-20 py-2 pl-4 pr-3 rounded-3xl">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -86,7 +86,7 @@ const HeroSearchField = () => {
           />
           <Button
             type="submit"
-            className="size-12 rounded-full"
+            className="size-12 rounded-xl"
             size="icon"
           >
             <HiOutlineMagnifyingGlass className="size-6" />

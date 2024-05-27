@@ -22,7 +22,7 @@ const UserManagement = async ({
     })
     .join("&")
 
-  const users = await axiosInstance(`/user?${query}`)
+  const users = await axiosInstance(`/users?${query}`)
 
   const totalPage = Math.ceil(users?.meta?.total / users?.meta?.limit)
 
