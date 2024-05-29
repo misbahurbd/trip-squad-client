@@ -113,7 +113,7 @@ const FormMultiImageUploader: React.FC<FormMultiImageUploaderProps> = ({
           )}
           <FormLabel
             className={cn(
-              "group cursor-pointer flex flex-row items-center justify-center gap-4 border rounded-lg text text-muted-foreground p-3 transition hover:bg-secondary",
+              "group cursor-pointer flex flex-row items-center justify-center gap-3 border rounded-lg text text-muted-foreground p-3 transition hover:bg-secondary",
               images.length == 0 && "aspect-video flex-col"
             )}
           >

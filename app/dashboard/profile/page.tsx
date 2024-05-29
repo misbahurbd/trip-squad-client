@@ -36,7 +36,7 @@ const Profile = async () => {
           <div className="space-y-3">
             <h3 className="font-bold">Personal Information</h3>
             <Separator />
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <p className="text-sm text-muted-foreground">Name</p>
                 <p className="text-foreground">{currentUser.name}</p>

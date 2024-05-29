@@ -1,7 +1,7 @@
 import { footerNavs, footerSocialLinks } from "@/constant"
 import Link from "next/link"
 import { HiOutlineEnvelope, HiOutlinePhone } from "react-icons/hi2"
-import { Separator } from "../ui/separator"
+import { Separator } from "@/components/ui/separator"
 
 const Footer = () => {
   return (

@@ -43,11 +43,11 @@ const TripPage = async ({ params }: { params: { id: string } }) => {
   const user = await getCurrentUser()
 
   return (
-    <div className="container pt-20 space-y-4">
+    <div className="container space-y-4">
       <TripImgSlide tripImgs={tripData.photos} />
-      <div className="flex gap-4">
+      <div className="flex gap-3">
         <div className="grow p-3 rounded-xl bg-background space-y-4">
-          <div className="shadow-sm bg-muted p-3 rounded-lg flex items-center gap-4">
+          <div className="shadow-sm bg-muted p-3 rounded-lg flex items-center gap-3">
             <div className="size-28 rounded relative shrink-0">
               <Image
                 src={tripData.createdBy.profile.profilePhoto || Avatar}

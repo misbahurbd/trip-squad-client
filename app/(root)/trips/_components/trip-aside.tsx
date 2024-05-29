@@ -3,10 +3,12 @@
 import { z } from "zod"
 import { useEffect, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { ClipLoader as Spinner } from "react-spinners"
+import { useDebouncedCallback } from "use-debounce"
 import { useForm } from "react-hook-form"
 import { cn, formatedDate } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { FiFilter, FiSearch } from "react-icons/fi"
+import { FiFilter } from "react-icons/fi"
 
 import { ITripType } from "@/interface"
 import { Form } from "@/components/ui/form"
@@ -14,6 +16,8 @@ import FormInput from "@/components/form-ui/form-input"
 import { Button } from "@/components/ui/button"
 import FormDatePicker from "@/components/form-ui/form-date-picker"
 import { Separator } from "@/components/ui/separator"
+import { LuFilterX } from "react-icons/lu"
+import { HiXMark } from "react-icons/hi2"
 
 interface TripAsideProps {
   className?: string
@@ -25,8 +29,8 @@ const searchFormSchema = z.object({
 })
 
 const dateRangeSchema = z.object({
-  startDate: z.date().optional(),
-  endDate: z.date().optional(),
+  startDate: z.date({ required_error: "Start date is required" }),
+  endDate: z.date({ required_error: "End Date is required" }),
 })
 
 const budgetRangeFormSchema = z.object({
@@ -40,6 +44,7 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
   const pathname = usePathname()
   const router = useRouter()
   const searchParams = useSearchParams()
+  const [isSearching, setIsSearching] = useState(false)
 
   const searchForm = useForm<z.infer<typeof searchFormSchema>>({
     resolver: zodResolver(searchFormSchema),
@@ -50,16 +55,6 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
 
   const dateRangeForm = useForm<z.infer<typeof dateRangeSchema>>({
     resolver: zodResolver(dateRangeSchema),
-    defaultValues: {
-      startDate:
-        (searchParams.get("startDate") &&
-          new Date(searchParams.get("startDate") || "")) ||
-        undefined,
-      endDate:
-        (searchParams.get("endDate") &&
-          new Date(searchParams.get("endDate") || "")) ||
-        undefined,
-    },
   })
 
   const budgetRangeForm = useForm<z.infer<typeof budgetRangeFormSchema>>({
@@ -72,11 +67,28 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
 
   const handleSelectType = (type: ITripType) => {
     setIsLoading(true)
+
     try {
+      const params = new URLSearchParams(searchParams)
+
       if (selectedType.includes(type.label)) {
-        setSelectedType(selectedType.filter(data => data !== type.label))
+        setSelectedType(data => {
+          const newTripType = data.filter(t => t !== type.label)
+          if (newTripType.length > 0) {
+            params.set("tripType", newTripType.join(","))
+          } else {
+            params.delete("tripType")
+          }
+          router.replace(`${pathname}?${params.toString()}`)
+          return newTripType
+        })
       } else {
-        setSelectedType([...selectedType, type.label])
+        setSelectedType(data => {
+          const newTripType = [...data, type.label]
+          params.set("tripType", newTripType.join(","))
+          router.replace(`${pathname}?${params.toString()}`)
+          return newTripType
+        })
       }
     } catch (error) {
       console.log(error)
@@ -85,17 +97,22 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
     }
   }
 
-  const handleSearch = (value: z.infer<typeof searchFormSchema>) => {
+  const onSearchTermChange = (value: z.infer<typeof searchFormSchema>) => {
     const params = new URLSearchParams(searchParams)
-    if (value.searchTerm) {
+    if (value.searchTerm !== "") {
       params.set("searchTerm", value.searchTerm)
     } else {
       params.delete("searchTerm")
     }
     router.replace(`${pathname}?${params.toString()}`)
+    setIsSearching(false)
   }
+  const onSearchTermChangeDebounce = useDebouncedCallback(
+    onSearchTermChange,
+    500
+  )
 
-  const handleDateRangeSubmit = (value: z.infer<typeof dateRangeSchema>) => {
+  const onDateChange = (value: z.infer<typeof dateRangeSchema>) => {
     const params = new URLSearchParams(searchParams)
     if (value.startDate && value.endDate) {
       params.set("startDate", formatedDate(value.startDate))
@@ -105,11 +122,10 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
       params.delete("endDate")
     }
     router.replace(`${pathname}?${params.toString()}`)
+    router.refresh()
   }
 
-  const handleBudgetRangeSubmit = (
-    value: z.infer<typeof budgetRangeFormSchema>
-  ) => {
+  const onBudgetChange = (value: z.infer<typeof budgetRangeFormSchema>) => {
     const params = new URLSearchParams(searchParams)
     if (value.minBudget && value.maxBudget) {
       params.set("minBudget", value.minBudget)
@@ -121,103 +137,104 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
     router.replace(`${pathname}?${params.toString()}`)
   }
 
+  const onBudgetChangeDebounce = useDebouncedCallback(onBudgetChange, 500)
+
   useEffect(() => {
     const tripTypes = searchParams.get("tripType")
     setSelectedType(tripTypes ? tripTypes.split(",") : [])
-  }, [])
 
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams)
-    if (selectedType.length > 0) {
-      params.set("tripType", selectedType.join(","))
-    } else {
-      params.delete("tripType")
+    const startDate = searchParams.get("startDate")
+    const endDate = searchParams.get("endDate")
+    if (startDate) {
+      dateRangeForm.setValue("startDate", new Date(startDate))
     }
-    router.replace(`${pathname}?${params.toString()}`)
-  }, [selectedType, pathname, router, searchParams])
+    if (endDate) {
+      dateRangeForm.setValue("endDate", new Date(endDate))
+    }
+  }, [searchParams])
 
   return (
     <div className={cn("rounded-lg p-3 bg-background space-y-4", className)}>
       <div>
+        <h2 className="font-semibold text-sm mb-1">Search</h2>
         <Form {...searchForm}>
           <form
-            onClick={searchForm.handleSubmit(handleSearch)}
+            onSubmit={searchForm.handleSubmit(onSearchTermChange)}
             className="flex items-center transition-all ring-1 focus-within:ring-2 rounded-md ring-primary"
+            onChange={() => {
+              setIsSearching(true)
+              onSearchTermChangeDebounce(searchForm.getValues())
+            }}
           >
-            <FormInput
-              form={searchForm}
-              name="searchTerm"
-              disabled={isLoading}
-              fieldClassName="py-0 shadow-none !ring-transparent border-none grow"
-              placeholder="Search..."
-            />
-            <Button
-              size={"icon"}
-              className="shrink-0 rounded-r-md rounded-l-none ring-1 ring-primary"
-            >
-              <FiSearch className="size-5" />
-            </Button>
+            <div className="w-full relative">
+              <FormInput
+                form={searchForm}
+                name="searchTerm"
+                disabled={isLoading}
+                fieldClassName="py-0 shadow-none !ring-transparent border-none grow"
+                placeholder="Type destenation"
+                className="pr-6"
+              />
+              {(isSearching || searchParams.get("searchTerm")) && (
+                <span className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center">
+                  {isSearching && (
+                    <Spinner
+                      size={18}
+                      className="block pt-2 mr-2"
+                    />
+                  )}
+                  {searchParams.get("searchTerm") && (
+                    <Button
+                      variant="secondary"
+                      type="reset"
+                      size={"icon"}
+                      onClick={() => {
+                        searchForm.setValue("searchTerm", "")
+                        onSearchTermChange(searchForm.getValues())
+                      }}
+                    >
+                      <HiXMark className="w-6 h-6" />
+                    </Button>
+                  )}
+                </span>
+              )}
+            </div>
           </form>
         </Form>
       </div>
 
       <div>
         <h4 className="font-semibold mb-1.5 text-sm">Trip Type</h4>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap gap-2">
           {tripTypes.map(type => (
             <Button
-              className="text-center"
+              className="text-center flex justify-between gap-2 px-2.5"
               variant={
                 selectedType.includes(type.label) ? "default" : "secondary"
               }
               onClick={() => handleSelectType(type)}
               key={type.label.replace(" ", "-")}
             >
-              {type.label}
+              <span>{type.label}</span>
+              <span>({type.count})</span>
             </Button>
           ))}
         </div>
       </div>
 
       <div>
-        <h4 className="font-semibold mb-1 text-sm">Date Range</h4>
-        <Form {...dateRangeForm}>
-          <form
-            onSubmit={dateRangeForm.handleSubmit(handleDateRangeSubmit)}
-            className="w-full flex flex-col gap-2 "
-          >
-            <FormDatePicker
-              form={dateRangeForm}
-              name="startDate"
-              required
-              placeholder="Start Date"
-              className="flex-1 shrink-1"
-              disabled={isLoading}
-            />
-            <FormDatePicker
-              form={dateRangeForm}
-              name="endDate"
-              required
-              placeholder="End Date"
-              className="flex-1 shrink-1"
-              disabled={isLoading}
-            />
-            <Button>
-              <FiFilter className="size-4 mr-2" /> Filter
-            </Button>
-          </form>
-        </Form>
-      </div>
-
-      <div>
         <h4 className="font-semibold mb-1.5 text-sm">Budget Range</h4>
         <Form {...budgetRangeForm}>
           <form
-            onSubmit={budgetRangeForm.handleSubmit(handleBudgetRangeSubmit)}
-            className="w-full flex flex-col gap-2 "
-            onChangeCapture={budgetRangeForm.handleSubmit(
-              handleBudgetRangeSubmit
-            )}
+            className="w-full flex flex-col gap-2"
+            onChange={() => {
+              const minBudget = budgetRangeForm.watch("minBudget")
+              const maxBudget = budgetRangeForm.watch("maxBudget")
+
+              if (minBudget && maxBudget) {
+                onBudgetChangeDebounce(budgetRangeForm.getValues())
+              }
+            }}
           >
             <div className="flex items-center gap-2">
               <FormInput
@@ -238,9 +255,66 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
                 disabled={isLoading}
               />
             </div>
-            <Button>
-              <FiFilter className="size-4 mr-2" /> Filter
-            </Button>
+            {["minBudget", "maxBudget"].some(value =>
+              searchParams.get(value)
+            ) && (
+              <Button
+                type="reset"
+                variant="secondary"
+                onClick={() => {
+                  budgetRangeForm.setValue("minBudget", "")
+                  budgetRangeForm.setValue("maxBudget", "")
+                  onBudgetChange({ minBudget: "", maxBudget: "" })
+                }}
+              >
+                <LuFilterX className="mr-2" />
+                Clear
+              </Button>
+            )}
+          </form>
+        </Form>
+      </div>
+
+      <div>
+        <h4 className="font-semibold mb-2 text-sm">Date Range</h4>
+        <Form {...dateRangeForm}>
+          <form
+            onSubmit={dateRangeForm.handleSubmit(onDateChange)}
+            className="w-full flex flex-col gap-2"
+          >
+            <FormDatePicker
+              form={dateRangeForm}
+              name="startDate"
+              required
+              onUpdate={() => onDateChange(dateRangeForm.getValues())}
+              placeholder="Start Date"
+              className="flex-1 shrink-1"
+              disabled={isLoading}
+            />
+            <FormDatePicker
+              form={dateRangeForm}
+              name="endDate"
+              required
+              onUpdate={() => onDateChange(dateRangeForm.getValues())}
+              placeholder="End Date"
+              className="flex-1 shrink-1"
+              disabled={isLoading}
+            />
+            {["startDate", "endDate"].some(value =>
+              searchParams.get(value)
+            ) && (
+              <Button
+                type="reset"
+                variant="secondary"
+                className="flex-1"
+                onClick={() => {
+                  dateRangeForm.reset()
+                  onDateChange(dateRangeForm.getValues())
+                }}
+              >
+                <FiFilter className="size-4 mr-2" /> Clear
+              </Button>
+            )}
           </form>
         </Form>
       </div>

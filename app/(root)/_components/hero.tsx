@@ -9,8 +9,7 @@ const HeroSection = async () => {
   const tripTypes = await axiosInstance.get("/trips/top-trip-types")
 
   return (
-    <section className="pt-[4.5rem] md:pt-20 relative isolate mb-10 sm:mb-12 md:mb-20">
-      <div className="absolute top-0 left-0 right-0 bottom-0 bg-secondary h-1/2"></div>
+    <section className="relative isolate mb-10 sm:mb-12 md:mb-20">
       <div className="container">
         <div className="relative rounded-2xl">
           <Image
@@ -18,7 +17,7 @@ const HeroSection = async () => {
             alt="Hero Image"
             className="absolute left-0 right-0 top-0 bottom-0 w-full h-full object-cover rounded-2xl"
           />
-          <div className="relative top-0 left-0 w-full h-full md:min-h-96 bg-black/40 flex flex-col items-center justify-center p-3 rounded-2xl">
+          <div className="relative top-0 left-0 w-full h-full md:min-h-[520px] bg-gradient-to-t from-black/80 to-black/20 flex flex-col items-center justify-center p-3 rounded-2xl">
             <div className="w-full max-w-3xl text-center py-12 px-6">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-background mb-2">
                 Find Your Perfect Trip Buddy

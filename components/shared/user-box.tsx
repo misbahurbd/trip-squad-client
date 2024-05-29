@@ -44,7 +44,7 @@ const UserBox = ({ user }: UserBoxProps) => {
         align="end"
         sideOffset={10}
         alignOffset={-10}
-        className="min-w-48"
+        className="min-w-52"
       >
         <DropdownMenuLabel>
           <div>
@@ -61,6 +61,12 @@ const UserBox = ({ user }: UserBoxProps) => {
             onClick={() => router.push("/dashboard/profile")}
           >
             Profile
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            className="cursor-pointer"
+            onClick={() => router.push("/dashboard/trips")}
+          >
+            My Trips
           </DropdownMenuItem>
           <DropdownMenuItem
             className="cursor-pointer"

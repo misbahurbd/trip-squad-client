@@ -55,7 +55,7 @@ const ProfilePhotoUploadForm = ({
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-3"
       >
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <FormImageUploader
             form={form}
             currentImage={currentUser.profilePhoto}

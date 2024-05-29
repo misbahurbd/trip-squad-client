@@ -175,4 +175,37 @@ export const footerSocialLinks = [
   },
 ]
 
+export const whyTravelWithUsContent = [
+  {
+    title: "Explore Endless Possibilities",
+    description:
+      "Connect with a diverse community of travelers, offering endless opportunities to discover new destinations and experiences.",
+  },
+  {
+    title: "Connect with Like-minded Travelers",
+    description:
+      "Join a vibrant community of fellow explorers who share your passion for travel. Forge meaningful connections and build lasting friendships.",
+  },
+  {
+    title: "Safety and Security First",
+    description:
+      "Your safety is our priority. With verified user profiles and secure payment options, explore with peace of mind.",
+  },
+  {
+    title: "Personalized Travel Experiences",
+    description:
+      "Tailor your travel experiences to suit your unique preferences. With customizable trip options, every journey reflects your style.",
+  },
+  {
+    title: "Access Insider Knowledge",
+    description:
+      "Gain access to insider tips from experienced travelers. Discover hidden gems and off-the-beaten-path destinations.",
+  },
+  {
+    title: "24/7 Support",
+    description:
+      "We're here for you every step of the way. Our support team is available 24/7 to assist with trip planning and inquiries.",
+  },
+]
+
 export type TravelTripType = typeof travelTripTypes

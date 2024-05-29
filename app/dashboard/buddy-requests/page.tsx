@@ -24,7 +24,7 @@ const BuddyRequests = async () => {
               message="You have no buddy requests"
             />
           )}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-3">
             {buddyRequests?.data?.map((buddyRequest: IBuddyRequest) => (
               <RequestCard
                 key={buddyRequest.tripId + buddyRequest.userId}

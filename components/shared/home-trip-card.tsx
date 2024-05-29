@@ -23,7 +23,10 @@ const HomeTripCard: React.FC<HomeTripProps> = ({ trip }) => {
   return (
     <article className="space-y-2 group p-3 rounded-xl bg-background border">
       {trip.photos.length > 0 && (
-        <Carousel className="w-full">
+        <Carousel
+          opts={{ loop: true }}
+          className="w-full cursor-grab active:cursor-grabbing"
+        >
           <CarouselContent>
             {trip.photos.map((photo, index) => (
               <CarouselItem
@@ -42,11 +45,27 @@ const HomeTripCard: React.FC<HomeTripProps> = ({ trip }) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="!opacity-0 transition group-hover:!opacity-70 left-2" />
-          <CarouselNext className="!opacity-0 transition group-hover:!opacity-70 right-2" />
+          <CarouselPrevious
+            className="transition bg-background disabled:bg-background/60 size-7 rounded-none left-0 !opacity-0 group-hover:!opacity-100"
+            variant={"secondary"}
+            size={"icon"}
+          />
+          <CarouselNext
+            className="transition bg-background disabled:bg-background/60 size-7 rounded-none right-0 !opacity-0 group-hover:!opacity-100"
+            variant={"secondary"}
+            size={"icon"}
+          />
         </Carousel>
       )}
-      <h2 className="font-semibold py-1">{trip.destination}</h2>
+      <Link
+        href={`/trips/${trip.id}`}
+        className="transition hover:text-primary block pt-0.5"
+      >
+        <h2 className="font-bold leading-tight">{trip.destination}</h2>
+      </Link>
+      <p className="line-clamp-2 text-muted-foreground text-sm">
+        {trip.description}
+      </p>
       <Separator className="opacity-50" />
       <div className="grid grid-cols-2 gap-2">
         <div className="flex items-center gap-2 text-foreground">

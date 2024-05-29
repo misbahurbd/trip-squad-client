@@ -8,7 +8,7 @@ const HowItWork = () => {
         title="How It Works"
         subTitle="Discover how Trip Squad helps you connect with like-minded travelers and make your dream trips a reality. It's easy and fun!"
       />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-3">
         {howItWorksData.map((howItWork, i) => (
           <div
             className="relative overflow-hidden text-center flex flex-col items-center justify-center px-6 py-10 rounded-lg bg-background isolate group "

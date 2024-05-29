@@ -50,8 +50,8 @@ const PaginationComponent = ({ totalPages }: { totalPages: number }) => {
 
   return (
     <Pagination>
-      <PaginationContent>
-        <PaginationItem>
+      <PaginationContent className="w-full">
+        <PaginationItem className="flex-1">
           <PaginationPrevious
             href={createPageURL(currentPage - 1)}
             isActive={currentPage > 1}
@@ -77,7 +77,7 @@ const PaginationComponent = ({ totalPages }: { totalPages: number }) => {
             <PaginationEllipsis />
           </PaginationItem>
         )}
-        <PaginationItem>
+        <PaginationItem className="flex-1 flex justify-end">
           <PaginationNext
             href={createPageURL(currentPage + 1)}
             isActive={currentPage < totalPages}

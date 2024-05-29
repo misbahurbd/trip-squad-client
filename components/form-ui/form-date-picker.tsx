@@ -26,6 +26,7 @@ interface FormInputProps {
   placeholder: string
   className?: string
   required?: boolean
+  onUpdate?: () => void
   fieldClassName?: string
   disabled: boolean
   range?: "future" | "past" | "range"
@@ -38,6 +39,7 @@ const FormDatePicker: React.FC<FormInputProps> = ({
   placeholder,
   labelClassName,
   className,
+  onUpdate,
   fieldClassName,
   required,
   disabled,
@@ -87,6 +89,7 @@ const FormDatePicker: React.FC<FormInputProps> = ({
                 onSelect={data => {
                   field.onChange(data)
                   setIsOpen(false)
+                  if (onUpdate) onUpdate()
                 }}
                 disabled={date => {
                   if (range && range == "future") {

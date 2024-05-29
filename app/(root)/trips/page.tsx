@@ -4,6 +4,9 @@ import PaginationComponent from "@/components/shared/pagination"
 import { ITrip } from "@/interface"
 import { axiosInstance } from "@/lib/axios"
 import TripAside from "@/app/(root)/trips/_components/trip-aside"
+import EmptyRes from "@/components/shared/empty-res"
+import { PiBackpack } from "react-icons/pi"
+import MobileTripAside from "./_components/mobile-trip-aside"
 
 interface TripsPageProps {
   searchParams: Record<string, string>
@@ -23,23 +26,32 @@ const TripsPage: React.FC<TripsPageProps> = async ({ searchParams }) => {
   const tripTypes = await axiosInstance.get("/trips/trip-types")
 
   return (
-    <div className="container py-20 flex gap-4">
-      <aside className="w-[320px]">
+    <div className="container flex gap-3">
+      <MobileTripAside tripTypes={tripTypes?.data || []} />
+      <aside className="w-[320px] shrink-0 hidden lg:block">
         <TripAside
           className="sticky top-20"
           tripTypes={tripTypes?.data || []}
         />
       </aside>
       <div className="space-y-4 grow">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-          {trips.data.map((trip: ITrip) => (
+        {(!trips?.data || trips?.data?.length == 0) && (
+          <EmptyRes
+            icon={PiBackpack}
+            message="There are no trip!"
+          />
+        )}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
+          {trips?.data?.map((trip: ITrip) => (
             <HomeTripCard
               key={trip.id}
               trip={trip}
             />
           ))}
         </div>
-        <PaginationComponent totalPages={totalPage} />
+        {trips?.data?.length > 0 && (
+          <PaginationComponent totalPages={totalPage} />
+        )}
       </div>
     </div>
   )
