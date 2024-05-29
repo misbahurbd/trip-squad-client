@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
 import { ChevronLeftIcon } from "@radix-ui/react-icons"
 
 interface DashboardHeaderProps {

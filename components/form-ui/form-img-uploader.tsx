@@ -22,6 +22,7 @@ interface FormImageUploaderProps {
   label?: string
   type?: "text" | "email" | "password" | "number" | "tel" | "url" | "search"
   className?: string
+  imgClassName?: string
   disabled: boolean
 }
 
@@ -30,6 +31,7 @@ const FormImageUploader: React.FC<FormImageUploaderProps> = ({
   name,
   label,
   className,
+  imgClassName,
   currentImage,
   disabled,
   setSelected,
@@ -63,7 +65,7 @@ const FormImageUploader: React.FC<FormImageUploaderProps> = ({
           {label && (
             <FormLabel className="group cursor-pointer">
               <div className="relative size-32">
-                <span className="absolute transition left-0 top-0 w-full h-full z-10 bg-white/30 opacity-0 flex items-center justify-center group-hover:opacity-100">
+                <span className="absolute transition left-0 top-0 w-full h-full z-10 bg-black/40 rounded-xl opacity-0 flex items-center justify-center group-hover:opacity-100">
                   <HiPhoto
                     className="w-1/3 h-1/3"
                     color="white"
@@ -73,7 +75,7 @@ const FormImageUploader: React.FC<FormImageUploaderProps> = ({
                   src={image || currentImage || avatar}
                   fill
                   alt="Profile Photo"
-                  className={cn("object-cover", className)}
+                  className={cn("object-cover rounded-xl", imgClassName)}
                 />
               </div>
             </FormLabel>

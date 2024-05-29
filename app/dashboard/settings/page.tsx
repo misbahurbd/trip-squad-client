@@ -14,19 +14,19 @@ const Profile = async () => {
   return (
     <div className="flex flex-col h-full">
       <DashboardHeader pageTitle="Settings" />
-      <ScrollArea className="grow bg-secondary rounded-tl-lg">
-        <div className="max-w-2xl mx-auto space-y-4 p-4">
-          <div className="space-y-2 p-5 rounded-md bg-background">
+      <ScrollArea className="grow bg-secondary rounded-tl-lg p-4">
+        <div className="max-w-2xl mx-auto space-y-4">
+          <div className="space-y-2 p-4 rounded-md bg-background">
             <h3 className="font-bold">Profile Photo</h3>
             <Separator />
             <ProfilePhotoUploadForm currentUser={currentUser} />
           </div>
-          <div className="space-y-2 p-5 rounded-md bg-background">
+          <div className="space-y-2 p-4 rounded-md bg-background">
             <h3 className="font-bold">Personal Information</h3>
             <Separator />
             <PersonalInfoForm currentUser={currentUser} />
           </div>
-          <div className="space-y-2 p-5 rounded-md bg-background">
+          <div className="space-y-2 p-4 rounded-md bg-background">
             <h3 className="font-bold">Change Password</h3>
             <Separator />
             <ChangePasswordForm currentUser={currentUser} />

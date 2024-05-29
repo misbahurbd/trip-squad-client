@@ -1,12 +1,12 @@
-import { ITrip } from "@/interface"
+import { format } from "date-fns"
+import Link from "next/link"
 import Image from "next/image"
-import { Separator } from "../ui/separator"
+import { ITrip } from "@/interface"
 import { HiOutlineBriefcase, HiOutlineCalendarDays } from "react-icons/hi2"
 import { BsCurrencyDollar } from "react-icons/bs"
 
-import { format } from "date-fns"
-import Link from "next/link"
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
 
 interface TripCardProps {
   trip: ITrip

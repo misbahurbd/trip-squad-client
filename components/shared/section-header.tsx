@@ -14,14 +14,18 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   return (
     <section
       className={cn(
-        "max-w-2xl mx-auto space-y-1",
+        "max-w-3xl mx-auto",
         align === "center" && "text-center",
         align === "left" && "text-start",
         align === "right" && "text-end"
       )}
     >
-      <h2 className="text-2xl text-foreground font-bold">{title}</h2>
-      {subTitle && <h4 className="text-muted-foreground">{subTitle}</h4>}
+      <h2 className="text-xl sm:text-2xl md:text-3xl text-foreground font-bold mb-3">
+        {title}
+      </h2>
+      {subTitle && (
+        <h4 className="text-muted-foreground leading-normal">{subTitle}</h4>
+      )}
     </section>
   )
 }

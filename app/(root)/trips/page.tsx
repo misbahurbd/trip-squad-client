@@ -1,8 +1,9 @@
 import HomeTripCard from "@/components/shared/home-trip-card"
 import PaginationComponent from "@/components/shared/pagination"
-import TripAside from "@/components/shared/trip-aside"
+
 import { ITrip } from "@/interface"
 import { axiosInstance } from "@/lib/axios"
+import TripAside from "@/app/(root)/trips/_components/trip-aside"
 
 interface TripsPageProps {
   searchParams: Record<string, string>

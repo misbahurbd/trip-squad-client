@@ -1,19 +1,19 @@
 import { ITrip } from "@/interface"
 import Image from "next/image"
-import { Separator } from "../ui/separator"
+import { Separator } from "@/components/ui/separator"
 import { HiOutlineBriefcase, HiOutlineCalendarDays } from "react-icons/hi2"
 import { CgDollar } from "react-icons/cg"
 
 import { format } from "date-fns"
 import Link from "next/link"
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "../ui/carousel"
+} from "@/components/ui/carousel"
 
 interface HomeTripProps {
   trip: ITrip

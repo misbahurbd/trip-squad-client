@@ -3,7 +3,7 @@
 import { CurrentUser, ITrip, IUser } from "@/interface"
 import { format } from "date-fns"
 import { HiOutlineCalendarDays } from "react-icons/hi2"
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { toast } from "sonner"
 import { axiosInstance } from "@/lib/axios"
@@ -25,7 +25,7 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
     setIsLoading(true)
     const toastId = toast.loading("Sending trip buddy request...")
     try {
-      const res = await axiosInstance.post(`/trip-buddies/${trip.id}`)
+      const res = await axiosInstance.put(`/trip-buddies/request/${trip.id}`)
       console.log(res)
       toast.success(res?.message || "Trip buddy request successfully!", {
         id: toastId,

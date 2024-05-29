@@ -1,12 +1,15 @@
 import Footer from "@/components/shared/footer"
 import Header from "@/components/shared/header"
-import { PropsWithChildren } from "react"
+import { PropsWithChildren, Suspense } from "react"
+import Loading from "@/app/(root)/loading"
 
 const RootLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <Header />
-      <main className="pb-12 flex-1">{children}</main>
+      <Suspense fallback={<Loading />}>
+        <main className="pb-12 flex-1">{children}</main>
+      </Suspense>
       <Footer />
     </>
   )

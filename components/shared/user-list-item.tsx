@@ -1,10 +1,25 @@
+"use client"
+
 import { IUser } from "@/interface"
 import Image from "next/image"
 import avatar from "@/assets/img/avatar.jpeg"
 import UserActoinMenu from "./user-action-menu"
-import { Badge } from "../ui/badge"
+import { Badge } from "@/components/ui/badge"
+import { useEffect, useState } from "react"
+import Loading from "@/app/(root)/trips/loading"
 
 const UserListItem = ({ user }: { user: IUser }) => {
+  const [isMounted, setIsMounted] = useState(false)
+  useEffect(() => {
+    setIsMounted(true)
+    return () => {
+      setIsMounted(false)
+    }
+  }, [])
+
+  if (!isMounted) {
+    return null
+  }
   return (
     <div className="flex items-center gap-3 bg-background rounded-xl p-3">
       <div className="size-24 relative rounded overflow-hidden">

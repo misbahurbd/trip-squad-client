@@ -115,7 +115,13 @@ export const createTripFormSchema = z.object({
       return Array.from(fileList).every(file =>
         ACCEPTED_FILE_TYPES.includes(file.type)
       )
-    }, "Only these types are allowed: .jpg, .jpeg, .png, .webp"),
+    }, "Only these types are allowed: .jpg, .jpeg, .png, .webp")
+    .refine(fileList => {
+      if (!fileList?.length || fileList.length < 3) return false
+      return Array.from(fileList).every(file =>
+        ACCEPTED_FILE_TYPES.includes(file.type)
+      )
+    }, "You have to add minimum 3 photo for your trip"),
   destination: z.string().min(1, { message: "Destination is required" }),
   description: z.string().min(1, { message: "Description is required" }),
   startDate: z.date({ required_error: "Start date is required" }),

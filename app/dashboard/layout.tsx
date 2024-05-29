@@ -2,10 +2,11 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { getCurrentUser } from "@/services/user.service"
 import Image from "next/image"
 import Link from "next/link"
-import { PropsWithChildren } from "react"
+import { PropsWithChildren, Suspense } from "react"
 import avatar from "@/assets/img/avatar.jpeg"
 import DashboardNav from "@/components/shared/dasboard-nav"
 import LogoutButton from "@/components/form/logout-button"
+import Loading from "@/app/dashboard/loading"
 
 const DashboardLayout = async ({ children }: PropsWithChildren) => {
   const currentUser = await getCurrentUser()
@@ -14,9 +15,9 @@ const DashboardLayout = async ({ children }: PropsWithChildren) => {
   return (
     <div className="h-screen flex">
       <aside className="h-full bg-background w-64 shrink-0 flex flex-col">
-        <div className="p-4">
+        <div className="px-4 py-6">
           <Link
-            href={"/dashboard"}
+            href={"/"}
             className="text-xl font-bold"
           >
             Trip Squad
@@ -45,7 +46,9 @@ const DashboardLayout = async ({ children }: PropsWithChildren) => {
           <LogoutButton />
         </div>
       </aside>
-      <div className="grow flex flex-col bg-background">{children}</div>
+      <Suspense fallback={<Loading />}>
+        <div className="grow flex flex-col bg-background">{children}</div>
+      </Suspense>
     </div>
   )
 }

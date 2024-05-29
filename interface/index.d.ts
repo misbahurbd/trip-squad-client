@@ -75,9 +75,34 @@ export interface ITripType {
 }
 
 export interface ITripBuddy {
+  id: string
   tripId: string
   userId: string
   status: "Pending" | "Approved" | "Rejected"
   createdAt: string
   updatedAt: string
+}
+
+export interface IBuddyRequest extends ITripBuddy {
+  trip: {
+    id: string
+    destination: string
+    description: string
+    startDate: string
+    endDate: string
+    tripType: string
+    photos: any[]
+    itinerary: string
+    location: string
+    budget: number
+    tripStatus: string
+    isDeleted: boolean
+    creatorId: string
+    createdAt: string
+    updatedAt: string
+  }
+  user: {
+    username: string
+    profile: IProfile
+  }
 }

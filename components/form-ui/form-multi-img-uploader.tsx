@@ -45,19 +45,21 @@ const FormMultiImageUploader: React.FC<FormMultiImageUploaderProps> = ({
 
     try {
       const imgArray = await Promise.all(
-        Array.from(files).map(
-          file =>
-            new Promise<string>((resolve, reject) => {
-              const reader = new FileReader()
-              reader.readAsDataURL(file)
-              reader.onload = () => {
-                resolve(reader.result as string)
-              }
-              reader.onerror = () => {
-                reject(reader.error)
-              }
-            })
-        )
+        Array.from(files)
+          .slice(0, 5 - images.length)
+          .map(
+            file =>
+              new Promise<string>((resolve, reject) => {
+                const reader = new FileReader()
+                reader.readAsDataURL(file)
+                reader.onload = () => {
+                  resolve(reader.result as string)
+                }
+                reader.onerror = () => {
+                  reject(reader.error)
+                }
+              })
+          )
       )
 
       setImages(prevImages => [...prevImages, ...imgArray])

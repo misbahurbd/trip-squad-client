@@ -1,0 +1,11 @@
+import { ScaleLoader } from "react-spinners"
+
+const Loading = () => {
+  return (
+    <div className="w-full flex-1 flex items-center justify-center flex-col gap-4 bg-secondary">
+      <ScaleLoader className="size-10" />
+      <p className="text-sm text-center text-muted-foreground">Loading...</p>
+    </div>
+  )
+}
+export default Loading

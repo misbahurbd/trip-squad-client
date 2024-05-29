@@ -11,7 +11,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "../ui/pagination"
+} from "@/components/ui/pagination"
 
 const PaginationComponent = ({ totalPages }: { totalPages: number }) => {
   const pathname = usePathname()

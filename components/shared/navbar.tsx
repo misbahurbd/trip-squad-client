@@ -1,6 +1,6 @@
 "use client"
 
-import { getDesktopNav } from "@/constant"
+import { getRootNavlinks } from "@/constant"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -8,9 +8,9 @@ import { usePathname } from "next/navigation"
 const Navbar = () => {
   const pathname = usePathname()
 
-  const navLinks = getDesktopNav(pathname)
+  const navLinks = getRootNavlinks(pathname)
   return (
-    <nav>
+    <nav className="hidden md:block">
       <ul className="flex">
         {navLinks.map(link => (
           <li key={link.href}>

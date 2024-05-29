@@ -9,6 +9,8 @@ import TripCard from "@/components/shared/trip-card"
 import { Suspense } from "react"
 import Pagination from "@/components/shared/pagination"
 import DashboardHeader from "@/components/shared/dashboard-header"
+import EmptyRes from "@/components/shared/empty-res"
+import { HiOutlineMap } from "react-icons/hi2"
 
 const TripsPage = async ({
   searchParams,
@@ -42,14 +44,13 @@ const TripsPage = async ({
           </Link>
         </Button>
       </DashboardHeader>
-      <ScrollArea className="grow bg-secondary rounded-tl-lg">
-        <div className="p-5 space-y-4">
+      <ScrollArea className="grow bg-secondary rounded-tl-lg p-4">
+        <div className="space-y-4">
           {trips.data.length === 0 && (
-            <div className="p-5">
-              <p className="text-xl font-semibold text-muted-foreground text-center">
-                Not trip found here!
-              </p>
-            </div>
+            <EmptyRes
+              icon={HiOutlineMap}
+              message="You have no trip posted"
+            />
           )}
           <Suspense key={searchParams.page}>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
@@ -61,7 +62,7 @@ const TripsPage = async ({
               ))}
             </div>
           </Suspense>
-          <Pagination totalPages={totalPage} />
+          {trips.data.length > 0 && <Pagination totalPages={totalPage} />}
         </div>
       </ScrollArea>
     </div>

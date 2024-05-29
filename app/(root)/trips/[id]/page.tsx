@@ -83,7 +83,7 @@ const TripPage = async ({ params }: { params: { id: string } }) => {
                 <HiOutlineClock className="size-5 text-foreground" />
               </span>
               <p className="flex gap-1">
-                <span className="text-foreground">Posted:</span>
+                <span className="text-foreground font-medium">Posted:</span>
                 <span>{formatDistanceToNow(tripData.createdAt)} ago</span>
               </p>
             </div>
@@ -92,7 +92,7 @@ const TripPage = async ({ params }: { params: { id: string } }) => {
                 <PiBackpack className="size-5 text-foreground" />
               </span>
               <p className="flex gap-1">
-                <span className="text-foreground">Trip Type:</span>
+                <span className="text-foreground font-medium">Trip Type:</span>
                 <span>{tripData.tripType}</span>
               </p>
             </div>
@@ -101,7 +101,7 @@ const TripPage = async ({ params }: { params: { id: string } }) => {
                 <HiOutlineMapPin className="size-5 text-foreground" />
               </span>
               <p className="flex gap-1">
-                <span className="text-foreground">Location:</span>
+                <span className="text-foreground font-medium">Location:</span>
                 <span>{tripData.location}</span>
               </p>
             </div>

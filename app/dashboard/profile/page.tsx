@@ -15,14 +15,14 @@ const Profile = async () => {
     <div className="flex flex-col h-full">
       <DashboardHeader pageTitle="Profile" />
       <ScrollArea className="grow bg-secondary rounded-tl-lg p-4">
-        <div className="space-y-4 mx-auto max-w-2xl p-5 bg-background rounded-md">
+        <div className="space-y-4 mx-auto max-w-2xl p-4 bg-background rounded-md">
           <div className="flex flex-col items-center justify-center gap-3">
             <div className="size-24 rounded-2xl relative">
               <Image
                 src={currentUser.profilePhoto || avatar}
                 alt={currentUser.name}
                 fill
-                className="rounded-2xl"
+                className="rounded-xl object-cover"
               />
             </div>
             <div className="text-center">

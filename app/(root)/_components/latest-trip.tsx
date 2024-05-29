@@ -1,12 +1,12 @@
-import { axiosInstance } from "@/lib/axios"
-import SectionHeader from "../shared/section-header"
-import { ITrip } from "@/interface"
-import HomeTripCard from "../shared/home-trip-card"
-import { Button } from "../ui/button"
 import Link from "next/link"
+import { ITrip } from "@/interface"
+import { axiosInstance } from "@/lib/axios"
+import SectionHeader from "@/components/shared/section-header"
+import HomeTripCard from "@/components/shared/home-trip-card"
+import { Button } from "@/components/ui/button"
 
 const LatestTrip = async () => {
-  const trips = await axiosInstance.get("/trips?limit=8")
+  const trips = await axiosInstance.get("/trips?limit=12")
   const tripsArray =
     trips?.data?.length > 0
       ? trips?.data?.length < 8
@@ -20,7 +20,7 @@ const LatestTrip = async () => {
         title="Explore Latest Destinations"
         subTitle="Dive into the freshest travel experiences shared by our community. Find inspiration for your next getaway!"
       />
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3">
         {tripsArray.map((trip: ITrip) => (
           <HomeTripCard
             key={trip.id}

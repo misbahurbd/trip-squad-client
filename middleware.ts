@@ -24,11 +24,11 @@ export function middleware(request: NextRequest) {
   }
 
   if (!currentUser && privateRoutes.some(route => pathname.startsWith(route))) {
-    return Response.redirect(new URL("/login", request.url))
+    return Response.redirect(new URL(`/login?next=${pathname}`, request.url))
   }
 
-  if (pathname === "/dashboard") {
-    return Response.redirect(new URL("/dashboard/profile", request.url))
+  if (currentUser && pathname === "/dashboard") {
+    return Response.redirect(new URL("/dashboard/trips", request.url))
   }
 }
 

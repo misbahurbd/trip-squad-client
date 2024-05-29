@@ -1,12 +1,13 @@
-import HeroSection from "@/components/home/hero"
-import LatestTrip from "@/components/home/latest-trip"
-import TopTripTypes from "@/components/home/top-trip-types"
+import HeroSection from "@/app/(root)/_components/hero"
+import LatestTrip from "@/app/(root)/_components/latest-trip"
+import TopTripTypes from "@/app/(root)/_components/top-trip-types"
 import { Metadata } from "next"
+import HowItWork from "./_components/how-it-work"
 
 export const metadata: Metadata = {
-  title: "Trip Squad - Your Ultimate Trip Sharing Management System",
+  title: "How It Works - Trip Squad",
   description:
-    "Share trip details, find travel buddies, and embark on seamless adventures with Trip Squad! Join today.",
+    "Discover how Trip Squad helps you connect with like-minded travelers and make your dream trips a reality.",
 }
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
       <div className="container space-y-12">
         <TopTripTypes />
         <LatestTrip />
+        <HowItWork />
       </div>
     </>
   )

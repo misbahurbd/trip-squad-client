@@ -1,34 +1,40 @@
 import {
   HiOutlineCog6Tooth,
-  HiOutlineComputerDesktop,
   HiOutlineMap,
   HiOutlineUserCircle,
   HiOutlineUserGroup,
   HiOutlineUserPlus,
 } from "react-icons/hi2"
+import {
+  PiBackpack,
+  PiFacebookLogo,
+  PiGithubLogo,
+  PiHandshake,
+  PiInstagramLogo,
+  PiLinkedinLogo,
+} from "react-icons/pi"
 
 export const getDashboardNav = (pathname: string, role: string) => {
-  console.log({ pathname, status: pathname.includes("/trips") })
   const navs = [
     {
       label: "My Trips",
       href: "/dashboard/trips",
       icon: HiOutlineMap,
       active: pathname.includes("/trips"),
-      userRole: ["User"],
+      userRole: ["User", "Admin"],
     },
     {
       label: "Buddy Requests",
       href: "/dashboard/buddy-requests",
       icon: HiOutlineUserPlus,
       active: pathname.includes("/buddy-requests"),
-      userRole: ["User"],
+      userRole: ["User", "Admin"],
     },
     {
       label: "User Management",
-      href: "/dashboard/user-management",
+      href: "/dashboard/users",
       icon: HiOutlineUserGroup,
-      active: pathname.includes("/user-management"),
+      active: pathname.includes("/users"),
       userRole: ["Admin"],
     },
     {
@@ -50,7 +56,7 @@ export const getDashboardNav = (pathname: string, role: string) => {
   return navs.filter(nav => nav.userRole.includes(role))
 }
 
-export const getDesktopNav = (pathname: string) => [
+export const getRootNavlinks = (pathname: string) => [
   {
     label: "Home",
     href: "/",
@@ -94,6 +100,79 @@ export const travelTripTypes = [
   { label: "Photography", value: "photography" },
   { label: "Festivals", value: "festivals" },
   { label: "Winter Sports", value: "winter_sports" },
+]
+
+export const howItWorksData = [
+  {
+    title: "Create an Account",
+    subtitle:
+      "Sign up with your email and create your profile to join the Trip Squad community.",
+    icon: HiOutlineUserPlus,
+  },
+  {
+    title: "Post Your Trip",
+    subtitle:
+      "Share your trip details including destination, dates, and budget to invite buddies.",
+    icon: PiBackpack,
+  },
+  {
+    title: "Find a Buddy",
+    subtitle:
+      "Browse trips posted by others or wait for requests from potential trip buddies.",
+    icon: HiOutlineUserGroup,
+  },
+  {
+    title: "Connect & Travel",
+    subtitle:
+      "Accept requests, chat with your new buddies, and enjoy your adventure together.",
+    icon: PiHandshake,
+  },
+]
+
+export const footerNavs = [
+  {
+    label: "About",
+    href: "/about-us",
+  },
+  {
+    label: "Trips",
+    href: "/trips",
+  },
+  {
+    label: "Terms & Conditions",
+    href: "/terms-and-conditions",
+  },
+  {
+    label: "Privacy Policy",
+    href: "/privacy-policy",
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+  },
+]
+
+export const footerSocialLinks = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/misbahurbd/",
+    icon: PiInstagramLogo,
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/misbahurbd/",
+    icon: PiFacebookLogo,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/misbahurbd/",
+    icon: PiLinkedinLogo,
+  },
+  {
+    label: "GitHub",
+    href: "https://www.github.com/misbahurbd/",
+    icon: PiGithubLogo,
+  },
 ]
 
 export type TravelTripType = typeof travelTripTypes
