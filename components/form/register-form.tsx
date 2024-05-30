@@ -34,8 +34,7 @@ const RegisterForm = () => {
       toast.success("Registation successful!", { id: toastid })
       router.push("/login")
     } catch (error: any) {
-      console.log(error)
-      toast.error(error.message || "Unable to create account", { id: toastid })
+      toast.error(error?.message || "Unable to create account", { id: toastid })
     } finally {
       setIsLoading(false)
     }
@@ -70,6 +69,13 @@ const RegisterForm = () => {
           form={form}
           placeholder="Password"
           name="password"
+          type="password"
+          disabled={isLoading}
+        />
+        <FormInput
+          form={form}
+          placeholder="Confirm Password"
+          name="confirmPassword"
           type="password"
           disabled={isLoading}
         />

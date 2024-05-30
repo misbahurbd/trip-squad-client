@@ -14,7 +14,7 @@ const Profile = async () => {
   return (
     <div className="flex flex-col h-full">
       <DashboardHeader pageTitle="Settings" />
-      <ScrollArea className="grow bg-secondary rounded-tl-lg p-4">
+      <ScrollArea className="grow bg-secondary rounded-tl-lg p-2 md:p-4">
         <div className="max-w-2xl mx-auto space-y-4">
           <div className="space-y-2 p-4 rounded-md bg-background">
             <h3 className="font-bold">Profile Photo</h3>

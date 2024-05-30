@@ -6,8 +6,18 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { useState } from "react"
 import { UseFormReturn } from "react-hook-form"
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip"
+import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi"
 
 interface FormInputProps {
   form: UseFormReturn<any>
@@ -29,9 +39,11 @@ const FormInput: React.FC<FormInputProps> = ({
   className,
   labelClassName,
   fieldClassName,
-  type,
+  type = "text",
   disabled,
 }) => {
+  const [inputType, setInputType] = useState(type)
+
   return (
     <FormField
       control={form.control}
@@ -42,13 +54,47 @@ const FormInput: React.FC<FormInputProps> = ({
             <FormLabel className={cn(labelClassName)}>{label}</FormLabel>
           )}
           <FormControl>
-            <Input
-              className={cn("bg-background", fieldClassName)}
-              placeholder={placeholder}
-              type={type || "text"}
-              disabled={disabled}
-              {...field}
-            />
+            <div className="w-full relative">
+              <Input
+                className={cn(
+                  "bg-background",
+                  type == "password" && "pr-10",
+                  fieldClassName
+                )}
+                placeholder={placeholder}
+                type={inputType}
+                disabled={disabled}
+                {...field}
+              />
+              {type == "password" && (
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        size="icon"
+                        variant="secondary"
+                        type="button"
+                        onClick={() =>
+                          setInputType(
+                            inputType === "password" ? "text" : "password"
+                          )
+                        }
+                        className="absolute right-1 top-1/2 -translate-y-1/2 size-7"
+                      >
+                        {inputType === "password" ? (
+                          <HiOutlineEye />
+                        ) : (
+                          <HiOutlineEyeOff />
+                        )}
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{inputType === "password" ? "Show" : "Hide"}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              )}
+            </div>
           </FormControl>
           <FormMessage />
         </FormItem>

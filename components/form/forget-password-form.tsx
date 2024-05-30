@@ -25,19 +25,16 @@ const ForgetPasswordForm = () => {
 
   const onSubmit = async (values: z.infer<typeof forgetPasswordFormSchema>) => {
     setIsLoading(true)
-    const toastid = toast.loading("Createing account...")
+    const toastid = toast.loading("Resetig password...")
     try {
       const res = await axiosInstance.post("/auth/forget-password", values)
-      toast.success(
-        res.data.message || "Password reset link sent successfully",
-        {
-          id: toastid,
-        }
-      )
+      toast.success(res?.message || "Password reset link sent successfully", {
+        id: toastid,
+      })
       setIsMailSend(true)
     } catch (error: any) {
       console.log(error)
-      toast.error(error.message || "Unable to create account", { id: toastid })
+      toast.error(error?.message || "Unable to reset password", { id: toastid })
     } finally {
       setIsLoading(false)
     }

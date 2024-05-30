@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator"
 
 const Footer = () => {
   return (
-    <footer className="bg-background py-12 border-t border-foreground/5">
+    <footer className="bg-background py-10 pt-20 border-t border-foreground/5">
       <div className="container space-y-6">
         <div className="flex flex-col sm:flex-row sm:flex-wrap md:flex-nowrap align-top gap-x-8 gap-y-10 md:gap-x-20 mb-16">
           <div className="space-y-4 grow w-full md:w-auto">
@@ -41,7 +41,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="space-y-4 grow">
-            <h3 className="font-bold">Quick Links</h3>
+            <h3 className="font-bold text-lg">Quick Links</h3>
             <ul className="text-muted-foreground space-y-2">
               {footerNavs.map(link => (
                 <li key={link.href}>
@@ -56,7 +56,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="space-y-4 grow">
-            <h3 className="font-bold">Social Links</h3>
+            <h3 className="font-bold text-lg">Social Links</h3>
             <ul className="text-muted-foreground space-y-2">
               {footerSocialLinks.map(link => (
                 <li key={link.href}>

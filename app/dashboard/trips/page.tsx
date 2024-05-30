@@ -44,7 +44,7 @@ const TripsPage = async ({
           </Link>
         </Button>
       </DashboardHeader>
-      <ScrollArea className="grow bg-secondary rounded-tl-lg p-4">
+      <ScrollArea className="grow bg-secondary md:rounded-tl-lg p-2 md:p-4">
         <div className="space-y-4">
           {trips.data.length === 0 && (
             <EmptyRes
@@ -53,7 +53,7 @@ const TripsPage = async ({
             />
           )}
           <Suspense key={searchParams.page}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {trips.data.map((trip: ITrip) => (
                 <TripCard
                   key={trip.id}

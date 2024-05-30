@@ -1,13 +1,18 @@
 "use client"
 
-import { CurrentUser, ITrip, IUser } from "@/interface"
+import { CurrentUser, ITrip } from "@/interface"
 import { format } from "date-fns"
 import { HiOutlineCalendarDays } from "react-icons/hi2"
+import { FaArrowRightLong } from "react-icons/fa6"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { toast } from "sonner"
 import { axiosInstance } from "@/lib/axios"
 import { usePathname, useRouter } from "next/navigation"
+import Image from "next/image"
+import avatar from "@/assets/img/avatar.jpeg"
+import { cn } from "@/lib/utils"
+import { Separator } from "@/components/ui/separator"
 
 interface SingleTripAsideProps {
   trip: ITrip
@@ -19,26 +24,6 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
   const pathname = usePathname()
   const [isLoading, setIsLoading] = useState(false)
   const buddy = trip.tripBuddy.find(buddy => buddy.userId === user?.userId)
-
-  const onTripBuddyRequest = async () => {
-    if (!user) return router.push(`/login?next=${pathname}`)
-    setIsLoading(true)
-    const toastId = toast.loading("Sending trip buddy request...")
-    try {
-      const res = await axiosInstance.put(`/trip-buddies/request/${trip.id}`)
-      console.log(res)
-      toast.success(res?.message || "Trip buddy request successfully!", {
-        id: toastId,
-      })
-      router.refresh()
-    } catch (error: any) {
-      toast.error(error?.message || "Unable to send trip request", {
-        id: toastId,
-      })
-    } finally {
-      setIsLoading(false)
-    }
-  }
 
   const getButtonVarient = () => {
     if (trip.creatorId == user?.userId) return "secondary"
@@ -66,10 +51,13 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
   }
 
   return (
-    <aside className="bg-background rounded-xl sticky top-20 p-3 space-y-4">
-      <h1 className="font-bold text-2xl pt-2">{trip.destination}</h1>
-      <div className="border-y py-3 border-muted-foreground/10 grid grid-cols-2 gap-2">
-        <div className="flex items-center gap-2 text-foreground">
+    <aside className="bg-background rounded-xl sticky top-20 p-3 space-y-3">
+      <h1 className="font-bold text-xl">{trip.destination}</h1>
+
+      <Separator className="opacity-60" />
+
+      <div className="flex gap-3 items-center">
+        <div className="flex-1 flex items-center gap-2 text-foreground">
           <span className="size-8 rounded bg-secondary flex items-center justify-center">
             <HiOutlineCalendarDays className="size-5" />
           </span>
@@ -80,11 +68,16 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
             </span>
           </div>
         </div>
-        <div className="flex items-center gap-2 text-foreground">
+
+        <span className="text-muted-foreground/60">
+          <FaArrowRightLong />
+        </span>
+
+        <div className="flex-1 flex flex-row-reverse items-center gap-2 text-foreground">
           <span className="size-8 rounded bg-secondary flex items-center justify-center">
             <HiOutlineCalendarDays className="size-5" />
           </span>
-          <div className="flex flex-col">
+          <div className="flex flex-col text-end">
             <span className="text-xs text-muted-foreground">End Date</span>
             <span className="text-sm">
               {format(new Date(trip.endDate), "MMM d, yyyy")}
@@ -93,15 +86,43 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
         </div>
       </div>
 
-      <div className="flex items-center justify-between">
-        <span className="font-bold text-xl">Budget</span>
-        <span className="text-primary text-xl font-bold">
+      <Separator className="opacity-60" />
+
+      <div className="flex items-center justify-between ">
+        <span className="font-semibold text-lg">Budget</span>
+        <span className="text-primary text-lg font-bold">
           ${trip.budget.toLocaleString()}
         </span>
       </div>
 
+      <Separator className="opacity-60" />
+
+      {trip?.tripBuddy?.length > 0 && (
+        <div className="text-center flex items-center justify-center gap-1 text-muted-foreground text-sm">
+          <div className="flex">
+            {trip?.tripBuddy?.map((buddy, i) => (
+              <div
+                key={buddy?.user?.profile?.name + i}
+                className={cn(
+                  "w-6 h-6 rounded-full relative border-2 border-background",
+                  i > 0 && "-ml-2"
+                )}
+              >
+                <Image
+                  src={buddy?.user?.profile?.profilePhoto || avatar}
+                  alt={buddy?.user?.profile?.name}
+                  className="w-6 h-6 rounded-full"
+                  fill
+                />
+              </div>
+            ))}
+          </div>
+          <span>{trip?.tripBuddy?.length}+ buddies already join</span>
+        </div>
+      )}
+
       <Button
-        onClick={onTripBuddyRequest}
+        onClick={() => router.push(`/trips/${trip.id}/request`)}
         disabled={isLoading || trip.creatorId == user?.userId}
         className="w-full"
         variant={getButtonVarient()}

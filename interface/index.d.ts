@@ -24,8 +24,8 @@ export interface IProfile {
   dateOfBirth: string
   bio: string
   userId: string
-  createdAt: string
-  updatedAt: string
+  createdAt: Date
+  updatedAt: Date
 }
 
 export interface ITrip {
@@ -41,7 +41,17 @@ export interface ITrip {
   creatorId: string
   itinerary: string
   location: string
-  tripBuddy: ITripBuddy[]
+  tripBuddy: {
+    createdAt: Date
+    id: string
+    status: "Approved" | "Rejected" | "Pending"
+    tripId: string
+    updatedAt: Date
+    user: {
+      profile: IProfile
+    }
+    userId: string
+  }[]
   createdBy: {
     username: string
     email: string

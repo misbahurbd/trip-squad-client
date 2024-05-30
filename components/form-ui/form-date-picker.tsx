@@ -84,8 +84,21 @@ const FormDatePicker: React.FC<FormInputProps> = ({
             >
               <Calendar
                 mode="single"
+                captionLayout="dropdown-buttons"
                 required={required || true}
                 selected={field.value}
+                fromYear={
+                  range === "range"
+                    ? new Date().getFullYear() - 10
+                    : range == "future"
+                    ? new Date().getFullYear()
+                    : new Date().getFullYear() - 60
+                }
+                toYear={
+                  range === "past"
+                    ? new Date().getFullYear()
+                    : new Date().getFullYear() + 10
+                }
                 onSelect={data => {
                   field.onChange(data)
                   setIsOpen(false)

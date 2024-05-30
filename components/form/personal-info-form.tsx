@@ -53,7 +53,7 @@ const PersonalInfoForm = ({ currentUser }: { currentUser: CurrentUser }) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-3"
       >
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid sm:grid-cols-2 gap-3">
           <FormInput
             form={form}
             placeholder="Name"
@@ -81,11 +81,12 @@ const PersonalInfoForm = ({ currentUser }: { currentUser: CurrentUser }) => {
             placeholder="Date of Birth"
             label="Date of Birth"
             name="dateOfBirth"
+            range="past"
             disabled={isLoading}
           />
           <FormTextArea
             form={form}
-            className="col-span-2"
+            className="sm:col-span-2"
             label="Bio"
             placeholder="Bio"
             name="bio"

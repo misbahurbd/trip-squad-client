@@ -18,6 +18,7 @@ import FormDatePicker from "@/components/form-ui/form-date-picker"
 import { Separator } from "@/components/ui/separator"
 import { LuFilterX } from "react-icons/lu"
 import { HiXMark } from "react-icons/hi2"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 interface TripAsideProps {
   className?: string
@@ -151,16 +152,17 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
     if (endDate) {
       dateRangeForm.setValue("endDate", new Date(endDate))
     }
-  }, [searchParams])
+  }, [searchParams, dateRangeForm])
 
   return (
     <div className={cn("rounded-lg p-3 bg-background space-y-4", className)}>
-      <div>
-        <h2 className="font-semibold text-sm mb-1">Search</h2>
+      <div className="space-y-2">
+        <h2 className="font-semibold text-sm">Search</h2>
+        <Separator />
         <Form {...searchForm}>
           <form
             onSubmit={searchForm.handleSubmit(onSearchTermChange)}
-            className="flex items-center transition-all ring-1 focus-within:ring-2 rounded-md ring-primary"
+            className="w-full flex flex-col gap-2"
             onChange={() => {
               setIsSearching(true)
               onSearchTermChangeDebounce(searchForm.getValues())
@@ -171,9 +173,8 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
                 form={searchForm}
                 name="searchTerm"
                 disabled={isLoading}
-                fieldClassName="py-0 shadow-none !ring-transparent border-none grow"
                 placeholder="Type destenation"
-                className="pr-6"
+                fieldClassName="pr-10"
               />
               {(isSearching || searchParams.get("searchTerm")) && (
                 <span className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center">
@@ -203,27 +204,32 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
         </Form>
       </div>
 
-      <div>
-        <h4 className="font-semibold mb-1.5 text-sm">Trip Type</h4>
-        <div className="flex flex-wrap gap-2">
-          {tripTypes.map(type => (
-            <Button
-              className="text-center flex justify-between gap-2 px-2.5"
-              variant={
-                selectedType.includes(type.label) ? "default" : "secondary"
-              }
-              onClick={() => handleSelectType(type)}
-              key={type.label.replace(" ", "-")}
-            >
-              <span>{type.label}</span>
-              <span>({type.count})</span>
-            </Button>
-          ))}
-        </div>
+      <div className="space-y-2">
+        <h4 className="font-semibold text-sm">Trip Type</h4>
+        <Separator />
+
+        <ScrollArea className="max-h-96">
+          <div className="flex flex-wrap gap-2">
+            {tripTypes.map(type => (
+              <Button
+                className="text-center flex justify-between gap-2 px-2.5"
+                variant={
+                  selectedType.includes(type.label) ? "default" : "secondary"
+                }
+                onClick={() => handleSelectType(type)}
+                key={type.label.replace(" ", "-")}
+              >
+                <span>{type.label}</span>
+                <span>({type.count})</span>
+              </Button>
+            ))}
+          </div>
+        </ScrollArea>
       </div>
 
-      <div>
-        <h4 className="font-semibold mb-1.5 text-sm">Budget Range</h4>
+      <div className="space-y-2">
+        <h4 className="font-semibold text-sm">Budget Range</h4>
+        <Separator />
         <Form {...budgetRangeForm}>
           <form
             className="w-full flex flex-col gap-2"
@@ -275,8 +281,9 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
         </Form>
       </div>
 
-      <div>
-        <h4 className="font-semibold mb-2 text-sm">Date Range</h4>
+      <div className="space-y-2">
+        <h4 className="font-semibold text-sm">Date Range</h4>
+        <Separator />
         <Form {...dateRangeForm}>
           <form
             onSubmit={dateRangeForm.handleSubmit(onDateChange)}

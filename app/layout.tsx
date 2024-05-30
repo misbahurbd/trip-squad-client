@@ -24,7 +24,7 @@ export default function RootLayout({
           "bg-secondary min-h-screen flex flex-col"
         )}
       >
-        <Toaster position="top-center" />
+        <Toaster position="bottom-center" />
         {children}
       </body>
     </html>

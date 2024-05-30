@@ -5,23 +5,31 @@ export const loginFormSchema = z.object({
   password: z.string().min(1, { message: "Password is required" }),
 })
 
-export const registerFormSchema = z.object({
-  name: z.string().min(1, { message: "Name is required" }),
-  username: z.string().min(1, { message: "Username is required" }),
-  email: z
-    .string()
-    .min(1, { message: "Email is required" })
-    .email({ message: "Invalid email address" })
-    .trim()
-    .toLowerCase(),
-  password: z
-    .string()
-    .min(1, { message: "Password is required" })
-    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^\s]{8,}$/gm, {
-      message:
-        "Password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, and one number.",
-    }),
-})
+export const registerFormSchema = z
+  .object({
+    name: z.string().min(1, { message: "Name is required" }),
+    username: z.string().min(1, { message: "Username is required" }),
+    email: z
+      .string()
+      .min(1, { message: "Email is required" })
+      .email({ message: "Invalid email address" })
+      .trim()
+      .toLowerCase(),
+    password: z
+      .string()
+      .min(1, { message: "Password is required" })
+      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^\s]{8,}$/gm, {
+        message:
+          "Password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, and one number.",
+      }),
+    confirmPassword: z
+      .string()
+      .min(1, { message: "Confirm Password is required" }),
+  })
+  .refine(values => values.password === values.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  })
 
 export const forgetPasswordFormSchema = z.object({
   identifer: z
@@ -75,6 +83,24 @@ export const changePasswordFormSchema = z
     message: "Passwords do not match",
     path: ["confirmPassword"],
   })
+
+export const tripRequestFormSchema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+  email: z
+    .string()
+    .min(1, { message: "Email is required" })
+    .email({ message: "Invalid email address" }),
+  mobile: z.string().min(1, { message: "Mobile is required" }),
+  address: z.string().min(1, { message: "Address is required" }),
+  city: z.string().min(1, { message: "City is required" }),
+  country: z.string().min(1, { message: "Country is required" }),
+  termsAndConditions: z
+    .boolean()
+    .default(false)
+    .refine(value => value, {
+      message: "You must agree to the terms and conditions.",
+    }),
+})
 
 const MAX_UPLOAD_SIZE = 1024 * 1024 * 10 // 10MB
 const ACCEPTED_FILE_TYPES = [

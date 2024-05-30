@@ -43,7 +43,7 @@ const UserManagement = async ({
         </Button>
       </DashboardHeader>
 
-      <ScrollArea className="grow bg-secondary rounded-tl-lg p-4">
+      <ScrollArea className="grow bg-secondary rounded-tl-lg p-2 md:p-4">
         <div className="space-y-4">
           <div className="grid lg:grid-cols-2 gap-3">
             {users.data.map((user: IUser) => {

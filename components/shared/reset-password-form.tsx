@@ -11,9 +11,11 @@ import FormInput from "@/components/form-ui/form-input"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import { axiosInstance } from "@/lib/axios"
+import { useRouter } from "next/navigation"
 
 const ResetPasswordForm = ({ token }: { token: string }) => {
   const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
 
   const form = useForm<z.infer<typeof resetPasswordFormSchema>>({
     resolver: zodResolver(resetPasswordFormSchema),
@@ -25,21 +27,21 @@ const ResetPasswordForm = ({ token }: { token: string }) => {
 
   const onSubmit = async (values: z.infer<typeof resetPasswordFormSchema>) => {
     setIsLoading(true)
-    const toastid = toast.loading("Createing account...")
+    const toastid = toast.loading("Chaning password...")
     try {
       const res = await axiosInstance.post(
         `/auth/reset-password/${token}`,
         values
       )
-      toast.success(
-        res.data.message || "Password reset link sent successfully",
-        {
-          id: toastid,
-        }
-      )
+      toast.success(res?.message || "Password change successfully!", {
+        id: toastid,
+      })
+      router.push("/login")
     } catch (error: any) {
       console.log(error)
-      toast.error(error.message || "Unable to create account", { id: toastid })
+      toast.error(error?.message || "Unable to change password", {
+        id: toastid,
+      })
     } finally {
       setIsLoading(false)
     }

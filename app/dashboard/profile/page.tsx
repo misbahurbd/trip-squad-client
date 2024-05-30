@@ -14,7 +14,7 @@ const Profile = async () => {
   return (
     <div className="flex flex-col h-full">
       <DashboardHeader pageTitle="Profile" />
-      <ScrollArea className="grow bg-secondary rounded-tl-lg p-4">
+      <ScrollArea className="grow bg-secondary rounded-tl-lg p-2 md:p-4">
         <div className="space-y-4 mx-auto max-w-2xl p-4 bg-background rounded-md">
           <div className="flex flex-col items-center justify-center gap-3">
             <div className="size-24 rounded-2xl relative">
@@ -36,7 +36,7 @@ const Profile = async () => {
           <div className="space-y-3">
             <h3 className="font-bold">Personal Information</h3>
             <Separator />
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <p className="text-sm text-muted-foreground">Name</p>
                 <p className="text-foreground">{currentUser.name}</p>
@@ -59,7 +59,7 @@ const Profile = async () => {
                     : "null"}
                 </p>
               </div>
-              <div className="col-span-2">
+              <div className="sm:col-span-2">
                 <p className="text-sm text-muted-foreground">Bio</p>
                 <p className="text-foreground">{currentUser.bio || "null"}</p>
               </div>

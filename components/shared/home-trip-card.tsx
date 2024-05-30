@@ -1,5 +1,5 @@
 import { ITrip } from "@/interface"
-import Image from "next/image"
+
 import { Separator } from "@/components/ui/separator"
 import { HiOutlineBriefcase, HiOutlineCalendarDays } from "react-icons/hi2"
 import { CgDollar } from "react-icons/cg"
@@ -7,13 +7,7 @@ import { CgDollar } from "react-icons/cg"
 import { format } from "date-fns"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
+import ImageCarousel from "./image-carusel"
 
 interface HomeTripProps {
   trip: ITrip
@@ -22,47 +16,17 @@ interface HomeTripProps {
 const HomeTripCard: React.FC<HomeTripProps> = ({ trip }) => {
   return (
     <article className="space-y-2 group p-3 rounded-xl bg-background border">
-      {trip.photos.length > 0 && (
-        <Carousel
-          opts={{ loop: true }}
-          className="w-full cursor-grab active:cursor-grabbing"
-        >
-          <CarouselContent>
-            {trip.photos.map((photo, index) => (
-              <CarouselItem
-                key={
-                  trip.destination.replace(" ", "-") + "-" + index.toString()
-                }
-              >
-                <div className="aspect-video relative">
-                  <Image
-                    src={photo}
-                    alt={trip.destination}
-                    fill
-                    className="object-cover rounded"
-                  />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious
-            className="transition bg-background disabled:bg-background/60 size-7 rounded-none left-0 !opacity-0 group-hover:!opacity-100"
-            variant={"secondary"}
-            size={"icon"}
-          />
-          <CarouselNext
-            className="transition bg-background disabled:bg-background/60 size-7 rounded-none right-0 !opacity-0 group-hover:!opacity-100"
-            variant={"secondary"}
-            size={"icon"}
-          />
-        </Carousel>
-      )}
+      <ImageCarousel trip={trip} />
+
       <Link
         href={`/trips/${trip.id}`}
         className="transition hover:text-primary block pt-0.5"
       >
         <h2 className="font-bold leading-tight">{trip.destination}</h2>
       </Link>
+      <p className="text-xs text-muted-foreground">
+        By: {trip?.createdBy?.profile?.name}
+      </p>
       <p className="line-clamp-2 text-muted-foreground text-sm">
         {trip.description}
       </p>

@@ -16,7 +16,7 @@ const BuddyRequests = async () => {
   return (
     <div className="flex flex-col h-full">
       <DashboardHeader pageTitle="Buddy Requests" />
-      <ScrollArea className="grow bg-secondary rounded-tl-lg p-4">
+      <ScrollArea className="grow bg-secondary rounded-tl-lg p-2 md:p-4">
         <div className="space-y-4">
           {buddyRequests?.data?.length === 0 && (
             <EmptyRes
