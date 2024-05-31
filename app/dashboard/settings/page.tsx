@@ -12,10 +12,10 @@ const Profile = async () => {
   if (!currentUser) return null
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full p-3 gap-3 max-w-2xl mx-auto">
       <DashboardHeader pageTitle="Settings" />
-      <ScrollArea className="grow bg-secondary rounded-tl-lg p-2 md:p-4">
-        <div className="max-w-2xl mx-auto space-y-4">
+      <div className="grow">
+        <div className="space-y-4">
           <div className="space-y-2 p-4 rounded-md bg-background">
             <h3 className="font-bold">Profile Photo</h3>
             <Separator />
@@ -32,7 +32,7 @@ const Profile = async () => {
             <ChangePasswordForm currentUser={currentUser} />
           </div>
         </div>
-      </ScrollArea>
+      </div>
     </div>
   )
 }

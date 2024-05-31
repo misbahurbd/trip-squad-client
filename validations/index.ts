@@ -60,6 +60,7 @@ export const resetPasswordFormSchema = z
 export const personalInfoFormSchema = z.object({
   name: z.string(),
   username: z.string(),
+  email: z.string().email({ message: "Invalid email address" }),
   mobile: z.string(),
   dateOfBirth: z.date(),
   bio: z.string(),
@@ -156,4 +157,19 @@ export const createTripFormSchema = z.object({
   budget: z.string().min(1, { message: "Budget is required" }),
   location: z.string().min(1, { message: "Location is required" }),
   itinerary: z.string().min(1, { message: "Itinerary is required" }),
+})
+
+export const editTripFormSchema = z.object({
+  destination: z.string().min(1, { message: "Destination is required" }),
+  description: z.string().min(1, { message: "Description is required" }),
+  startDate: z.date({ required_error: "Start date is required" }),
+  endDate: z.date({ required_error: "Start date is required" }),
+  tripType: z.string().min(1, { message: "Trip type is required" }),
+  budget: z.string().min(1, { message: "Budget is required" }),
+  location: z.string().min(1, { message: "Location is required" }),
+  itinerary: z.string().min(1, { message: "Itinerary is required" }),
+})
+
+export const searchFormSchema = z.object({
+  searchTerm: z.string().optional(),
 })

@@ -12,10 +12,10 @@ const Profile = async () => {
   if (!currentUser) return null
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full p-3 gap-3 max-w-2xl mx-auto">
       <DashboardHeader pageTitle="Profile" />
-      <ScrollArea className="grow bg-secondary rounded-tl-lg p-2 md:p-4">
-        <div className="space-y-4 mx-auto max-w-2xl p-4 bg-background rounded-md">
+      <div className="grow">
+        <div className="space-y-4 p-4 bg-background rounded-md">
           <div className="flex flex-col items-center justify-center gap-3">
             <div className="size-24 rounded-2xl relative">
               <Image
@@ -66,7 +66,7 @@ const Profile = async () => {
             </div>
           </div>
         </div>
-      </ScrollArea>
+      </div>
     </div>
   )
 }

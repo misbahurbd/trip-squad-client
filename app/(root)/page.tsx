@@ -5,7 +5,7 @@ import { Metadata } from "next"
 import HowItWork from "./_components/how-it-work"
 
 export const metadata: Metadata = {
-  title: "How It Works - Trip Squad",
+  title: "Trip Squad - Your Ultimate Tavel Pattern",
   description:
     "Discover how Trip Squad helps you connect with like-minded travelers and make your dream trips a reality.",
 }

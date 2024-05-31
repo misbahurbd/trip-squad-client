@@ -88,6 +88,12 @@ export interface ITripBuddy {
   id: string
   tripId: string
   userId: string
+  name: string
+  email: string
+  mobile: string
+  address: string
+  city: string
+  country: string
   status: "Pending" | "Approved" | "Rejected"
   createdAt: string
   updatedAt: string

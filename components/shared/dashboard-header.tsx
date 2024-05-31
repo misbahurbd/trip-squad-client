@@ -10,7 +10,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   pageTitle,
 }) => {
   return (
-    <aside className="px-4 md:py-4 flex items-center bg-secondary md:bg-background gap-2 ">
+    <aside className="flex items-center gap-3">
       <h1 className="text-xl font-semibold mr-auto">{pageTitle}</h1>
       {children && <div>{children}</div>}
     </aside>

@@ -4,8 +4,18 @@ import { IBuddyRequest } from "@/interface"
 import avatar from "@/assets/img/avatar.jpeg"
 import Image from "next/image"
 import { Separator } from "@/components/ui/separator"
-import { RiMap2Line } from "react-icons/ri"
-import { LuCalendarRange } from "react-icons/lu"
+import { RiMap2Line, RiUser2Line } from "react-icons/ri"
+import {
+  LuCalendarRange,
+  LuDot,
+  LuMail,
+  LuMap,
+  LuMapPin,
+  LuMoreHorizontal,
+  LuMoreVertical,
+  LuPhone,
+  LuUser,
+} from "react-icons/lu"
 import { format } from "date-fns"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
@@ -14,6 +24,8 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 const RequestCard = ({ buddyRequest }: { buddyRequest: IBuddyRequest }) => {
+  console.log({ buddyRequest })
+
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const onResponse = async (response: "Approved" | "Rejected") => {
@@ -40,59 +52,86 @@ const RequestCard = ({ buddyRequest }: { buddyRequest: IBuddyRequest }) => {
   }
 
   return (
-    <article className="bg-background rounded-lg flex">
-      <div className="aspect-video overflow-hidden relative basis-1/4">
+    <article className="bg-background rounded-lg">
+      <div className="aspect-[3/1] overflow-hidden relative">
         <Image
           src={buddyRequest.trip.photos[0]}
           fill
           alt={buddyRequest.trip.description}
-          className="object-cover rounded-l-lg"
+          className="object-cover rounded-t-lg"
         />
       </div>
       <div className="basis-3/4">
-        <div className="p-4">
-          <div className="flex items-center gap-3">
-            <div className="relative size-14">
-              <Image
-                src={buddyRequest.user.profile.profilePhoto || avatar}
-                fill
-                alt={buddyRequest.user.profile.name}
-                className="rounded-lg object-cover"
-              />
-            </div>
-            <div>
-              <h4 className="font-semibold">
-                {buddyRequest.user.profile.name}
-              </h4>
-              <p className="text-muted-foreground text-xs">
-                @{buddyRequest.user.username}
-              </p>
-            </div>
-          </div>
-        </div>
-        <Separator className="opacity-50" />
-        <div className="p-4 space-y-1">
+        <div className="p-3 space-y-1">
           <div className="flex items-center gap-1 text-sm">
-            <RiMap2Line className="mr-1" />
-            <span className="font-semibold text-foreground">Destenation:</span>
-            <span className="text-muted-foreground">
+            <LuMap className="mr-1 text-muted-foreground" />
+            <span className="text-muted-foreground">Destenation:</span>
+            <span className="text-foreground">
               {buddyRequest.trip.destination}
             </span>
           </div>
           <div className="flex items-center gap-1 text-sm">
-            <LuCalendarRange className="mr-1" />
-            <span className="font-semibold text-foreground">Trip Date:</span>
-            <span className="text-muted-foreground">
+            <LuMapPin className="mr-1 text-muted-foreground" />
+            <span className="text-muted-foreground">Location:</span>
+            <span className="text-foreground">
+              {buddyRequest.trip.location}
+            </span>
+          </div>
+          <div className="flex items-center gap-1 text-sm">
+            <LuCalendarRange className="mr-1 text-muted-foreground" />
+            <span className="text-muted-foreground">Date:</span>
+            <span className="text-foreground">
               {format(buddyRequest.trip.startDate, "dd MMM")}
             </span>
             <Separator className="w-2 bg-muted-foreground" />
-            <span className="text-muted-foreground">
+            <span className="text-foreground">
               {format(buddyRequest.trip.endDate, "dd MMM, yyyy")}
             </span>
           </div>
         </div>
+
         <Separator className="opacity-50" />
-        <div className="flex items-center gap-3 p-4">
+
+        <h3 className="px-3 py-2 font-semibold">Buddy Information</h3>
+
+        <Separator className="opacity-50" />
+
+        <div className="px-3 py-2 space-y-1 relative">
+          <div className="absolute size-16 right-3 top-3 rounded-md overflow-hidden">
+            <Image
+              src={buddyRequest.user.profile.profilePhoto || avatar}
+              fill
+              className="object-cover"
+              alt={buddyRequest.user.profile.name}
+            />
+          </div>
+          <div className="flex items-center gap-1 text-sm">
+            <LuUser className="mr-1 text-muted-foreground" />
+            <span className="text-muted-foreground">Name:</span>
+            <span className="text-foreground">{buddyRequest.name}</span>
+          </div>
+          <div className="flex items-center gap-1 text-sm">
+            <LuPhone className="mr-1 text-muted-foreground" />
+            <span className="text-muted-foreground">Mobile:</span>
+            <span className="text-foreground">{buddyRequest.mobile}</span>
+          </div>
+          <div className="flex items-center gap-1 text-sm">
+            <LuMail className="mr-1 text-muted-foreground" />
+            <span className="text-muted-foreground">Email:</span>
+            <span className="text-foreground">{buddyRequest.email}</span>
+          </div>
+          <div className="flex items-center gap-1 text-sm">
+            <LuMapPin className="mr-1 text-muted-foreground" />
+            <span className="text-muted-foreground">Location:</span>
+            <span className="text-foreground">
+              {buddyRequest.city}, {buddyRequest.country}
+            </span>
+          </div>
+        </div>
+
+        <Separator className="opacity-50" />
+
+        <div className="flex items-center gap-3 p-3">
           <Button
             disabled={isLoading}
             onClick={() => onResponse("Approved")}

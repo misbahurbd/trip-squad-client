@@ -24,6 +24,7 @@ const PersonalInfoForm = ({ currentUser }: { currentUser: CurrentUser }) => {
     defaultValues: {
       name: currentUser.name || "",
       username: currentUser.username || "",
+      email: currentUser.email || "",
       mobile: currentUser.mobile || "",
       dateOfBirth: currentUser.dateOfBirth && new Date(currentUser.dateOfBirth),
       bio: currentUser.bio || "",
@@ -57,6 +58,7 @@ const PersonalInfoForm = ({ currentUser }: { currentUser: CurrentUser }) => {
           <FormInput
             form={form}
             placeholder="Name"
+            className="sm:col-span-2"
             label="Name"
             name="name"
             disabled={isLoading}
@@ -66,6 +68,13 @@ const PersonalInfoForm = ({ currentUser }: { currentUser: CurrentUser }) => {
             placeholder="Username"
             label="Username"
             name="username"
+            disabled={isLoading}
+          />
+          <FormInput
+            form={form}
+            placeholder="Email"
+            label="Email"
+            name="email"
             disabled={isLoading}
           />
           <FormInput

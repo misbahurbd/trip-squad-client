@@ -43,7 +43,7 @@ const UserBox = ({ user }: UserBoxProps) => {
         side="bottom"
         align="end"
         sideOffset={10}
-        alignOffset={-10}
+        alignOffset={-5}
         className="min-w-52"
       >
         <DropdownMenuLabel>

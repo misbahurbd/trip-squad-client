@@ -21,9 +21,9 @@ interface SingleTripAsideProps {
 
 const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
   const router = useRouter()
-  const pathname = usePathname()
-  const [isLoading, setIsLoading] = useState(false)
   const buddy = trip.tripBuddy.find(buddy => buddy.userId === user?.userId)
+  const currentBuddies =
+    trip?.tripBuddy?.filter(buddy => buddy.status === "Approved") || []
 
   const getButtonVarient = () => {
     if (trip.creatorId == user?.userId) return "secondary"
@@ -43,6 +43,7 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
 
   const getButtonText = () => {
     if (trip.creatorId == user?.userId) return "You can't join your own trip."
+    if (user?.role === "Admin") return "Admin can't send trip buddy requests."
     if (buddy) {
       return `Request ${buddy.status}`
     } else {
@@ -97,10 +98,10 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
 
       <Separator className="opacity-60" />
 
-      {trip?.tripBuddy?.length > 0 && (
+      {currentBuddies?.length > 0 && (
         <div className="text-center flex items-center justify-center gap-1 text-muted-foreground text-sm">
           <div className="flex">
-            {trip?.tripBuddy?.map((buddy, i) => (
+            {currentBuddies?.map((buddy, i) => (
               <div
                 key={buddy?.user?.profile?.name + i}
                 className={cn(
@@ -117,13 +118,13 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
               </div>
             ))}
           </div>
-          <span>{trip?.tripBuddy?.length}+ buddies already join</span>
+          <span>{currentBuddies?.length}+ buddies already join</span>
         </div>
       )}
 
       <Button
         onClick={() => router.push(`/trips/${trip.id}/request`)}
-        disabled={isLoading || trip.creatorId == user?.userId}
+        disabled={trip.creatorId == user?.userId}
         className="w-full"
         variant={getButtonVarient()}
       >

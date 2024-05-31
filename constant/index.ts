@@ -1,3 +1,4 @@
+import { IconType } from "react-icons"
 import {
   HiOutlineCog6Tooth,
   HiOutlineMap,
@@ -18,38 +19,45 @@ export const getDashboardNav = (pathname: string, role: string) => {
   const navs = [
     {
       label: "My Trips",
+      href: "/dashboard/my-trips",
+      icon: PiBackpack,
+      active: pathname.includes("/my-trips"),
+      userRole: ["User"],
+    },
+    {
+      label: "All Trips",
       href: "/dashboard/trips",
       icon: HiOutlineMap,
       active: pathname.includes("/trips"),
-      userRole: ["User", "Admin"],
+      userRole: ["Admin"],
     },
     {
-      label: "Buddy Requests",
-      href: "/dashboard/buddy-requests",
-      icon: HiOutlineUserPlus,
-      active: pathname.includes("/buddy-requests"),
-      userRole: ["User", "Admin"],
-    },
-    {
-      label: "User Management",
+      label: "Users",
       href: "/dashboard/users",
       icon: HiOutlineUserGroup,
       active: pathname.includes("/users"),
       userRole: ["Admin"],
     },
     {
+      label: "Buddy Requests",
+      href: "/dashboard/buddy-requests",
+      icon: HiOutlineUserPlus,
+      active: pathname.includes("/buddy-requests"),
+      userRole: ["User"],
+    },
+    {
       label: "Profile",
       href: "/dashboard/profile",
       icon: HiOutlineUserCircle,
       active: pathname.includes("/profile"),
-      userRole: ["Admin", "SuperAdmin", "User"],
+      userRole: ["Admin", "User"],
     },
     {
       label: "Settings",
       href: "/dashboard/settings",
       icon: HiOutlineCog6Tooth,
       active: pathname.includes("/settings"),
-      userRole: ["Admin", "SuperAdmin", "User"],
+      userRole: ["Admin", "User"],
     },
   ]
 
@@ -208,4 +216,13 @@ export const whyTravelWithUsContent = [
   },
 ]
 
+export const dashboardWithSearch = ["/trips", "/users", "/my-trips"]
+
 export type TravelTripType = typeof travelTripTypes
+export type DashboardNavLinks = {
+  label: string
+  href: string
+  icon: IconType
+  active: boolean
+  userRole: string[]
+}[]

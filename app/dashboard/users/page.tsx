@@ -30,7 +30,7 @@ const UserManagement = async ({
   const totalPage = Math.ceil(users?.meta?.total / users?.meta?.limit)
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full p-3 gap-3">
       <DashboardHeader pageTitle="User Management">
         <Button
           className="flex items-center gap-2"
@@ -43,8 +43,8 @@ const UserManagement = async ({
         </Button>
       </DashboardHeader>
 
-      <ScrollArea className="grow bg-secondary rounded-tl-lg p-2 md:p-4">
-        <div className="space-y-4">
+      <div className="grow">
+        <div className="space-y-3">
           <div className="grid lg:grid-cols-2 gap-3">
             {users.data.map((user: IUser) => {
               return (
@@ -57,7 +57,7 @@ const UserManagement = async ({
           </div>
           <PaginationComponent totalPages={totalPage} />
         </div>
-      </ScrollArea>
+      </div>
     </div>
   )
 }
