@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import LoginForm from "@/components/form/login-form"
+import { Suspense } from "react"
 
 export const metadata: Metadata = {
   title: "Login | Trip Squad",
@@ -22,7 +23,9 @@ const LoginPage = () => {
       </div>
       <div className="md:w-1/2 bg-background rounded-xl py-8 md:py-12 px-8 md:px-10 flex flex-col items-center gap-8">
         <h2 className="text-2xl font-bold text-center">Login Your Account</h2>
-        <LoginForm />
+        <Suspense>
+          <LoginForm />
+        </Suspense>
 
         <div className="text-sm text-center flex gap-2 items-center">
           <span>Don&apos;t have an account?</span>

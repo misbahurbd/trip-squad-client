@@ -7,6 +7,7 @@ import { whyTravelWithUsContent } from "@/constant"
 import PhotoGallery from "@/components/shared/photo-gallery"
 import OurTeam from "@/components/shared/our-team"
 import { Metadata } from "next"
+import { Suspense } from "react"
 
 export const metadata: Metadata = {
   title: "About Us | Trip Squad",
@@ -75,9 +76,11 @@ const AboutUs = () => {
           ))}
         </div>
       </section>
-      <PhotoGallery />
-      <HowItWork />
-      <OurTeam />
+      <Suspense>
+        <PhotoGallery />
+        <HowItWork />
+        <OurTeam />
+      </Suspense>
     </article>
   )
 }
