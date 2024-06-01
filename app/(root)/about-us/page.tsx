@@ -7,6 +7,7 @@ import HowItWork from "@/app/(root)/_components/how-it-work"
 import OurTeam from "@/components/shared/our-team"
 import { Metadata } from "next"
 import PhotoGallery from "@/components/shared/photo-gallery"
+import aboutImg from "@/assets/img/about-us.jpg"
 
 export const metadata: Metadata = {
   title: "About Us | Trip Squad",
@@ -27,7 +28,7 @@ const AboutUs = () => {
         <div className="lg:w-4/5 mx-auto flex flex-col lg:flex-row items-stretch lg:items-center gap-10">
           <div className="lg:w-2/5 aspect-[5/3] sm:aspect-[2/1] lg:aspect-square relative h-full bg-black rounded-xl">
             <Image
-              src={"/img/about-us.jpg"}
+              src={aboutImg}
               fill
               alt="Trip Squad"
               className="rounded-xl object-cover"

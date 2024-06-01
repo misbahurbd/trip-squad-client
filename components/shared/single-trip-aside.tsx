@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
+import avatar from "@/assets/img/avatar.jpeg"
 
 interface SingleTripAsideProps {
   trip: ITrip
@@ -106,7 +107,7 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
                 )}
               >
                 <Image
-                  src={buddy?.user?.profile?.profilePhoto || "/img/avatar.jpeg"}
+                  src={buddy?.user?.profile?.profilePhoto || avatar}
                   alt={buddy?.user?.profile?.name}
                   className="w-6 h-6 rounded-full"
                   fill

@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation"
 import { axiosInstance } from "@/lib/axios"
 import { useState } from "react"
 import { toast } from "sonner"
+import avatar from "@/assets/img/avatar.jpeg"
 
 const RequestCard = ({ buddyRequest }: { buddyRequest: IBuddyRequest }) => {
   console.log({ buddyRequest })
@@ -94,9 +95,7 @@ const RequestCard = ({ buddyRequest }: { buddyRequest: IBuddyRequest }) => {
         <div className="px-3 py-2 space-y-1 relative">
           <div className="absolute size-16 right-3 top-3 rounded-md overflow-hidden">
             <Image
-              src={
-                buddyRequest?.user?.profile?.profilePhoto || "/img/avatar.jpeg"
-              }
+              src={buddyRequest?.user?.profile?.profilePhoto || avatar}
               fill
               className="object-cover"
               alt={buddyRequest?.user?.profile?.name}

@@ -18,6 +18,8 @@ import FormTextArea from "@/components/form-ui/form-textarea"
 import { axiosInstance } from "@/lib/axios"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
+import avatar from "@/assets/img/avatar.jpeg"
+import profileCover from "@/assets/img/profile-cover.jpeg"
 
 const UserProfile = ({ currentUser }: { currentUser: CurrentUser }) => {
   const [isEditing, setIsEditing] = useState(false)
@@ -62,7 +64,7 @@ const UserProfile = ({ currentUser }: { currentUser: CurrentUser }) => {
       <div className="flex flex-col">
         <div className="relative h-60">
           <Image
-            src={"/img/profile-cover.jpg"}
+            src={profileCover}
             alt={currentUser.name}
             fill
             className="rounded-lg object-cover"
@@ -71,7 +73,7 @@ const UserProfile = ({ currentUser }: { currentUser: CurrentUser }) => {
         <div className="flex flex-col sm:flex-row gap-3 items-center px-3">
           <div className="size-32 rounded-lg relative -mt-16">
             <Image
-              src={currentUser.profilePhoto || "/img/avatar.jpeg"}
+              src={currentUser.profilePhoto || avatar}
               alt={currentUser.name}
               fill
               className="rounded-lg object-cover"

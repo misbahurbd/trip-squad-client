@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import LoginForm from "@/components/form/login-form"
 import { Suspense } from "react"
+import authImg from "@/assets/img/auth-img-01.jpg"
 
 export const metadata: Metadata = {
   title: "Login | Trip Squad",
@@ -16,7 +17,7 @@ const LoginPage = () => {
       <div className="aspect-video md:w-1/2 relative rounded-xl">
         <Image
           fill
-          src={"/img/auth-img-01.jpg"}
+          src={authImg}
           alt="Auth Image"
           className="object-cover rounded-xl"
         />

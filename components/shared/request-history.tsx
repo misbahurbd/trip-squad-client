@@ -4,6 +4,7 @@ import Image from "next/image"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { PiHandshake } from "react-icons/pi"
+import avatar from "@/assets/img/avatar.jpeg"
 
 const RequestHistory = ({ request }: { request: IBuddyRequest }) => {
   return (
@@ -19,10 +20,7 @@ const RequestHistory = ({ request }: { request: IBuddyRequest }) => {
           <div className="absolute bg-foreground/30 backdrop-blur-sm w-full h-full top-0 left-0 rounded-lg flex items-center justify-center gap-4">
             <div className="size-20 relative rounded-lg border-2 border-background overflow-hidden">
               <Image
-                src={
-                  request?.trip?.createdBy?.profile?.profilePhoto ||
-                  "/img/avatar.jpeg"
-                }
+                src={request?.trip?.createdBy?.profile?.profilePhoto || avatar}
                 fill
                 alt={request?.user?.profile?.name}
                 className="object-cover"
@@ -31,7 +29,7 @@ const RequestHistory = ({ request }: { request: IBuddyRequest }) => {
             <PiHandshake className="text-background size-10" />
             <div className="size-20 relative rounded-lg border-2 border-background overflow-hidden">
               <Image
-                src={request?.user?.profile?.profilePhoto || "/img/avatar.jpeg"}
+                src={request?.user?.profile?.profilePhoto || avatar}
                 fill
                 alt={request?.user?.profile?.name}
                 className="object-cover"

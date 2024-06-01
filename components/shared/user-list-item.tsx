@@ -5,6 +5,7 @@ import Image from "next/image"
 import UserActoinMenu from "./user-action-menu"
 import { Badge } from "@/components/ui/badge"
 import { useEffect, useState } from "react"
+import avatar from "@/assets/img/avatar.jpeg"
 
 const UserListItem = ({ user }: { user: IUser }) => {
   const [isMounted, setIsMounted] = useState(false)
@@ -22,7 +23,7 @@ const UserListItem = ({ user }: { user: IUser }) => {
     <div className="flex @container/user-item items-center gap-3 bg-background rounded-xl p-3">
       <div className="size-24 shrink-0 relative rounded overflow-hidden">
         <Image
-          src={user.profilePhoto || "/img/avatar.jpeg"}
+          src={user.profilePhoto || avatar}
           alt={user.name}
           fill
           className="object-cover"

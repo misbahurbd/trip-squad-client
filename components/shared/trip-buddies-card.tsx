@@ -5,6 +5,7 @@ import { ITripBuddyPost } from "@/interface"
 import { Separator } from "@/components/ui/separator"
 import { formatedDate } from "@/lib/utils"
 import { LuMapPin } from "react-icons/lu"
+import avatar from "@/assets/img/avatar.jpeg"
 
 interface TripBuddiesProps {
   tripBuddy: ITripBuddyPost
@@ -71,10 +72,7 @@ const TripBuddiesCard: React.FC<TripBuddiesProps> = ({ tripBuddy }) => {
         <div className="grid @[16rem]/buddy:grid-cols-5 gap-3">
           <div className="w-full group aspect-square relative">
             <Image
-              src={
-                tripBuddy?.trip?.createdBy?.profile?.profilePhoto ||
-                "/img/avatar.jpeg"
-              }
+              src={tripBuddy?.trip?.createdBy?.profile?.profilePhoto || avatar}
               fill
               alt={tripBuddy?.trip?.createdBy?.profile?.name}
               className="rounded-full object-cover"
@@ -89,7 +87,7 @@ const TripBuddiesCard: React.FC<TripBuddiesProps> = ({ tripBuddy }) => {
               className="w-full group aspect-square relative"
             >
               <Image
-                src={buddy?.user?.profile?.profilePhoto || "/img/avatar.jpeg"}
+                src={buddy?.user?.profile?.profilePhoto || avatar}
                 fill
                 alt={buddy?.user?.profile?.name}
                 className="rounded-full object-cover"

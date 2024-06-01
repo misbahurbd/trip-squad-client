@@ -2,6 +2,7 @@ import ContactUsForm from "@/components/form/contact-us-form"
 import SectionHeader from "@/components/shared/section-header"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import contactImage from "@/assets/img/contact-us-img.jpg"
 
 import {
   LuFacebook,
@@ -32,7 +33,7 @@ const Contact = () => {
         <div className="flex flex-col md:flex-row gap-3 max-w-6xl mx-auto">
           <div className="flex-1 p-8 bg-background rounded-lg relative overflow-hidden">
             <Image
-              src={"/img/contact-us-img.jpg"}
+              src={contactImage}
               alt="Contact Image"
               fill
             />

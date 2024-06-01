@@ -12,6 +12,7 @@ import Image from "next/image"
 import { useState } from "react"
 import { toast } from "sonner"
 import { HiPhoto } from "react-icons/hi2"
+import avatar from "@/assets/img/avatar.jpeg"
 
 interface FormImageUploaderProps {
   form: UseFormReturn<any>
@@ -71,7 +72,7 @@ const FormImageUploader: React.FC<FormImageUploaderProps> = ({
                   />
                 </span>
                 <Image
-                  src={image || currentImage || "/img/avatar.jpeg"}
+                  src={image || currentImage || avatar}
                   fill
                   alt="Profile Photo"
                   className={cn("object-cover rounded-xl", imgClassName)}

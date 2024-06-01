@@ -14,6 +14,7 @@ import { CurrentUser } from "@/interface"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { logout } from "@/services/auth.service"
+import avatar from "@/assets/img/avatar.jpeg"
 
 interface UserBoxProps {
   user: CurrentUser
@@ -33,7 +34,7 @@ const UserBox = ({ user }: UserBoxProps) => {
           <Image
             fill
             alt={user.name}
-            src={user.profilePhoto || "/img/avatar.jpeg"}
+            src={user.profilePhoto || avatar}
             className="rounded-full"
           />
         </Button>

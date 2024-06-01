@@ -3,6 +3,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import HeroSearchField from "./hero-search-field"
 import { getTripType } from "@/services/trip.service"
+import heroImg from "@/assets/img/hero-img.png"
 
 const HeroSection = async () => {
   const tripTypes = await getTripType()
@@ -12,7 +13,7 @@ const HeroSection = async () => {
       <div className="container">
         <div className="relative rounded-2xl">
           <Image
-            src={"/img/hero-img.png"}
+            src={heroImg}
             alt="Hero Image"
             className="absolute left-0 right-0 top-0 bottom-0 w-full h-full object-cover rounded-2xl"
             fill
