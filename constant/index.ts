@@ -2,6 +2,7 @@ import { IconType } from "react-icons"
 import { AiOutlineHistory } from "react-icons/ai"
 import {
   HiOutlineCog6Tooth,
+  HiOutlineHome,
   HiOutlineMap,
   HiOutlineUserCircle,
   HiOutlineUserGroup,
@@ -17,8 +18,54 @@ import {
   PiLinkedinLogo,
 } from "react-icons/pi"
 
+export const teamMembers = [
+  {
+    name: "Misbahur Rahman",
+    designation: "Founder",
+    img: "misbahur-rahman.jpeg",
+    facebook: "https://www.facebook.com/misbahurbd",
+    instagram: "https://instagram.com/misbahurbd",
+    linkedin: "https://www.linkedin.com/in/misbahurbd",
+    github: "https://github.com/misbahurbd",
+  },
+  {
+    name: "Mujammal H Mayeen",
+    designation: "Chief Executive Officer",
+    img: "mujammal-hossain-mayeen.jpeg",
+    facebook: "https://www.facebook.com/itmayeen",
+    instagram: "https://instagram.com/itmayeen",
+    linkedin: "https://www.linkedin.com/in/itmayeen",
+    github: "https://github.com/itmayeen",
+  },
+  {
+    name: "Sahed Ahmed",
+    designation: "Chief Marketing Officer",
+    img: "sahed-ahmed.jpeg",
+    facebook: "https://www.facebook.com/freelancerafridii",
+    instagram: "https://instagram.com/freelancer_afridi",
+    linkedin: "https://www.linkedin.com/in/mrsahedafridi",
+    github: "https://github.com/freelancer_afridi",
+  },
+  {
+    name: "Farjuk Ahmed",
+    designation: "Chief Operating Officer",
+    img: "farjuk-ahmed.jpeg",
+    facebook: "https://www.facebook.com/farjukbd",
+    instagram: "https://instagram.com/farjukbd",
+    linkedin: "https://www.linkedin.com/in/farjukbd",
+    github: "https://github.com/farjukbd",
+  },
+]
+
 export const getDashboardNav = (pathname: string, role: string) => {
   const navs = [
+    {
+      label: "Home",
+      href: "/",
+      icon: HiOutlineHome,
+      active: false,
+      userRole: ["User", "Admin"],
+    },
     {
       label: "My Trips",
       href: "/dashboard/my-trips",
@@ -233,7 +280,14 @@ export const whyTravelWithUsContent = [
   },
 ]
 
-export const dashboardWithSearch = ["/trips", "/users", "/my-trips"]
+export const dashboardWithSearch = [
+  "/trips",
+  "/users",
+  "/my-trips",
+  "/buddy-requests",
+  "/requests-history",
+  "/trip-buddies",
+]
 
 export type TravelTripType = typeof travelTripTypes
 export type DashboardNavLinks = {

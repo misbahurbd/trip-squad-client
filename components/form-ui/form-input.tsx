@@ -16,7 +16,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "../ui/tooltip"
+} from "@/components/ui/tooltip"
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi"
 
 interface FormInputProps {

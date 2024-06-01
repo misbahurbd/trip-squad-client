@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
-import avatar from "@/assets/img/avatar.jpeg"
 import Image from "next/image"
 import { useState } from "react"
 import { toast } from "sonner"
@@ -72,7 +71,7 @@ const FormImageUploader: React.FC<FormImageUploaderProps> = ({
                   />
                 </span>
                 <Image
-                  src={image || currentImage || avatar}
+                  src={image || currentImage || "/img/avatar.jpeg"}
                   fill
                   alt="Profile Photo"
                   className={cn("object-cover rounded-xl", imgClassName)}

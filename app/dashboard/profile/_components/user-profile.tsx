@@ -2,8 +2,6 @@
 
 import Image from "next/image"
 import { format } from "date-fns"
-import avatar from "@/assets/img/avatar.jpeg"
-import CoverPhoto from "@/assets/img/profile-cover.jpeg"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
 import { LuFileEdit } from "react-icons/lu"
@@ -64,7 +62,7 @@ const UserProfile = ({ currentUser }: { currentUser: CurrentUser }) => {
       <div className="flex flex-col">
         <div className="relative h-60">
           <Image
-            src={CoverPhoto}
+            src={"/img/profile-cover.jpg"}
             alt={currentUser.name}
             fill
             className="rounded-lg object-cover"
@@ -73,7 +71,7 @@ const UserProfile = ({ currentUser }: { currentUser: CurrentUser }) => {
         <div className="flex flex-col sm:flex-row gap-3 items-center px-3">
           <div className="size-32 rounded-lg relative -mt-16">
             <Image
-              src={currentUser.profilePhoto || avatar}
+              src={currentUser.profilePhoto || "/img/avatar.jpeg"}
               alt={currentUser.name}
               fill
               className="rounded-lg object-cover"

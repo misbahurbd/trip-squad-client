@@ -1,10 +1,17 @@
-import DashboardHeader from "@/components/shared/dashboard-header"
+import DashboardHeader from "@/app/dashboard/_components/dashboard-header"
 import EmptyRes from "@/components/shared/empty-res"
 import { axiosInstance } from "@/lib/axios"
 import PaginationComponent from "@/components/shared/pagination"
 import { HiOutlineUsers } from "react-icons/hi2"
 import { ITripBuddyPost } from "@/interface"
 import TripBuddiesCard from "@/components/shared/trip-buddies-card"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Trip Buddies | Trip Squad",
+  description:
+    "View all your trip buddies on Trip Squad. See who has accepted your trip buddy requests and plan your adventures together.",
+}
 
 const TripBuddies = async ({
   searchParams,

@@ -1,12 +1,20 @@
-import { getCurrentUser } from "@/services/user.service"
-import { axiosInstance } from "@/lib/axios"
-import { ITrip } from "@/interface"
+import type { Metadata } from "next"
 import { Suspense } from "react"
-import Pagination from "@/components/shared/pagination"
-import DashboardHeader from "@/components/shared/dashboard-header"
-import EmptyRes from "@/components/shared/empty-res"
 import { PiBackpack } from "react-icons/pi"
+import { ITrip } from "@/interface"
+import { axiosInstance } from "@/lib/axios"
+
+import EmptyRes from "@/components/shared/empty-res"
 import TripCard from "@/components/shared/trip-card"
+import { getCurrentUser } from "@/services/user.service"
+import Pagination from "@/components/shared/pagination"
+import DashboardHeader from "@/app/dashboard/_components/dashboard-header"
+
+export const metadata: Metadata = {
+  title: "Trip Management | Trip Squad",
+  description:
+    "Manage all trips on Trip Squad. Admins can edit, update, and delete trips efficiently to ensure seamless trip organization.",
+}
 
 const TripsPage = async ({
   searchParams,

@@ -1,5 +1,12 @@
 import ForgetPasswordForm from "@/components/form/forget-password-form"
+import { Metadata } from "next"
 import Link from "next/link"
+
+export const metadata: Metadata = {
+  title: "Forget Password | Trip Squad",
+  description:
+    "Reset your password on Trip Squad. Enter your email address and we'll send you a link to reset your password.",
+}
 
 const ForgetPassword = () => {
   return (

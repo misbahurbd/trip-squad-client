@@ -1,7 +1,13 @@
+import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import authImg from "@/assets/img/auth-img-02.jpg"
 import RegisterForm from "@/components/form/register-form"
+
+export const metadata: Metadata = {
+  title: "Register | Trip Squad",
+  description:
+    "Register for an account on Trip Squad and start planning your next adventure! Connect with like-minded travelers and share your trip plans.",
+}
 
 const RegisterPage = () => {
   return (
@@ -9,7 +15,7 @@ const RegisterPage = () => {
       <div className="md:w-1/2 aspect-video relative rounded-xl">
         <Image
           fill
-          src={authImg}
+          src={"/img/auth-img-02.jpg"}
           alt="Auth Image"
           className="object-cover rounded-xl"
         />

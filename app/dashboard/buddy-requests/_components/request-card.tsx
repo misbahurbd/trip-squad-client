@@ -1,18 +1,13 @@
 "use client"
 
 import { IBuddyRequest } from "@/interface"
-import avatar from "@/assets/img/avatar.jpeg"
 import Image from "next/image"
 import { Separator } from "@/components/ui/separator"
-import { RiMap2Line, RiUser2Line } from "react-icons/ri"
 import {
   LuCalendarRange,
-  LuDot,
   LuMail,
   LuMap,
   LuMapPin,
-  LuMoreHorizontal,
-  LuMoreVertical,
   LuPhone,
   LuUser,
 } from "react-icons/lu"
@@ -99,10 +94,12 @@ const RequestCard = ({ buddyRequest }: { buddyRequest: IBuddyRequest }) => {
         <div className="px-3 py-2 space-y-1 relative">
           <div className="absolute size-16 right-3 top-3 rounded-md overflow-hidden">
             <Image
-              src={buddyRequest.user.profile.profilePhoto || avatar}
+              src={
+                buddyRequest?.user?.profile?.profilePhoto || "/img/avatar.jpeg"
+              }
               fill
               className="object-cover"
-              alt={buddyRequest.user.profile.name}
+              alt={buddyRequest?.user?.profile?.name}
             />
           </div>
           <div className="flex items-center gap-1 text-sm">

@@ -1,15 +1,37 @@
-import DashboardHeader from "@/components/shared/dashboard-header"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import DashboardHeader from "@/app/dashboard/_components/dashboard-header"
 import { axiosInstance } from "@/lib/axios"
 import { getCurrentUser } from "@/services/user.service"
 import RequestCard from "./_components/request-card"
 import { IBuddyRequest } from "@/interface"
 import EmptyRes from "@/components/shared/empty-res"
 import { HiOutlineUserPlus } from "react-icons/hi2"
+import PaginationComponent from "@/components/shared/pagination"
+import { Metadata } from "next"
 
-const BuddyRequests = async () => {
+export const metadata: Metadata = {
+  title: "Buddy Requests | Trip Squad",
+  description:
+    "Manage your trip buddy requests on Trip Squad. View, accept, or reject requests from other users to join your trips.",
+}
+
+const BuddyRequests = async ({
+  searchParams,
+}: {
+  searchParams: Record<string, string>
+}) => {
   const currentUser = await getCurrentUser()
-  const buddyRequests = await axiosInstance.get("/trip-buddies")
+  const query = Object.keys(searchParams)
+    .map(key => {
+      if (searchParams[key] !== undefined) {
+        return `${key}=${searchParams[key]}`
+      }
+    })
+    .join("&")
+
+  const buddyRequests = await axiosInstance.get(`/trip-buddies?${query}`)
+  const totalPage = Math.ceil(
+    buddyRequests?.meta?.total / buddyRequests?.meta?.limit
+  )
 
   if (!currentUser) return null
 
@@ -21,7 +43,7 @@ const BuddyRequests = async () => {
           {buddyRequests?.data?.length === 0 && (
             <EmptyRes
               icon={HiOutlineUserPlus}
-              message="You have no buddy requests"
+              message="No buddy requests found!"
             />
           )}
           <div className="grid grid-cols-1 @2xl:grid-cols-2 @5xl:grid-cols-3 @[85rem]:grid-cols-4 gap-3 ">
@@ -32,6 +54,9 @@ const BuddyRequests = async () => {
               />
             ))}
           </div>
+          {buddyRequests?.data?.length > 0 && (
+            <PaginationComponent totalPages={totalPage} />
+          )}
         </div>
       </div>
     </div>

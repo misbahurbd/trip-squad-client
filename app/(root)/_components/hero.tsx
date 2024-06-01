@@ -1,7 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import HeroImg from "@/assets/img/hero-img.png"
 import HeroSearchField from "./hero-search-field"
 import { axiosInstance } from "@/lib/axios"
 
@@ -13,7 +12,7 @@ const HeroSection = async () => {
       <div className="container">
         <div className="relative rounded-2xl">
           <Image
-            src={HeroImg}
+            src={"/img/hero-img.png"}
             alt="Hero Image"
             className="absolute left-0 right-0 top-0 bottom-0 w-full h-full object-cover rounded-2xl"
           />

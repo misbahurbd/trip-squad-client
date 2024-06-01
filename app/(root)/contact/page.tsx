@@ -2,7 +2,6 @@ import ContactUsForm from "@/components/form/contact-us-form"
 import SectionHeader from "@/components/shared/section-header"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import ContactImg from "@/assets/img/contact-us-img.jpg"
 
 import {
   LuFacebook,
@@ -14,6 +13,13 @@ import {
   LuPhone,
 } from "react-icons/lu"
 import Image from "next/image"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Contact Us | Trip Squad",
+  description:
+    "Get in touch with Trip Squad for any inquiries or support. Reach out to us through our contact page for prompt assistance and information.",
+}
 
 const Contact = () => {
   return (
@@ -23,10 +29,10 @@ const Contact = () => {
           title="Contact"
           subTitle="Have questions or need assistance? We're here to help! Fill out the form below or contact us directly for prompt support."
         />
-        <div className="flex flex-col md:flex-row gap-3 max-w-4xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-3 max-w-6xl mx-auto">
           <div className="flex-1 p-8 bg-background rounded-lg relative overflow-hidden">
             <Image
-              src={ContactImg}
+              src={"/img/contact-us-img.jpg"}
               alt="Contact Image"
               fill
             />

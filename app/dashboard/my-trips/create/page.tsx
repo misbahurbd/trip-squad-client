@@ -1,10 +1,17 @@
 import CreateTripForm from "@/components/form/create-trip-form"
-import DashboardHeader from "@/components/shared/dashboard-header"
+import DashboardHeader from "@/app/dashboard/_components/dashboard-header"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Create a Trip | Trip Squad",
+  description:
+    "Plan your next adventure on Trip Squad. Create a new trip, add details, and invite buddies to join your exciting journey.",
+}
 
 const CreateTrip = () => {
   return (
     <div className="flex flex-col h-full p-3 gap-3">
-      <DashboardHeader pageTitle="Create Trip" />
+      <DashboardHeader pageTitle="Create a Trip" />
       <div className="grow">
         <div className="max-w-2xl">
           <div className="bg-background rounded-md p-5">

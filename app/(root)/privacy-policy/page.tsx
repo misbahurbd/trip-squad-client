@@ -1,3 +1,11 @@
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Trip Squad",
+  description:
+    "Understand how Trip Squad collects, uses, and protects your personal information. Read our privacy policy to learn about your data rights and privacy measures.",
+}
+
 const PrivacyPolicy = () => {
   return (
     <div className="container p-6 rounded-lg bg-background">

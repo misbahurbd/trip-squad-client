@@ -1,7 +1,6 @@
 import { ITrip } from "@/interface"
 import { axiosInstance } from "@/lib/axios"
-import type { Metadata, ResolvingMetadata } from "next"
-import Avatar from "@/assets/img/avatar.jpeg"
+import type { Metadata } from "next"
 import Image from "next/image"
 import { HiAtSymbol } from "react-icons/hi"
 import { GrMapLocation } from "react-icons/gr"
@@ -12,16 +11,14 @@ import { Separator } from "@/components/ui/separator"
 import { HiOutlineClock, HiOutlineMapPin } from "react-icons/hi2"
 import { formatDistanceToNow } from "date-fns"
 import { PiBackpack } from "react-icons/pi"
+import { notFound } from "next/navigation"
 
 type Props = {
   params: { id: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const id = params.id
   const trip = await axiosInstance.get("/trips/" + id)
 
@@ -37,45 +34,50 @@ const TripPage = async ({ params }: { params: { id: string } }) => {
   const tripData = trip.data as ITrip
   const user = await getCurrentUser()
 
+  if (!tripData) return notFound()
+
   return (
     <div className="container space-y-4">
-      <TripImgSlide tripImgs={tripData.photos} />
+      <TripImgSlide tripImgs={tripData?.photos || []} />
       <div className="flex flex-col md:flex-row gap-3">
         <div className="grow p-3 rounded-xl bg-background space-y-4">
           <div className="shadow-sm bg-muted p-3 rounded-lg space-y-2">
             <div className="flex items-center gap-3">
               <div className="size-20 sm:size-32 rounded relative shrink-0">
                 <Image
-                  src={tripData.createdBy.profile.profilePhoto || Avatar}
+                  src={
+                    tripData?.createdBy?.profile?.profilePhoto ||
+                    "/img/avatar.jpeg"
+                  }
                   className="rounded"
                   fill
-                  alt={tripData.createdBy.profile.name}
+                  alt={tripData?.createdBy?.profile?.name}
                 />
               </div>
               <div className="space-y-1">
                 <h4 className="font-bold text-lg leading-tight">
-                  {tripData.createdBy.profile.name}
+                  {tripData?.createdBy?.profile?.name}
                 </h4>
                 <div className="flex flex-col sm:flex-row gap-x-5">
                   <p className="text-muted-foreground text-sm flex items-center gap-1">
                     <HiAtSymbol />
-                    {tripData.createdBy.username}
+                    {tripData?.createdBy?.username}
                   </p>
                   <p className="text-muted-foreground text-sm flex items-center gap-1">
                     <GrMapLocation />
-                    {tripData.createdBy._count.trip} trip posted
+                    {tripData?.createdBy?._count?.trip} trip posted
                   </p>
                 </div>
                 <Separator className="hidden sm:block" />
                 <p className="hidden text-sm text-muted-foreground max-w-lg sm:line-clamp-3">
-                  {tripData.createdBy.profile.bio ||
+                  {tripData?.createdBy?.profile?.bio ||
                     "This user doesn't have a bio yet."}
                 </p>
               </div>
             </div>
             <Separator className="sm:hidden" />
             <p className="sm:hidden text-sm text-muted-foreground max-w-sm line-clamp-3">
-              {tripData.createdBy.profile.bio ||
+              {tripData?.createdBy?.profile?.bio ||
                 "This user doesn't have a bio yet."}
             </p>
           </div>
@@ -87,7 +89,7 @@ const TripPage = async ({ params }: { params: { id: string } }) => {
               </span>
               <p className="flex gap-1">
                 <span className="text-foreground font-medium">Posted:</span>
-                <span>{formatDistanceToNow(tripData.createdAt)} ago</span>
+                <span>{formatDistanceToNow(tripData?.createdAt)} ago</span>
               </p>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
@@ -96,7 +98,7 @@ const TripPage = async ({ params }: { params: { id: string } }) => {
               </span>
               <p className="flex gap-1">
                 <span className="text-foreground font-medium">Location:</span>
-                <span>{tripData.location}</span>
+                <span>{tripData?.location}</span>
               </p>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
@@ -105,7 +107,7 @@ const TripPage = async ({ params }: { params: { id: string } }) => {
               </span>
               <p className="flex gap-1">
                 <span className="text-foreground font-medium">Trip Type:</span>
-                <span>{tripData.tripType}</span>
+                <span>{tripData?.tripType}</span>
               </p>
             </div>
           </div>
@@ -113,14 +115,14 @@ const TripPage = async ({ params }: { params: { id: string } }) => {
           <div>
             <h4 className="font-semibold">Trip Itinerary</h4>
             <p className="leading-normal text-muted-foreground">
-              {tripData.itinerary}
+              {tripData?.itinerary}
             </p>
           </div>
 
           <div>
             <h4 className="font-semibold">Trip Details</h4>
             <p className="leading-normal text-muted-foreground">
-              {tripData.description}
+              {tripData?.description}
             </p>
           </div>
         </div>

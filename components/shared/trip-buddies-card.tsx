@@ -4,6 +4,7 @@ import Image from "next/image"
 import { ITripBuddyPost } from "@/interface"
 import { Separator } from "@/components/ui/separator"
 import { formatedDate } from "@/lib/utils"
+import { LuMapPin } from "react-icons/lu"
 
 interface TripBuddiesProps {
   tripBuddy: ITripBuddyPost
@@ -36,9 +37,12 @@ const TripBuddiesCard: React.FC<TripBuddiesProps> = ({ tripBuddy }) => {
         })}
       </div>
       <div className="space-y-2">
-        <div className="">
-          <h3 className="font-semibold">{tripBuddy?.trip?.destination}</h3>
-          <p className="text-xs text-muted-foreground">
+        <div>
+          <h3 className="font-semibold leading-tight">
+            {tripBuddy?.trip?.destination}
+          </h3>
+          <p className="text-xs text-muted-foreground leading-tight flex items-center gap-1">
+            <LuMapPin className="size-2.5" />
             {tripBuddy?.trip?.location}
           </p>
         </div>
@@ -67,7 +71,10 @@ const TripBuddiesCard: React.FC<TripBuddiesProps> = ({ tripBuddy }) => {
         <div className="grid @[16rem]/buddy:grid-cols-5 gap-3">
           <div className="w-full group aspect-square relative">
             <Image
-              src={tripBuddy?.trip?.createdBy?.profile?.profilePhoto}
+              src={
+                tripBuddy?.trip?.createdBy?.profile?.profilePhoto ||
+                "/img/avatar.jpeg"
+              }
               fill
               alt={tripBuddy?.trip?.createdBy?.profile?.name}
               className="rounded-full object-cover"
@@ -82,7 +89,7 @@ const TripBuddiesCard: React.FC<TripBuddiesProps> = ({ tripBuddy }) => {
               className="w-full group aspect-square relative"
             >
               <Image
-                src={buddy?.user?.profile?.profilePhoto}
+                src={buddy?.user?.profile?.profilePhoto || "/img/avatar.jpeg"}
                 fill
                 alt={buddy?.user?.profile?.name}
                 className="rounded-full object-cover"

@@ -8,6 +8,14 @@ import { HiOutlineMapPin } from "react-icons/hi2"
 import { Separator } from "@/components/ui/separator"
 import { formatedDate } from "@/lib/utils"
 import Link from "next/link"
+import { notFound } from "next/navigation"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Send Trip Request | Trip Squad",
+  description:
+    "Request to join a trip on Trip Squad. Fill out the form to become a travel buddy and embark on new adventures with fellow travelers.",
+}
 
 const BuddyRequestPage = async ({ params }: { params: { id: string } }) => {
   const id = params.id
@@ -15,6 +23,7 @@ const BuddyRequestPage = async ({ params }: { params: { id: string } }) => {
   const tripData = trip.data as ITrip
   const user = await getCurrentUser()
   if (!user) return null
+  if (!tripData) return notFound()
 
   return (
     <div className="container space-y-12 pt-8">
@@ -33,7 +42,7 @@ const BuddyRequestPage = async ({ params }: { params: { id: string } }) => {
           </div>
           <BuddyRequestForm
             user={user}
-            tripId={tripData.id}
+            tripId={tripData?.id}
           />
         </div>
         <div className="md:w-[360px] md:shrink-0">
@@ -43,11 +52,11 @@ const BuddyRequestPage = async ({ params }: { params: { id: string } }) => {
             <ImageCarousel trip={tripData} />
             <div>
               <Link
-                href={`/trips/${tripData.id}`}
+                href={`/trips/${tripData?.id}`}
                 className="hover:text-primary"
               >
                 <h3 className="text-xl font-semibold">
-                  {tripData.destination}
+                  {tripData?.destination}
                 </h3>
               </Link>
               <p className="text-muted-foreground text-sm flex gap-1 items-center">

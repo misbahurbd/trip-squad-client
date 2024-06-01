@@ -5,9 +5,9 @@ import TripTypeItem from "@/app/(root)/_components/trip-type-item"
 const TopTripTypes = async () => {
   const tripTypes = await axiosInstance.get("/trips/top-trip-types")
   const tripTypesArray =
-    tripTypes.data && tripTypes.data.length >= 8
-      ? tripTypes.data.slice(0, 8)
-      : tripTypes.data.slice(0, 4)
+    tripTypes?.data && tripTypes?.data?.length >= 8
+      ? tripTypes?.data?.slice(0, 8)
+      : tripTypes?.data?.slice(0, 4)
 
   return (
     <section className="space-y-8">

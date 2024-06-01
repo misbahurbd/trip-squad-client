@@ -5,12 +5,8 @@ import { format } from "date-fns"
 import { HiOutlineCalendarDays } from "react-icons/hi2"
 import { FaArrowRightLong } from "react-icons/fa6"
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
-import { toast } from "sonner"
-import { axiosInstance } from "@/lib/axios"
-import { usePathname, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import Image from "next/image"
-import avatar from "@/assets/img/avatar.jpeg"
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 
@@ -110,7 +106,7 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
                 )}
               >
                 <Image
-                  src={buddy?.user?.profile?.profilePhoto || avatar}
+                  src={buddy?.user?.profile?.profilePhoto || "/img/avatar.jpeg"}
                   alt={buddy?.user?.profile?.name}
                   className="w-6 h-6 rounded-full"
                   fill

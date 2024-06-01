@@ -1,14 +1,22 @@
-"use client"
+import ResetPasswordForm from "@/components/form/reset-password-form"
+import { Metadata } from "next"
+import { redirect } from "next/navigation"
 
-import ResetPasswordForm from "@/components/shared/reset-password-form"
-import { useRouter, useSearchParams } from "next/navigation"
+export const metadata: Metadata = {
+  title: "Reset Password - Trip Squad",
+  description:
+    "Reset your password for your Trip Squad account. Follow the instructions to regain access to your account and continue your travel journey with ease.",
+}
 
-const ForgetPassword = () => {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const token = searchParams.get("token")
+const ForgetPassword = ({
+  searchParams,
+}: {
+  searchParams: { token: string }
+}) => {
+  const { token } = searchParams
+
   if (!token) {
-    return router.replace("/forget-password")
+    return redirect("/forgot-password")
   }
 
   return (

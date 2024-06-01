@@ -1,3 +1,11 @@
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Terms and Conditions | Trip Squad",
+  description:
+    "Review the terms and conditions for using Trip Squad. Learn about user responsibilities, rights, and the rules governing our platform.",
+}
+
 const TermsAndConditions = () => {
   return (
     <div className="container p-6 rounded-lg bg-background">

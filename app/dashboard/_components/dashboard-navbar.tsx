@@ -1,6 +1,7 @@
 import { DashboardNavLinks } from "@/constant"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
+import { HiOutlineHome } from "react-icons/hi2"
 
 const DashboardNavbar = ({
   navLinks,

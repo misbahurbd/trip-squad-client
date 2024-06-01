@@ -5,6 +5,14 @@ import Link from "next/link"
 import HowItWork from "@/app/(root)/_components/how-it-work"
 import { whyTravelWithUsContent } from "@/constant"
 import PhotoGallery from "@/components/shared/photo-gallery"
+import OurTeam from "@/components/shared/our-team"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "About Us | Trip Squad",
+  description:
+    "Learn about Trip Squad, our mission, and the team behind the platform. Discover how we're dedicated to connecting travelers and enhancing your travel experiences.",
+}
 
 const AboutUs = () => {
   return (
@@ -69,6 +77,7 @@ const AboutUs = () => {
       </section>
       <PhotoGallery />
       <HowItWork />
+      <OurTeam />
     </article>
   )
 }

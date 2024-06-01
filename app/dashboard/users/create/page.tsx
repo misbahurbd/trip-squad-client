@@ -1,6 +1,13 @@
-import DashboardHeader from "@/components/shared/dashboard-header"
+import DashboardHeader from "@/app/dashboard/_components/dashboard-header"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import CreateUserForm from "@/app/dashboard/users/create/_components/create-user-form"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Create User | Trip Squad",
+  description:
+    "Create a new user account on Trip Squad. Admins can create new users to manage their trips.",
+}
 
 const CreateUser = () => {
   return (

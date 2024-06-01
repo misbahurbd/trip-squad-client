@@ -2,6 +2,7 @@ import { Separator } from "@/components/ui/separator"
 import { ITrip } from "@/interface"
 import { format } from "date-fns"
 import Image from "next/image"
+import { LuMapPin } from "react-icons/lu"
 
 const TripCardProfile = ({ trip }: { trip: ITrip }) => {
   return (
@@ -17,7 +18,16 @@ const TripCardProfile = ({ trip }: { trip: ITrip }) => {
         </div>
         <div className="space-y-1 w-full flex items-center gap-3">
           <div className="grow space-y-2">
-            <h2 className="font-semibold">{trip.destination}</h2>
+            <div>
+              <h3 className="font-semibold leading-tight">
+                {trip.destination}
+              </h3>
+              <p className="text-xs text-muted-foreground leading-tight flex items-center gap-1">
+                <LuMapPin className="size-2.5" />
+                {trip.location}
+              </p>
+            </div>
+            <Separator className="opacity-50" />
             <div className="space-y-0.5">
               <div className="flex items-center gap-1 text-muted-foreground text-sm">
                 <span className="font-medium">Date:</span>

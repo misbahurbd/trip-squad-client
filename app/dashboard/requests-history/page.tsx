@@ -1,10 +1,17 @@
-import DashboardHeader from "@/components/shared/dashboard-header"
+import DashboardHeader from "@/app/dashboard/_components/dashboard-header"
 import EmptyRes from "@/components/shared/empty-res"
 import { IBuddyRequest } from "@/interface"
 import { axiosInstance } from "@/lib/axios"
 import { AiOutlineHistory } from "react-icons/ai"
 import RequestHistoryCard from "@/components/shared/request-history"
 import PaginationComponent from "@/components/shared/pagination"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Requests History | Trip Squad",
+  description:
+    "Track your trip buddy requests on Trip Squad. View the history of sent and received requests to manage your travel plans efficiently.",
+}
 
 const RequestHistory = async ({
   searchParams,
@@ -30,7 +37,7 @@ const RequestHistory = async ({
           {history?.data?.length === 0 && (
             <EmptyRes
               icon={AiOutlineHistory}
-              message="You haven't sent any trip requests yet."
+              message="No request history available"
             />
           )}
           <div className="gap-3 rounded-lg grid grid-cols-1 @xl:grid-cols-2 @4xl:grid-cols-3 @7xl:grid-cols-4">

@@ -7,6 +7,13 @@ import TripAside from "@/app/(root)/trips/_components/trip-aside"
 import EmptyRes from "@/components/shared/empty-res"
 import { PiBackpack } from "react-icons/pi"
 import MobileTripAside from "./_components/mobile-trip-aside"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Explore Trips | Trip Squad",
+  description:
+    "Find the best trips for your next adventure. Explore the latest trips and connect with fellow travelers.",
+}
 
 interface TripsPageProps {
   searchParams: Record<string, string>

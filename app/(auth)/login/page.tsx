@@ -1,7 +1,13 @@
+import { Metadata } from "next"
 import Image from "next/image"
-import authImg from "@/assets/img/auth-img-01.jpg"
 import Link from "next/link"
 import LoginForm from "@/components/form/login-form"
+
+export const metadata: Metadata = {
+  title: "Login | Trip Squad",
+  description:
+    "Login to Trip Squad. Enter your username or email address and password to access your account.",
+}
 
 const LoginPage = () => {
   return (
@@ -9,7 +15,7 @@ const LoginPage = () => {
       <div className="aspect-video md:w-1/2 relative rounded-xl">
         <Image
           fill
-          src={authImg}
+          src={"/img/auth-img-01.jpg"}
           alt="Auth Image"
           className="object-cover rounded-xl"
         />

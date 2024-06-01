@@ -12,7 +12,6 @@ import {
 import { Button } from "@/components/ui/button"
 import { CurrentUser } from "@/interface"
 import Image from "next/image"
-import avatar from "@/assets/img/avatar.jpeg"
 import { useRouter } from "next/navigation"
 import { logout } from "@/services/auth.service"
 
@@ -34,7 +33,7 @@ const UserBox = ({ user }: UserBoxProps) => {
           <Image
             fill
             alt={user.name}
-            src={user.profilePhoto || avatar}
+            src={user.profilePhoto || "/img/avatar.jpeg"}
             className="rounded-full"
           />
         </Button>
@@ -58,9 +57,9 @@ const UserBox = ({ user }: UserBoxProps) => {
         <DropdownMenuGroup>
           <DropdownMenuItem
             className="cursor-pointer"
-            onClick={() => router.push("/dashboard/trips")}
+            onClick={() => router.push("/dashboard")}
           >
-            My Trips
+            Dashboard
           </DropdownMenuItem>
           <DropdownMenuItem
             className="cursor-pointer"

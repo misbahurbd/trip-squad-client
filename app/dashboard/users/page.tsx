@@ -1,13 +1,22 @@
-import DashboardHeader from "@/components/shared/dashboard-header"
+import type { Metadata } from "next"
+import { TbUserPlus } from "react-icons/tb"
+import Link from "next/link"
+import { IUser } from "@/interface"
+import { HiOutlineUserGroup } from "react-icons/hi2"
+import { axiosInstance } from "@/lib/axios"
+import { getCurrentUser } from "@/services/user.service"
+
+import EmptyRes from "@/components/shared/empty-res"
+import DashboardHeader from "@/app/dashboard/_components/dashboard-header"
 import PaginationComponent from "@/components/shared/pagination"
 import UserListItem from "@/components/shared/user-list-item"
 import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { IUser } from "@/interface"
-import { axiosInstance } from "@/lib/axios"
-import { getCurrentUser } from "@/services/user.service"
-import Link from "next/link"
-import { TbUserPlus } from "react-icons/tb"
+
+export const metadata: Metadata = {
+  title: "User Management | Trip Squad",
+  description:
+    "Manage all user accounts on Trip Squad. Change user roles, update statuses, and ensure efficient user administration.",
+}
 
 const UserManagement = async ({
   searchParams,
@@ -26,7 +35,6 @@ const UserManagement = async ({
     .join("&")
 
   const users = await axiosInstance(`/users?${query}`)
-
   const totalPage = Math.ceil(users?.meta?.total / users?.meta?.limit)
 
   return (
@@ -43,9 +51,15 @@ const UserManagement = async ({
         </Button>
       </DashboardHeader>
 
-      <div className="grow">
+      <div className="grow @container/users">
         <div className="space-y-3">
-          <div className="grid lg:grid-cols-2 gap-3">
+          {users.data.length === 0 && (
+            <EmptyRes
+              icon={HiOutlineUserGroup}
+              message="No users found"
+            />
+          )}
+          <div className="grid grid-cols-1 @4xl/users:grid-cols-2 @7xl/users:grid-cols-3 gap-3">
             {users.data.map((user: IUser) => {
               return (
                 <UserListItem
@@ -55,7 +69,9 @@ const UserManagement = async ({
               )
             })}
           </div>
-          <PaginationComponent totalPages={totalPage} />
+          {users?.data?.length > 0 && (
+            <PaginationComponent totalPages={totalPage} />
+          )}
         </div>
       </div>
     </div>

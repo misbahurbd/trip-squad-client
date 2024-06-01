@@ -5,6 +5,7 @@ import DashboardSearchbar from "./_components/dashboard-searchbar"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import Loading from "./loading"
 import DashboardAside from "./_components/dashboard-aside"
+import AccountVerificationAlert from "./_components/account-verification-alert"
 
 const DashboardLayout = async ({ children }: PropsWithChildren) => {
   const currentUser = await getCurrentUser()
@@ -18,11 +19,7 @@ const DashboardLayout = async ({ children }: PropsWithChildren) => {
           <DashboardSearchbar />
           <UserBox user={currentUser} />
         </aside>
-        {!currentUser.emailVerified && (
-          <div className="bg-orange-200 text-center text-sm text-orange-500 p-3">
-            Please check your email and follow the link to verify your account.
-          </div>
-        )}
+        {!currentUser.emailVerified && <AccountVerificationAlert />}
         <ScrollArea className="bg-secondary grow">
           <Suspense fallback={<Loading />}>{children}</Suspense>
         </ScrollArea>

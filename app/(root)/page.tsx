@@ -1,8 +1,8 @@
-import HeroSection from "@/app/(root)/_components/hero"
-import LatestTrip from "@/app/(root)/_components/latest-trip"
-import TopTripTypes from "@/app/(root)/_components/top-trip-types"
-import { Metadata } from "next"
+import HeroSection from "./_components/hero"
+import LatestTrip from "./_components/latest-trip"
+import TopTripTypes from "./_components/top-trip-types"
 import HowItWork from "./_components/how-it-work"
+import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Trip Squad - Your Ultimate Tavel Pattern",

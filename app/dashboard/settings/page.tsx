@@ -1,9 +1,16 @@
 import ChangePasswordForm from "@/components/form/change-password-form"
 import PersonalInfoForm from "@/components/form/personal-info-form"
 import ProfilePhotoUploadForm from "@/components/form/profile-photo-upload-form"
-import DashboardHeader from "@/components/shared/dashboard-header"
+import DashboardHeader from "@/app/dashboard/_components/dashboard-header"
 import { Separator } from "@/components/ui/separator"
 import { getCurrentUser } from "@/services/user.service"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Settings | Trip Squad",
+  description:
+    "Update your profile information, change your password, and upload a profile photo to Trip Squad.",
+}
 
 const Profile = async () => {
   const currentUser = await getCurrentUser()

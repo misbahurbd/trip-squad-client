@@ -4,11 +4,11 @@ import { contactUsFormSchema } from "@/validations"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Form } from "../ui/form"
-import FormInput from "../form-ui/form-input"
+import { Form } from "@/components/ui/form"
+import FormInput from "@/components/form-ui/form-input"
 import { useState } from "react"
-import FormTextArea from "../form-ui/form-textarea"
-import { Button } from "../ui/button"
+import FormTextArea from "@/components/form-ui/form-textarea"
+import { Button } from "@/components/ui/button"
 
 const ContactUsForm = () => {
   const [isLoading, setIsLoading] = useState(false)
