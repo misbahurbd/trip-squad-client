@@ -12,6 +12,7 @@ import { HiOutlineClock, HiOutlineMapPin } from "react-icons/hi2"
 import { formatDistanceToNow } from "date-fns"
 import { PiBackpack } from "react-icons/pi"
 import { notFound } from "next/navigation"
+import avatar from "@/assets/img/avatar.jpeg"
 
 type Props = {
   params: { id: string }
@@ -45,10 +46,7 @@ const TripPage = async ({ params }: { params: { id: string } }) => {
             <div className="flex items-center gap-3">
               <div className="size-20 sm:size-32 rounded relative shrink-0">
                 <Image
-                  src={
-                    tripData?.createdBy?.profile?.profilePhoto ||
-                    "/img/avatar.jpeg"
-                  }
+                  src={tripData?.createdBy?.profile?.profilePhoto || avatar}
                   className="rounded"
                   fill
                   alt={tripData?.createdBy?.profile?.name}

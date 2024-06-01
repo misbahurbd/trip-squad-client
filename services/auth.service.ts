@@ -15,6 +15,15 @@ export const getAccessToken = async () => {
   return session
 }
 
+export const setSessionCookie = async (token: string) => {
+  cookies().set("session", token, {
+    secure: process.env.NODE_ENV === "production",
+    maxAge: 1000 * 60 * 60 * 24 * 5,
+    httpOnly: true,
+    sameSite: "lax",
+  })
+}
+
 export async function logout() {
   cookies().set("session", "", { expires: new Date(0) })
   cookies().set("refreshToken", "", { expires: new Date(0) })
