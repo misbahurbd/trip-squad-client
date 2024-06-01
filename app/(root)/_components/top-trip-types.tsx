@@ -1,9 +1,9 @@
-import { axiosInstance } from "@/lib/axios"
 import SectionHeader from "@/components/shared/section-header"
 import TripTypeItem from "@/app/(root)/_components/trip-type-item"
+import { getTripType } from "@/services/trip.service"
 
 const TopTripTypes = async () => {
-  const tripTypes = await axiosInstance.get("/trips/top-trip-types")
+  const tripTypes = await getTripType()
   const tripTypesArray =
     tripTypes?.data && tripTypes?.data?.length >= 8
       ? tripTypes?.data?.slice(0, 8)
@@ -16,7 +16,7 @@ const TopTripTypes = async () => {
         subTitle="Discover the most popular trip types chosen by our travelers. Find your next adventure!"
       />
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
-        {tripTypesArray.map(
+        {tripTypesArray?.map(
           (trip: { label: string; count: number }, i: number) => (
             <TripTypeItem
               key={i}

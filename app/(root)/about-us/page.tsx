@@ -2,12 +2,11 @@ import SectionHeader from "@/components/shared/section-header"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Link from "next/link"
-import HowItWork from "@/app/(root)/_components/how-it-work"
 import { whyTravelWithUsContent } from "@/constant"
-import PhotoGallery from "@/components/shared/photo-gallery"
+import HowItWork from "@/app/(root)/_components/how-it-work"
 import OurTeam from "@/components/shared/our-team"
 import { Metadata } from "next"
-import { Suspense } from "react"
+import PhotoGallery from "@/components/shared/photo-gallery"
 
 export const metadata: Metadata = {
   title: "About Us | Trip Squad",
@@ -76,11 +75,9 @@ const AboutUs = () => {
           ))}
         </div>
       </section>
-      <Suspense>
-        <PhotoGallery />
-        <HowItWork />
-        <OurTeam />
-      </Suspense>
+      <PhotoGallery />
+      <HowItWork />
+      <OurTeam />
     </article>
   )
 }

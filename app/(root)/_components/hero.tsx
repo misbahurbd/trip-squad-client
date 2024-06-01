@@ -2,10 +2,10 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import HeroSearchField from "./hero-search-field"
-import { axiosInstance } from "@/lib/axios"
+import { getTripType } from "@/services/trip.service"
 
 const HeroSection = async () => {
-  const tripTypes = await axiosInstance.get("/trips/top-trip-types")
+  const tripTypes = await getTripType()
 
   return (
     <section className="relative isolate mb-10 sm:mb-12 md:mb-20">
@@ -15,6 +15,7 @@ const HeroSection = async () => {
             src={"/img/hero-img.png"}
             alt="Hero Image"
             className="absolute left-0 right-0 top-0 bottom-0 w-full h-full object-cover rounded-2xl"
+            fill
           />
           <div className="relative top-0 left-0 w-full h-full md:min-h-[520px] bg-gradient-to-t from-black/80 to-black/20 flex flex-col items-center justify-center p-3 rounded-2xl">
             <div className="w-full max-w-3xl text-center py-12 px-6">
@@ -34,7 +35,7 @@ const HeroSection = async () => {
                 <Link href={"/dashboard/trips/create"}>Share Your Trip</Link>
               </Button>
             </div>
-            <HeroSearchField tripTypes={tripTypes.data} />
+            <HeroSearchField tripTypes={tripTypes?.data || []} />
           </div>
         </div>
       </div>
