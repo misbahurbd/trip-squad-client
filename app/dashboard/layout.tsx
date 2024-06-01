@@ -20,8 +20,7 @@ const DashboardLayout = async ({ children }: PropsWithChildren) => {
         </aside>
         {!currentUser.emailVerified && (
           <div className="bg-orange-200 text-center text-sm text-orange-500 p-3">
-            Check your email <strong>{currentUser.email}</strong> and verify
-            your account.
+            Please check your email and follow the link to verify your account.
           </div>
         )}
         <ScrollArea className="bg-secondary grow">

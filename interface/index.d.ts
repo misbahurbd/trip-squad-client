@@ -114,6 +114,9 @@ export interface IBuddyRequest extends ITripBuddy {
     tripStatus: string
     isDeleted: boolean
     creatorId: string
+    createdBy: {
+      profile: IProfile
+    }
     createdAt: string
     updatedAt: string
   }
@@ -121,4 +124,21 @@ export interface IBuddyRequest extends ITripBuddy {
     username: string
     profile: IProfile
   }
+}
+
+export interface ITripWithBuddy extends ITrip {
+  tripBuddy: {
+    user: {
+      profile: IProfile
+    }
+  }[]
+  createdBy: {
+    user: {
+      profile: IProfile
+    }
+  }
+}
+
+export interface ITripBuddyPost extends ITripBuddy {
+  trip: ITrip
 }

@@ -17,7 +17,7 @@ const BuddyRequestPage = async ({ params }: { params: { id: string } }) => {
   if (!user) return null
 
   return (
-    <div className="container space-y-12 pt-12">
+    <div className="container space-y-12 pt-8">
       <SectionHeader
         title="Join Your Perfect Trip Buddy"
         subTitle="Send a request to join an exciting trip and connect with fellow adventurers."

@@ -58,12 +58,12 @@ export const resetPasswordFormSchema = z
   })
 
 export const personalInfoFormSchema = z.object({
-  name: z.string(),
-  username: z.string(),
+  name: z.string().min(1, { message: "Name is required" }),
+  username: z.string().min(1, { message: "Username is required" }),
   email: z.string().email({ message: "Invalid email address" }),
-  mobile: z.string(),
-  dateOfBirth: z.date(),
-  bio: z.string(),
+  mobile: z.string().min(1, { message: "Mobile is required" }),
+  dateOfBirth: z.date({ required_error: "Date of Birth is required" }),
+  bio: z.string().optional(),
 })
 
 export const changePasswordFormSchema = z
@@ -168,6 +168,17 @@ export const editTripFormSchema = z.object({
   budget: z.string().min(1, { message: "Budget is required" }),
   location: z.string().min(1, { message: "Location is required" }),
   itinerary: z.string().min(1, { message: "Itinerary is required" }),
+})
+
+export const contactUsFormSchema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+  email: z
+    .string()
+    .min(1, { message: "Email is required" })
+    .email({ message: "Invalid email address" }),
+  mobile: z.string().min(1, { message: "Mobile is required" }),
+  subject: z.string().min(1, { message: "Subject is required" }),
+  message: z.string().min(1, { message: "Message is required" }),
 })
 
 export const searchFormSchema = z.object({

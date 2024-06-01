@@ -8,27 +8,7 @@ import PhotoGallery from "@/components/shared/photo-gallery"
 
 const AboutUs = () => {
   return (
-    <article className="container space-y-12">
-      <div className="flex flex-col gap-3 items-stretch relative overflow-hidden rounded-xl md:flex-row md:gap-3">
-        <div className="absolute md:relative w-full h-full md:w-1/2 md:h-auto">
-          <Image
-            src={"/img/about-hero.jpeg"}
-            fill
-            alt="Trip Squad"
-            className="rounded-xl object-cover "
-          />
-        </div>
-        <div className="w-full md:w-1/2">
-          <div className="relative bg-gradient-to-t from-black/90 to-black/20 md:from-background md:to-background px-5 py-12 md:px-12 md:py-24 md:rounded-xl md:shadow-lg">
-            <SectionHeader
-              title="Welcome to Trip Squad"
-              subTitle="Trip Squad connects travelers globally, making it easy to share plans, find travel buddies, and start new adventures. Join us to discover destinations, meet fellow travelers, and create lasting memories."
-              className="text-center md:text-start text-background md:text-foreground"
-            />
-          </div>
-        </div>
-      </div>
-
+    <article className="container space-y-12 py-8">
       <section className="space-y-8">
         <SectionHeader
           title="About Us"

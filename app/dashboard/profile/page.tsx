@@ -1,71 +1,91 @@
 import DashboardHeader from "@/components/shared/dashboard-header"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { getCurrentUser } from "@/services/user.service"
-import Image from "next/image"
-import { format } from "date-fns"
-import avatar from "@/assets/img/avatar.jpeg"
-import { Separator } from "@/components/ui/separator"
+import UserProfile from "./_components/user-profile"
+import { axiosInstance } from "@/lib/axios"
+import { IBuddyRequest, ITrip } from "@/interface"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import RequestHistory from "@/components/shared/request-history"
+import TripCardProfile from "./_components/trip-card-profile"
+import EmptyRes from "@/components/shared/empty-res"
+import { PiBackpack } from "react-icons/pi"
+import { AiOutlineHistory } from "react-icons/ai"
 
 const Profile = async () => {
   const currentUser = await getCurrentUser()
 
+  const trips = await axiosInstance.get(`/trips/get-my-trips?limit=6`)
+  const requestHistory = await axiosInstance.get(
+    `/trip-buddies/history?limit=6`
+  )
+
   if (!currentUser) return null
 
   return (
-    <div className="flex flex-col h-full p-3 gap-3 max-w-2xl mx-auto">
+    <div className="flex flex-col h-full p-3 gap-3">
       <DashboardHeader pageTitle="Profile" />
-      <div className="grow">
-        <div className="space-y-4 p-4 bg-background rounded-md">
-          <div className="flex flex-col items-center justify-center gap-3">
-            <div className="size-24 rounded-2xl relative">
-              <Image
-                src={currentUser.profilePhoto || avatar}
-                alt={currentUser.name}
-                fill
-                className="rounded-xl object-cover"
-              />
+      <div className="grow @container/profile-aside space-y-3">
+        <UserProfile currentUser={currentUser} />
+        {currentUser.role === "User" && (
+          <div className="flex flex-col @2xl/profile-aside:flex-row gap-3">
+            <div className="@container/trips flex-1 space-y-3">
+              <div className="flex justify-between items-center">
+                <h3 className="font-semibold">My Trips</h3>
+                <Button
+                  asChild
+                  size="sm"
+                  variant="outline"
+                >
+                  <Link href={"/dashboard/my-trips"}>
+                    <span>View All</span>
+                  </Link>
+                </Button>
+              </div>
+              {trips?.data?.length === 0 && (
+                <EmptyRes
+                  icon={PiBackpack}
+                  message="No trips posted yet."
+                />
+              )}
+              <div className="gap-3 rounded-lg grid grid-cols-1 @xl:grid-cols-2 @4xl:grid-cols-3">
+                {trips?.data?.map((trip: ITrip) => (
+                  <TripCardProfile
+                    key={trip.id}
+                    trip={trip}
+                  />
+                ))}
+              </div>
             </div>
-            <div className="text-center">
-              <h1 className="font-semibold">{currentUser.name}</h1>
-              <p className="text-sm from-muted-foreground">
-                {currentUser.username}
-              </p>
+            <div className="@container/trips flex-1 space-y-3">
+              <div className="flex justify-between items-center">
+                <h3 className="font-semibold">Request History</h3>
+                <Button
+                  asChild
+                  size="sm"
+                  variant="outline"
+                >
+                  <Link href={"/dashboard/requests-history"}>
+                    <span>View All</span>
+                  </Link>
+                </Button>
+              </div>
+              {requestHistory?.data?.length === 0 && (
+                <EmptyRes
+                  icon={AiOutlineHistory}
+                  message="You haven't sent any trip requests yet."
+                />
+              )}
+              <div className="gap-3 rounded-lg grid grid-cols-1 @xl:grid-cols-2 @4xl:grid-cols-3">
+                {requestHistory?.data?.map((history: IBuddyRequest) => (
+                  <RequestHistory
+                    key={history.id}
+                    request={history}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-
-          <div className="space-y-3">
-            <h3 className="font-bold">Personal Information</h3>
-            <Separator />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <p className="text-sm text-muted-foreground">Name</p>
-                <p className="text-foreground">{currentUser.name}</p>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Email</p>
-                <p className="text-foreground">{currentUser.email}</p>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Mobile Number</p>
-                <p className="text-foreground">
-                  {currentUser.mobile || "null"}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Date of Birth</p>
-                <p className="text-foreground">
-                  {currentUser.dateOfBirth
-                    ? format(new Date(currentUser.dateOfBirth), "yyyy-MM-dd")
-                    : "null"}
-                </p>
-              </div>
-              <div className="sm:col-span-2">
-                <p className="text-sm text-muted-foreground">Bio</p>
-                <p className="text-foreground">{currentUser.bio || "null"}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   )

@@ -19,6 +19,8 @@ export async function middleware(request: NextRequest) {
   const userOnlyRoutes = [
     /^\/dashboard\/my-trips\b.*/,
     /^\/dashboard\/buddy-requests\b.*/,
+    /^\/dashboard\/requests-history\b.*/,
+    /^\/dashboard\/trip-buddies\b.*/,
   ]
 
   if (currentUser && authRoutes.some(route => pathname.startsWith(route))) {

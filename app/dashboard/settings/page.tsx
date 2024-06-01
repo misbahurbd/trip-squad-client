@@ -2,7 +2,6 @@ import ChangePasswordForm from "@/components/form/change-password-form"
 import PersonalInfoForm from "@/components/form/personal-info-form"
 import ProfilePhotoUploadForm from "@/components/form/profile-photo-upload-form"
 import DashboardHeader from "@/components/shared/dashboard-header"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { getCurrentUser } from "@/services/user.service"
 

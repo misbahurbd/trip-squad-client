@@ -64,14 +64,19 @@ const ProfilePhotoUploadForm = ({
             setSelected={setFileSelected}
             disabled={isLoading}
           />
-
-          <Button
-            variant={"default"}
-            type="submit"
-            disabled={isLoading || !fileSelected}
-          >
-            Change
-          </Button>
+          <div className="space-y-2">
+            <p className="text-xs italic text-muted-foreground">
+              Click your current profile picture to upload a new one, then click
+              the &quot;Change&quot; button to update it.
+            </p>
+            <Button
+              variant={"default"}
+              type="submit"
+              disabled={isLoading || !fileSelected}
+            >
+              Change
+            </Button>
+          </div>
         </div>
       </form>
     </Form>

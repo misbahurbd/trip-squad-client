@@ -1,10 +1,12 @@
 import { IconType } from "react-icons"
+import { AiOutlineHistory } from "react-icons/ai"
 import {
   HiOutlineCog6Tooth,
   HiOutlineMap,
   HiOutlineUserCircle,
   HiOutlineUserGroup,
   HiOutlineUserPlus,
+  HiOutlineUsers,
 } from "react-icons/hi2"
 import {
   PiBackpack,
@@ -45,6 +47,21 @@ export const getDashboardNav = (pathname: string, role: string) => {
       active: pathname.includes("/buddy-requests"),
       userRole: ["User"],
     },
+    {
+      label: "Requests History",
+      href: "/dashboard/requests-history",
+      icon: AiOutlineHistory,
+      active: pathname.includes("/requests-history"),
+      userRole: ["User"],
+    },
+    {
+      label: "Trip Buddies",
+      href: "/dashboard/trip-buddies",
+      icon: HiOutlineUsers,
+      active: pathname.includes("/trip-buddies"),
+      userRole: ["User"],
+    },
+
     {
       label: "Profile",
       href: "/dashboard/profile",
