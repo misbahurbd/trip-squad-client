@@ -19,6 +19,7 @@ import FormSelect from "@/components/form-ui/form-select"
 import { ITrip } from "@/interface"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
+import FormEditor from "../form-ui/form-editor"
 
 const EditTripForm = ({
   tripData,
@@ -152,13 +153,11 @@ const EditTripForm = ({
             className="col-span-2"
             disabled={isLoading}
           />
-          <FormTextArea
+          <FormEditor
             form={form}
-            placeholder="Write trip details..."
             label="Trip Description"
             name="description"
             className="col-span-2"
-            disabled={isLoading}
           />
         </div>
         <Button

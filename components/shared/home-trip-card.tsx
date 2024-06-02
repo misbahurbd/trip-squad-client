@@ -36,9 +36,11 @@ const HomeTripCard: React.FC<HomeTripProps> = ({ trip }) => {
       <p className="text-xs text-muted-foreground">
         By: {trip?.createdBy?.profile?.name}
       </p>
-      <p className="line-clamp-2 text-muted-foreground text-sm">
-        {trip.description}
-      </p>
+      <p
+        dangerouslySetInnerHTML={{ __html: trip.description }}
+        className="line-clamp-2 text-muted-foreground text-sm"
+      />
+
       <Separator className="opacity-50" />
       <div className="grid grid-cols-2 gap-2">
         <div className="flex items-center gap-2 text-foreground">

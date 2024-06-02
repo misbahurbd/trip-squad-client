@@ -22,7 +22,7 @@ const CreateTrip = async ({ params }: { params: { id: string } }) => {
         <div className="bg-background rounded-md p-5">
           <EditTripForm
             tripData={trip.data}
-            path={"/my-trip"}
+            path={"/my-trips"}
           />
         </div>
       </div>

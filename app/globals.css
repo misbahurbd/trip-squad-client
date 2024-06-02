@@ -75,3 +75,28 @@
     -moz-appearance: textfield;
   }
 }
+
+.quill:has(.ql-snow) {
+  @apply !rounded-md !border border-input shadow-sm focus-within:!outline-none focus-within:!ring-1 focus-within:!ring-ring !resize-y;
+}
+.ql-toolbar.ql-snow {
+  @apply !border-transparent !border-b !border-b-input !px-1 !py-1.5;
+}
+.ql-container {
+  @apply !border-none !text-base flex-1 !overflow-y-auto;
+}
+.ql-bubble .ql-editor {
+  @apply !p-0;
+}
+.ql-container .ql-editor > * {
+  @apply mb-2;
+}
+.ql-container .ql-editor > h1 {
+  @apply !text-xl !text-foreground !font-medium !mb-1;
+}
+.ql-container .ql-editor > h2 {
+  @apply !text-lg !text-foreground !font-medium !mb-1;
+}
+.ql-container .ql-editor > h3 {
+  @apply !text-base !text-foreground !font-medium !mb-1;
+}

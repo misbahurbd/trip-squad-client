@@ -17,6 +17,7 @@ import FormDatePicker from "@/components/form-ui/form-date-picker"
 import FormTextArea from "@/components/form-ui/form-textarea"
 import { travelTripTypes } from "@/constant"
 import FormSelect from "@/components/form-ui/form-select"
+import FormEditor from "../form-ui/form-editor"
 
 const CreateTripForm = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -118,13 +119,11 @@ const CreateTripForm = () => {
             className="col-span-2"
             disabled={isLoading}
           />
-          <FormTextArea
+          <FormEditor
             form={form}
-            placeholder="Write trip details..."
             label="Trip Description"
             name="description"
             className="col-span-2"
-            disabled={isLoading}
           />
         </div>
         <Button

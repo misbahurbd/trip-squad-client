@@ -53,7 +53,7 @@ const RequestCard = ({ buddyRequest }: { buddyRequest: IBuddyRequest }) => {
         <Image
           src={buddyRequest.trip.photos[0]}
           fill
-          alt={buddyRequest.trip.description}
+          alt={buddyRequest.trip.destination}
           className="object-cover rounded-t-lg"
         />
       </div>

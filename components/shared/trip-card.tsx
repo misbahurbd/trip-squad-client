@@ -5,7 +5,7 @@ import { ITrip } from "@/interface"
 
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { formatedDate } from "@/lib/utils"
+import { formatedDate, getPlainText } from "@/lib/utils"
 import { LuFileEdit, LuMapPin, LuTrash2 } from "react-icons/lu"
 import {
   DropdownMenu,
@@ -76,7 +76,7 @@ const TripCard: React.FC<TripCardProps> = ({ trip }) => {
           </p>
         </div>
         <p className="text-muted-foreground line-clamp-2 text-sm">
-          {trip.description}
+          {getPlainText(trip.description)}
         </p>
         <Separator className="opacity-50" />
         <div className="grid grid-cols-2 gap-3">

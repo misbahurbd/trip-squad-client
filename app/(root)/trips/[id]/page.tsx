@@ -13,6 +13,8 @@ import { formatDistanceToNow } from "date-fns"
 import { PiBackpack } from "react-icons/pi"
 import { notFound } from "next/navigation"
 import avatar from "@/assets/img/avatar.jpeg"
+import Preview from "@/components/shared/preview"
+import { getPlainText } from "@/lib/utils"
 
 type Props = {
   params: { id: string }
@@ -25,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: trip?.data?.destination + " - Trip Squad" || "Trip Details Page",
-    description: trip?.data?.description || "Trip descriptoin...",
+    description: getPlainText(trip?.data?.description) || "Trip descriptoin...",
   }
 }
 
@@ -111,16 +113,16 @@ const TripPage = async ({ params }: { params: { id: string } }) => {
           </div>
 
           <div>
-            <h4 className="font-semibold">Trip Itinerary</h4>
+            <h4 className="font-semibold text-xl">Trip Itinerary</h4>
             <p className="leading-normal text-muted-foreground">
               {tripData?.itinerary}
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold">Trip Details</h4>
+            <h4 className="font-semibold text-xl">Trip Details</h4>
             <p className="leading-normal text-muted-foreground">
-              {tripData?.description}
+              <Preview value={tripData?.description} />
             </p>
           </div>
         </div>
