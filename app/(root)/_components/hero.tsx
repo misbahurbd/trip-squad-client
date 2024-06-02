@@ -33,7 +33,7 @@ const HeroSection = async () => {
                 size="lg"
                 asChild
               >
-                <Link href={"/dashboard/trips/create"}>Share Your Trip</Link>
+                <Link href={"/dashboard/my-trips/create"}>Share Your Trip</Link>
               </Button>
             </div>
             <HeroSearchField tripTypes={tripTypes?.data || []} />
