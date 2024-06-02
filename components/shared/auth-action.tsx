@@ -10,15 +10,13 @@ const AuthActions = () => {
   return (
     <div className="flex items-center gap-2">
       <Button
+        className="hidden sm:block"
         onClick={() => router.push("/register")}
         variant={"outline"}
       >
         Get Started
       </Button>
-      <Button
-        className="hidden sm:block"
-        onClick={() => router.push(`/login?next=${pathname}`)}
-      >
+      <Button onClick={() => router.push(`/login?next=${pathname}`)}>
         Login
       </Button>
     </div>

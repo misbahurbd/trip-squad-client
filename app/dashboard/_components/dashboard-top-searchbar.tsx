@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { LuSearch, LuX } from "react-icons/lu"
-import DashboardSearchbar from "./dashboard-searchbar"
 import { cn } from "@/lib/utils"
 import { Form } from "@/components/ui/form"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
@@ -12,6 +11,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import FormInput from "@/components/form-ui/form-input"
+import { dashboardWithSearch } from "@/constant"
 
 const DashboardTopSearchbar = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -47,49 +47,53 @@ const DashboardTopSearchbar = () => {
 
   return (
     <div>
-      <Button
-        size="icon"
-        variant="secondary"
-        onClick={() => setIsShowing(true)}
-      >
-        <LuSearch className="w-5 h-5" />
-      </Button>
-      <div
-        className={cn(
-          "fixed transition-all top-0 h-14 left-0 w-full px-3 z-20 flex items-center gap-3 bg-background -mt-14",
-          isShowing && "m-0"
-        )}
-      >
-        <Form {...searchForm}>
-          <form
-            onSubmit={searchForm.handleSubmit(onSearch)}
-            className="w-full relative"
+      {dashboardWithSearch.some(page => `/dashboard${page}` === pathname) && (
+        <>
+          <Button
+            size="icon"
+            variant="secondary"
+            onClick={() => setIsShowing(true)}
           >
-            <FormInput
-              form={searchForm}
-              name="searchTerm"
-              fieldClassName="bg-secondary pr-12"
-              placeholder="Search..."
-              disabled={isLoading}
-            />
+            <LuSearch className="w-5 h-5" />
+          </Button>
+          <div
+            className={cn(
+              "fixed transition-all top-0 h-14 left-0 w-full px-3 z-20 flex items-center gap-3 bg-background -mt-14",
+              isShowing && "m-0"
+            )}
+          >
+            <Form {...searchForm}>
+              <form
+                onSubmit={searchForm.handleSubmit(onSearch)}
+                className="w-full relative"
+              >
+                <FormInput
+                  form={searchForm}
+                  name="searchTerm"
+                  fieldClassName="bg-secondary pr-12"
+                  placeholder="Search..."
+                  disabled={isLoading}
+                />
+                <Button
+                  className="absolute right-0 top-0"
+                  size="icon"
+                  variant="outline"
+                >
+                  <LuSearch className="w-5 h-5" />
+                </Button>
+              </form>
+            </Form>
             <Button
-              className="absolute right-0 top-0"
               size="icon"
-              variant="outline"
+              variant="secondary"
+              className="shrink-0"
+              onClick={() => setIsShowing(false)}
             >
-              <LuSearch className="w-5 h-5" />
+              <LuX className="w-6 h-6" />
             </Button>
-          </form>
-        </Form>
-        <Button
-          size="icon"
-          variant="secondary"
-          className="shrink-0"
-          onClick={() => setIsShowing(false)}
-        >
-          <LuX className="w-6 h-6" />
-        </Button>
-      </div>
+          </div>
+        </>
+      )}
     </div>
   )
 }
