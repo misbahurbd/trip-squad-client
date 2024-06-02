@@ -9,6 +9,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import ImageCarousel from "./image-carusel"
 import { LuMapPin } from "react-icons/lu"
+import { getPlainText } from "@/lib/utils"
 
 interface HomeTripProps {
   trip: ITrip
@@ -36,10 +37,9 @@ const HomeTripCard: React.FC<HomeTripProps> = ({ trip }) => {
       <p className="text-xs text-muted-foreground">
         By: {trip?.createdBy?.profile?.name}
       </p>
-      <p
-        dangerouslySetInnerHTML={{ __html: trip.description }}
-        className="line-clamp-2 text-muted-foreground text-sm"
-      />
+      <p className="line-clamp-2 text-muted-foreground text-sm">
+        {getPlainText(trip.description)}
+      </p>
 
       <Separator className="opacity-50" />
       <div className="grid grid-cols-2 gap-2">

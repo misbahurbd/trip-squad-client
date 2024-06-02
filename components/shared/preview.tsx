@@ -1,7 +1,7 @@
 "use client"
 
 import dynamic from "next/dynamic"
-import { useMemo } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 import "react-quill/dist/quill.bubble.css"
 
@@ -10,10 +10,17 @@ interface EditorProps {
 }
 
 const Preview = ({ value }: EditorProps) => {
+  const [isMounted, setIsMounted] = useState(false)
   const ReactQuill = useMemo(
     () => dynamic(() => import("react-quill"), { ssr: false }),
     []
   )
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  if (!isMounted) return null
 
   return (
     <ReactQuill

@@ -24,6 +24,7 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
     trip?.tripBuddy?.filter(buddy => buddy.status === "Approved") || []
 
   const getButtonVarient = () => {
+    if (user?.role == "Admin") return "secondary"
     if (trip.creatorId == user?.userId) return "secondary"
 
     if (buddy) {
@@ -128,7 +129,7 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
 
       <Button
         onClick={() => router.push(`/trips/${trip.id}/request`)}
-        disabled={trip.creatorId == user?.userId}
+        disabled={trip.creatorId == user?.userId || user?.role == "Admin"}
         className="w-full"
         variant={getButtonVarient()}
       >

@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { CurrentUser } from "@/interface"
 import Image from "next/image"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { logout } from "@/services/auth.service"
 import avatar from "@/assets/img/avatar.jpeg"
 
@@ -22,9 +22,20 @@ interface UserBoxProps {
 
 const UserBox = ({ user }: UserBoxProps) => {
   const router = useRouter()
+  const pathname = usePathname()
+
   const onLogout = async () => {
+    const regex = /^\/trips\/[^/]+\/request$/
     await logout()
-    router.refresh()
+    if (pathname.startsWith("/dashboard")) {
+      router.push(`/login`)
+    } else if (pathname.match(regex)) {
+      const params = new URLSearchParams()
+      params.set("next", pathname)
+      router.push(`/login?${params.toString()}`)
+    } else {
+      router.refresh()
+    }
   }
 
   return (

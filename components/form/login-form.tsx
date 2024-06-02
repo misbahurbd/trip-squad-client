@@ -31,13 +31,12 @@ const LoginForm = () => {
     setIsLoading(true)
     const toaster = toast.loading("Login account...", { id: "login" })
     try {
-      const res = await loginUser(values)
-      toast.success(res?.data?.message || "Login successfully", { id: toaster })
       const next = searchParams.get("next")
-      router.push(next ? next : "/dashboard")
-      router.refresh()
+      const res = await loginUser(values)
+      console.log({ res })
+      toast.success("Login successfully", { id: toaster })
+      router.replace(next ? next : "/dashboard")
     } catch (error: any) {
-      console.log(error)
       toast.error(error?.message || "Something went wrong", { id: toaster })
     } finally {
       setIsLoading(false)

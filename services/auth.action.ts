@@ -1,7 +1,7 @@
 import { axiosInstance } from "@/lib/axios"
 import { registerFormSchema } from "@/validations"
 import { z } from "zod"
-import { setSessionCookie } from "./auth.service"
+import { setRefreshToken, setSessionCookie } from "./auth.service"
 
 export const loginUser = async (credentials: {
   username: string
@@ -12,7 +12,10 @@ export const loginUser = async (credentials: {
     username: username,
     password: password,
   })
+
+  await setRefreshToken(res?.data?.refreshToken)
   await setSessionCookie(res?.data?.accessToken)
+
   return res
 }
 

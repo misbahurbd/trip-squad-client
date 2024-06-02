@@ -1,10 +1,10 @@
 import type { NextRequest } from "next/server"
 import { getCurrentUser } from "./services/user.service"
+import { JwtPayload, jwtDecode } from "jwt-decode"
 
 export async function middleware(request: NextRequest) {
   try {
     const currentUser = request.cookies.get("session")?.value
-
     const pathname = request.nextUrl.pathname
 
     const authRoutes = [
@@ -25,6 +25,7 @@ export async function middleware(request: NextRequest) {
       /^\/dashboard\/buddy-requests\b.*/,
       /^\/dashboard\/requests-history\b.*/,
       /^\/dashboard\/trip-buddies\b.*/,
+      /^\/trips\/[^/]+\/request$/,
     ]
 
     if (currentUser && authRoutes.some(route => pathname.startsWith(route))) {
@@ -36,10 +37,12 @@ export async function middleware(request: NextRequest) {
     }
 
     if (currentUser && pathname === "/dashboard") {
-      const user = await getCurrentUser()
-      if (!user) {
-        return Response.redirect(new URL("/login", request.url))
-      }
+      const user = jwtDecode(currentUser) as {
+        role: string
+        id: string
+        email: string
+      } | null
+
       if (user?.role != "User") {
         return Response.redirect(new URL("/dashboard/trips", request.url))
       } else {
@@ -67,7 +70,7 @@ export async function middleware(request: NextRequest) {
       }
     }
   } catch (error) {
-    console.log(error)
+    console.log({ error })
     return Response.redirect(new URL("/login", request.url))
   }
 }
