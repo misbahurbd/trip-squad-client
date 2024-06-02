@@ -10,6 +10,7 @@ import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 import avatar from "@/assets/img/avatar.jpeg"
+import { LuMapPin } from "react-icons/lu"
 
 interface SingleTripAsideProps {
   trip: ITrip
@@ -50,7 +51,13 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
 
   return (
     <aside className="bg-background rounded-xl sticky top-20 p-3 space-y-3">
-      <h1 className="font-bold text-xl">{trip.destination}</h1>
+      <div>
+        <h1 className="font-bold text-xl leading-tight">{trip.destination}</h1>
+        <p className="text-sm flex text-muted-foreground items-center gap-1 leading-tight">
+          <LuMapPin />
+          {trip.location}
+        </p>
+      </div>
 
       <Separator className="opacity-60" />
 

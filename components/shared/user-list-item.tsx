@@ -6,6 +6,7 @@ import UserActoinMenu from "./user-action-menu"
 import { Badge } from "@/components/ui/badge"
 import { useEffect, useState } from "react"
 import avatar from "@/assets/img/avatar.jpeg"
+import { cn } from "@/lib/utils"
 
 const UserListItem = ({ user }: { user: IUser }) => {
   const [isMounted, setIsMounted] = useState(false)
@@ -31,8 +32,14 @@ const UserListItem = ({ user }: { user: IUser }) => {
       </div>
       <div className="grow">
         <div>
-          <h3 className="font-semibold leading-tight">
+          <h3 className="font-semibold leading-tight flex items-center gap-2">
             <span>{user.name}</span>
+            <Badge
+              variant={user.emailVerified ? "active" : "destructive"}
+              className="text-xs px-1 py-0.5 leading-tight"
+            >
+              {user.emailVerified ? "Verified" : "Not Verified"}
+            </Badge>
           </h3>
           <p className="text-sm text-muted-foreground leading-tight">
             @{user.username}
@@ -50,15 +57,23 @@ const UserListItem = ({ user }: { user: IUser }) => {
           <p className="text-sm text-muted-foreground flex items-center  gap-1">
             <span className="text-foreground">Status:</span>
             <Badge
-              variant={user.status == "Active" ? "active" : "deactived"}
-              className="text-xs px-1 py-0.5 leading-tight"
+              variant={"secondary"}
+              className={cn(
+                "text-xs px-1 py-0.5 leading-tight",
+                user.status == "Active" ? "text-green-500" : "text-destructive"
+              )}
             >
               {user.status}
             </Badge>
           </p>
-          <p className="text-sm text-muted-foreground gap-1">
+          <p className="text-sm text-muted-foreground flex gap-1">
             <span className="text-foreground">Role:</span>
-            <span>{user.role}</span>
+            <Badge
+              variant={"secondary"}
+              className={cn("text-xs px-1 py-0.5 leading-tight")}
+            >
+              {user.role}
+            </Badge>
           </p>
         </div>
       </div>

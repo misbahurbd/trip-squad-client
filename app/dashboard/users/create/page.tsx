@@ -11,15 +11,13 @@ export const metadata: Metadata = {
 
 const CreateUser = () => {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full p-3 gap-3 max-w-2xl mx-auto">
       <DashboardHeader pageTitle="Create User" />
-      <ScrollArea className="grow bg-secondary rounded-tl-lg">
-        <div className="max-w-2xl mx-auto space-y-4 p-4">
-          <div className="bg-background rounded-md p-5">
-            <CreateUserForm />
-          </div>
+      <div className="grow">
+        <div className="bg-background rounded-md p-5">
+          <CreateUserForm />
         </div>
-      </ScrollArea>
+      </div>
     </div>
   )
 }

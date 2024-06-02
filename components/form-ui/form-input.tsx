@@ -73,13 +73,14 @@ const FormInput: React.FC<FormInputProps> = ({
                       <Button
                         size="icon"
                         variant="secondary"
+                        tabIndex={-1}
                         type="button"
                         onClick={() =>
                           setInputType(
                             inputType === "password" ? "text" : "password"
                           )
                         }
-                        className="absolute right-1 top-1/2 -translate-y-1/2 size-7"
+                        className="absolute right-1 top-1/2 -translate-y-1/2 size-7 select-none "
                       >
                         {inputType === "password" ? (
                           <HiOutlineEye />

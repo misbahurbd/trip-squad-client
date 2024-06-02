@@ -8,6 +8,7 @@ import { format } from "date-fns"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import ImageCarousel from "./image-carusel"
+import { LuMapPin } from "react-icons/lu"
 
 interface HomeTripProps {
   trip: ITrip
@@ -22,7 +23,15 @@ const HomeTripCard: React.FC<HomeTripProps> = ({ trip }) => {
         href={`/trips/${trip.id}`}
         className="transition hover:text-primary block pt-0.5"
       >
-        <h2 className="font-bold leading-tight">{trip.destination}</h2>
+        <div>
+          <h2 className="font-bold text-lg leading-tight">
+            {trip.destination}
+          </h2>
+          <p className="text-xs leading-tight text-muted-foreground flex items-center gap-1">
+            <LuMapPin />
+            {trip.location}
+          </p>
+        </div>
       </Link>
       <p className="text-xs text-muted-foreground">
         By: {trip?.createdBy?.profile?.name}

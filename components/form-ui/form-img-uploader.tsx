@@ -18,7 +18,7 @@ interface FormImageUploaderProps {
   form: UseFormReturn<any>
   name: string
   setSelected: (state: boolean) => void
-  currentImage: string | undefined
+  currentImage?: string | undefined
   label?: string
   type?: "text" | "email" | "password" | "number" | "tel" | "url" | "search"
   className?: string

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 import { BsEnvelopeCheck, BsEnvelopeExclamation } from "react-icons/bs"
 
 const HandleVerifyRequest = ({ token }: { token: string }) => {
-  const [isVarified, setIsVerified] = useState(false)
+  const [isVerified, setIsVerified] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
   const router = useRouter()
@@ -40,7 +40,7 @@ const HandleVerifyRequest = ({ token }: { token: string }) => {
 
   return (
     <div className="px-8 py-12 max-w-2xl mx-auto w-full flex flex-col items-center justify-center text-center bg-background rounded-lg space-y-2">
-      {!error || !isVarified ? (
+      {!isVerified && error ? (
         <>
           <BsEnvelopeExclamation className="size-20" />
           <h2 className="text-2xl font-bold">Unable to verify your account</h2>

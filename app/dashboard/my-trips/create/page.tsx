@@ -10,13 +10,11 @@ export const metadata: Metadata = {
 
 const CreateTrip = () => {
   return (
-    <div className="flex flex-col h-full p-3 gap-3">
+    <div className="flex flex-col h-full p-3 gap-3 max-w-2xl mx-auto">
       <DashboardHeader pageTitle="Create a Trip" />
       <div className="grow">
-        <div className="max-w-2xl">
-          <div className="bg-background rounded-md p-5">
-            <CreateTripForm />
-          </div>
+        <div className="bg-background rounded-md p-5">
+          <CreateTripForm />
         </div>
       </div>
     </div>

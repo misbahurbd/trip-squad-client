@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
-import { IoSearchSharp } from "react-icons/io5"
 
 import { HiOutlineCalendarDays, HiOutlineMapPin } from "react-icons/hi2"
 import { Separator } from "@/components/ui/separator"

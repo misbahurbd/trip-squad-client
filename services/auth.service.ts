@@ -16,9 +16,11 @@ export const getAccessToken = async () => {
 }
 
 export const setSessionCookie = async (token: string) => {
+  const oneDay = 24 * 60 * 60
+
   cookies().set("session", token, {
     secure: process.env.NODE_ENV === "production",
-    maxAge: 1000 * 60 * 60 * 24 * 5,
+    maxAge: oneDay * 2,
     httpOnly: true,
     sameSite: "lax",
   })

@@ -184,3 +184,31 @@ export const contactUsFormSchema = z.object({
 export const searchFormSchema = z.object({
   searchTerm: z.string().optional(),
 })
+
+export const createUserFormSchema = z
+  .object({
+    profilePhoto: imgSchema,
+    name: z.string().min(1, { message: "Name is required" }),
+    username: z.string().min(1, { message: "Username is required" }),
+    email: z
+      .string()
+      .min(1, { message: "Email is required" })
+      .email({ message: "Invalid email address" })
+      .trim()
+      .toLowerCase(),
+    role: z.string().min(1, { message: "Role is required" }),
+    password: z
+      .string()
+      .min(1, { message: "Password is required" })
+      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^\s]{8,}$/gm, {
+        message:
+          "Password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, and one number.",
+      }),
+    confirmPassword: z
+      .string()
+      .min(1, { message: "Confirm Password is required" }),
+  })
+  .refine(values => values.password === values.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  })

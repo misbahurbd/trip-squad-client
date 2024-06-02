@@ -17,8 +17,10 @@ const badgeVariants = cva(
         pending:
           "border-transparent bg-pending text-pending-foreground shadow hover:bg-destructive/80",
         outline: "text-foreground",
-        active: "bg-green-500 text-white",
-        deactived: "bg-red-500 text-white",
+        active:
+          "border-transparent bg-green-500 text-white shadow hover:bg-green-500/80",
+        deactived:
+          "border-transparent bg-red-500 text-white shadow hover:bg-red-500/80",
       },
     },
     defaultVariants: {
