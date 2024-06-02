@@ -41,7 +41,6 @@ const FormSelect: React.FC<FormSelectProps> = ({
       render={({ field }) => (
         <FormItem className={cn("w-full space-y-0.5", className)}>
           {label && <FormLabel>{label}</FormLabel>}
-          <FormLabel>Email</FormLabel>
           <Select
             onValueChange={field.onChange}
             defaultValue={field.value}
