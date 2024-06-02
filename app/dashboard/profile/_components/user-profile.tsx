@@ -79,7 +79,7 @@ const UserProfile = ({ currentUser }: { currentUser: CurrentUser }) => {
               className="rounded-lg object-cover"
             />
           </div>
-          <div>
+          <div className="text-center sm:text-start">
             <h1 className="font-semibold">{currentUser.name}</h1>
             <p className="text-sm text-muted-foreground">
               @{currentUser.username}
