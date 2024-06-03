@@ -161,18 +161,15 @@ export const createTripFormSchema = z
   })
   .refine(
     values => {
-      if (!values.endDate || !values.startDate) return false
-    },
-    { message: "Select trip date", path: ["startDate", "endDate"] }
-  )
-  .refine(
-    values => {
       return (
         new Date(values.endDate).getTime() >
         new Date(values.startDate).getTime()
       )
     },
-    { message: "End date must be getter then start date", path: ["endDate"] }
+    {
+      message: "End date must be getter then start date",
+      path: ["endDate"],
+    }
   )
 
 export const editTripFormSchema = z
@@ -188,18 +185,15 @@ export const editTripFormSchema = z
   })
   .refine(
     values => {
-      if (!values.endDate || !values.startDate) return false
-    },
-    { message: "Select trip date", path: ["startDate", "endDate"] }
-  )
-  .refine(
-    values => {
       return (
         new Date(values.endDate).getTime() >
         new Date(values.startDate).getTime()
       )
     },
-    { message: "End date must be getter then start date", path: ["endDate"] }
+    {
+      message: "End date must be getter then start date",
+      path: ["endDate"],
+    }
   )
 
 export const contactUsFormSchema = z.object({
