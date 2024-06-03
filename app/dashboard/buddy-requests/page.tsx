@@ -43,7 +43,7 @@ const BuddyRequests = async ({
           {buddyRequests?.data?.length === 0 && (
             <EmptyRes
               icon={HiOutlineUserPlus}
-              message="No buddy requests found!"
+              message="You don't have any pending buddy request."
             />
           )}
           <div className="grid grid-cols-1 @2xl:grid-cols-2 @5xl:grid-cols-3 @[85rem]:grid-cols-4 gap-3 ">
