@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/sonner"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -22,7 +23,7 @@ export default function RootLayout({
         className={cn(inter.className, "bg-secondary h-screen flex flex-col")}
       >
         <Toaster position="bottom-center" />
-        {children}
+        <ScrollArea className="h-screen">{children}</ScrollArea>
       </body>
     </html>
   )
