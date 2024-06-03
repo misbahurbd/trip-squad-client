@@ -42,6 +42,9 @@ export interface ITrip {
   itinerary: string
   location: string
   tripBuddy: {
+    email: string
+    mobile: string
+    name: string
     createdAt: Date
     id: string
     status: "Approved" | "Rejected" | "Pending"
@@ -97,6 +100,9 @@ export interface ITripBuddy {
   status: "Pending" | "Approved" | "Rejected"
   createdAt: string
   updatedAt: string
+  user: {
+    profile: IProfile
+  }
 }
 
 export interface IBuddyRequest extends ITripBuddy {
@@ -139,6 +145,15 @@ export interface ITripWithBuddy extends ITrip {
   }
 }
 
-export interface ITripBuddyPost extends ITripBuddy {
-  trip: ITrip
+export interface IBuddies {
+  id: string
+  photos: string[]
+  destination: string
+  startDate: string
+  endDate: string
+  location: string
+  tripBuddy: ITripBuddy[]
+  createdBy: {
+    profile: IProfile
+  }
 }

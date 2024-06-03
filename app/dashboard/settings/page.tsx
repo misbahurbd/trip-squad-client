@@ -35,7 +35,7 @@ const Profile = async () => {
           <div className="space-y-2 p-4 rounded-md bg-background">
             <h3 className="font-bold">Change Password</h3>
             <Separator />
-            <ChangePasswordForm currentUser={currentUser} />
+            <ChangePasswordForm />
           </div>
         </div>
       </div>

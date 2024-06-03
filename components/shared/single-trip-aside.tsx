@@ -52,7 +52,7 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
 
   return (
     <aside className="bg-background rounded-xl sticky top-20 p-3 space-y-3">
-      <div>
+      <div className="space-y-1">
         <h1 className="font-bold text-xl leading-tight">{trip.destination}</h1>
         <p className="text-sm flex text-muted-foreground items-center gap-1 leading-tight">
           <LuMapPin />
@@ -68,8 +68,10 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
             <HiOutlineCalendarDays className="size-5" />
           </span>
           <div className="flex flex-col">
-            <span className="text-xs text-muted-foreground">Start Date</span>
-            <span className="text-sm">
+            <span className="text-xs text-foreground/60 leading-tight font-medium">
+              Start Date
+            </span>
+            <span className="text-sm leading-tight text-muted-foreground">
               {format(new Date(trip.startDate), "MMM d, yyyy")}
             </span>
           </div>
@@ -84,8 +86,10 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
             <HiOutlineCalendarDays className="size-5" />
           </span>
           <div className="flex flex-col text-end">
-            <span className="text-xs text-muted-foreground">End Date</span>
-            <span className="text-sm">
+            <span className="text-xs text-foreground/60 leading-tight font-medium">
+              End Date
+            </span>
+            <span className="text-sm leading-tight text-muted-foreground">
               {format(new Date(trip.endDate), "MMM d, yyyy")}
             </span>
           </div>
@@ -94,7 +98,7 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
 
       <Separator className="opacity-60" />
 
-      <div className="flex items-center justify-between ">
+      <div className="flex items-center justify-between">
         <span className="font-semibold text-lg">Budget</span>
         <span className="text-primary text-lg font-bold">
           ${trip.budget.toLocaleString()}
@@ -123,7 +127,7 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
               </div>
             ))}
           </div>
-          <span>{currentBuddies?.length}+ buddies already join</span>
+          <span>{currentBuddies?.length} buddies already join</span>
         </div>
       )}
 

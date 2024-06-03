@@ -10,11 +10,10 @@ import { Form } from "@/components/ui/form"
 import FormInput from "@/components/form-ui/form-input"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
-import { CurrentUser } from "@/interface"
 import { changePasswordFormSchema } from "@/validations"
 import { axiosInstance } from "@/lib/axios"
 
-const ChangePasswordForm = ({ currentUser }: { currentUser: CurrentUser }) => {
+const ChangePasswordForm = () => {
   const [isLoading, setIsLoading] = useState(false)
   const form = useForm<z.infer<typeof changePasswordFormSchema>>({
     resolver: zodResolver(changePasswordFormSchema),
@@ -37,6 +36,7 @@ const ChangePasswordForm = ({ currentUser }: { currentUser: CurrentUser }) => {
       toast.success(res?.data?.message || "Password update successfully!", {
         id: toastid,
       })
+      form.reset()
     } catch (error: any) {
       console.log(error)
       toast.error(error.message || "Unable to update password", { id: toastid })

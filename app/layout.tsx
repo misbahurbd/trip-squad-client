@@ -19,10 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(
-          inter.className,
-          "bg-secondary min-h-screen flex flex-col"
-        )}
+        className={cn(inter.className, "bg-secondary h-screen flex flex-col")}
       >
         <Toaster position="bottom-center" />
         {children}

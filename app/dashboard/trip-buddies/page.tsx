@@ -3,9 +3,10 @@ import EmptyRes from "@/components/shared/empty-res"
 import { axiosInstance } from "@/lib/axios"
 import PaginationComponent from "@/components/shared/pagination"
 import { HiOutlineUsers } from "react-icons/hi2"
-import { ITripBuddyPost } from "@/interface"
-import TripBuddiesCard from "@/components/shared/trip-buddies-card"
+
 import { Metadata } from "next"
+import TripBuddiesCard from "./_components/trip-buddies-card"
+import { IBuddies } from "@/interface"
 
 export const metadata: Metadata = {
   title: "Trip Buddies | Trip Squad",
@@ -41,10 +42,10 @@ const TripBuddies = async ({
             />
           )}
           <div className="gap-3 rounded-lg grid grid-cols-1 @xl:grid-cols-2 @4xl:grid-cols-3 @7xl:grid-cols-4">
-            {buddies?.data?.map((buddy: ITripBuddyPost) => (
+            {buddies?.data?.map((buddy: IBuddies) => (
               <TripBuddiesCard
-                key={buddy.id}
-                tripBuddy={buddy}
+                key={buddy.id + "buddy-card"}
+                trip={buddy}
               />
             ))}
           </div>

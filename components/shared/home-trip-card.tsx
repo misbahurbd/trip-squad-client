@@ -48,8 +48,10 @@ const HomeTripCard: React.FC<HomeTripProps> = ({ trip }) => {
             <HiOutlineCalendarDays className="size-5" />
           </span>
           <div className="flex flex-col">
-            <span className="text-xs text-muted-foreground">Start Date</span>
-            <span className="text-sm">
+            <span className="text-xs text-foreground/60 leading-tight font-medium">
+              Start Date
+            </span>
+            <span className="text-sm leading-tight text-muted-foreground">
               {format(new Date(trip.startDate), "MMM d, yyyy")}
             </span>
           </div>
@@ -59,8 +61,10 @@ const HomeTripCard: React.FC<HomeTripProps> = ({ trip }) => {
             <HiOutlineCalendarDays className="size-5" />
           </span>
           <div className="flex flex-col">
-            <span className="text-xs text-muted-foreground">End Date</span>
-            <span className="text-sm">
+            <span className="text-xs text-foreground/60 leading-tight font-medium">
+              End Date
+            </span>
+            <span className="text-sm leading-tight text-muted-foreground">
               {format(new Date(trip.endDate), "MMM d, yyyy")}
             </span>
           </div>
@@ -71,8 +75,12 @@ const HomeTripCard: React.FC<HomeTripProps> = ({ trip }) => {
             <HiOutlineBriefcase className="size-5" />
           </span>
           <div className="flex flex-col">
-            <span className="text-xs text-muted-foreground">Trip Type</span>
-            <span className="text-sm">{trip.tripType}</span>
+            <span className="text-xs text-foreground/60 leading-tight font-medium">
+              Trip Type
+            </span>
+            <span className="text-sm leading-tight text-muted-foreground">
+              {trip.tripType}
+            </span>
           </div>
         </div>
       </div>

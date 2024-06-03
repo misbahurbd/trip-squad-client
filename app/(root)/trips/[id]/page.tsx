@@ -51,7 +51,7 @@ const TripPage = async ({ params }: { params: { id: string } }) => {
               <div className="size-20 sm:size-32 rounded relative shrink-0">
                 <Image
                   src={tripData?.createdBy?.profile?.profilePhoto || avatar}
-                  className="rounded"
+                  className="rounded object-cover"
                   fill
                   alt={tripData?.createdBy?.profile?.name}
                 />
