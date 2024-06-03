@@ -9,6 +9,7 @@ import {
   HiOutlineUserPlus,
   HiOutlineUsers,
 } from "react-icons/hi2"
+import { LuArrowLeftFromLine } from "react-icons/lu"
 import {
   PiBackpack,
   PiFacebookLogo,
@@ -59,13 +60,6 @@ export const teamMembers = [
 
 export const getDashboardNav = (pathname: string, role: string) => {
   const navs = [
-    {
-      label: "Home",
-      href: "/",
-      icon: HiOutlineHome,
-      active: false,
-      userRole: ["User", "Admin"],
-    },
     {
       label: "My Trips",
       href: "/dashboard/my-trips",
@@ -121,6 +115,13 @@ export const getDashboardNav = (pathname: string, role: string) => {
       href: "/dashboard/settings",
       icon: HiOutlineCog6Tooth,
       active: pathname.includes("/settings"),
+      userRole: ["Admin", "User"],
+    },
+    {
+      label: "Back to Home",
+      href: "/",
+      icon: LuArrowLeftFromLine,
+      active: false,
       userRole: ["Admin", "User"],
     },
   ]
