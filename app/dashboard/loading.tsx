@@ -1,5 +1,3 @@
-import { ScaleLoader } from "react-spinners"
-
 const Loading = () => {
   return (
     <div className="w-full flex-1 min-h-[50vh] flex items-center justify-center flex-col gap-5 bg-secondary">

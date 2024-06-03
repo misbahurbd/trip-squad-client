@@ -5,8 +5,9 @@ import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { PiHandshake } from "react-icons/pi"
 import avatar from "@/assets/img/avatar.jpeg"
+import { LuMapPin } from "react-icons/lu"
 
-const RequestHistory = ({ request }: { request: IBuddyRequest }) => {
+const ProfileHistoryCard = ({ request }: { request: IBuddyRequest }) => {
   return (
     <div className="@container/req-history">
       <article className="flex flex-col gap-2 p-3 bg-background rounded-lg overflow-hidden">
@@ -20,7 +21,7 @@ const RequestHistory = ({ request }: { request: IBuddyRequest }) => {
           <div className="absolute bg-foreground/30 backdrop-blur-sm w-full h-full top-0 left-0 rounded-lg flex items-center justify-center gap-4">
             <div className="size-20 relative rounded-lg border-2 border-background overflow-hidden">
               <Image
-                src={request?.trip?.createdBy?.profile?.profilePhoto || avatar}
+                src={request?.user?.profile?.profilePhoto || avatar}
                 fill
                 alt={request?.user?.profile?.name}
                 className="object-cover"
@@ -29,7 +30,7 @@ const RequestHistory = ({ request }: { request: IBuddyRequest }) => {
             <PiHandshake className="text-background size-10" />
             <div className="size-20 relative rounded-lg border-2 border-background overflow-hidden">
               <Image
-                src={request?.user?.profile?.profilePhoto || avatar}
+                src={request?.trip?.createdBy?.profile?.profilePhoto || avatar}
                 fill
                 alt={request?.user?.profile?.name}
                 className="object-cover"
@@ -39,11 +40,12 @@ const RequestHistory = ({ request }: { request: IBuddyRequest }) => {
         </div>
         <div className="space-y-1 w-full flex items-center gap-3">
           <div className="grow space-y-2">
-            <div>
-              <h2 className="text-lg font-semibold">
+            <div className="space-y-0.5">
+              <h2 className="font-semibold leading-tight">
                 {request.trip.destination}
               </h2>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-muted-foreground leading-tight flex items-center gap-1">
+                <LuMapPin className="size-2.5" />
                 {request?.trip?.location}
               </p>
             </div>
@@ -64,14 +66,11 @@ const RequestHistory = ({ request }: { request: IBuddyRequest }) => {
                   <span className="font-medium">Buddy:</span>
                   <span>{request?.trip?.createdBy?.profile?.name}</span>
                 </div>
-                <div className="flex items-center gap-1 text-muted-foreground text-sm">
-                  <span className="font-medium">Update At:</span>
-                  <span>{format(request.updatedAt, "d MMM, yyyy")}</span>
-                </div>
               </div>
               <div className="flex flex-col items-center space-y-0.5">
                 <p className="text-sm text-muted-foreground">Status</p>
                 <Badge
+                  className="text-xs px-1 py-0.5"
                   variant={
                     request.status === "Approved"
                       ? "active"
@@ -90,4 +89,4 @@ const RequestHistory = ({ request }: { request: IBuddyRequest }) => {
     </div>
   )
 }
-export default RequestHistory
+export default ProfileHistoryCard

@@ -2,12 +2,12 @@ import { axiosInstance } from "@/lib/axios"
 import { IBuddyRequest, ITrip } from "@/interface"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import RequestHistory from "@/components/shared/request-history"
 
 import EmptyRes from "@/components/shared/empty-res"
 import { PiBackpack } from "react-icons/pi"
 import { AiOutlineHistory } from "react-icons/ai"
 import TripCardProfile from "./trip-card-profile"
+import ProfileHistoryCard from "@/components/shared/profile-history-card"
 
 const ProfileSubsection = async () => {
   const trips = await axiosInstance.get(`/trips/get-my-trips?limit=6`)
@@ -65,7 +65,7 @@ const ProfileSubsection = async () => {
         )}
         <div className="gap-3 rounded-lg grid grid-cols-1 @xl:grid-cols-2 @4xl:grid-cols-3">
           {requestHistory?.data?.map((history: IBuddyRequest) => (
-            <RequestHistory
+            <ProfileHistoryCard
               key={history.id}
               request={history}
             />

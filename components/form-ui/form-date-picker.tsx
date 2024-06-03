@@ -113,11 +113,7 @@ const FormDatePicker: React.FC<FormInputProps> = ({
                       date >
                         new Date(
                           new Date().setFullYear(new Date().getFullYear() + 3)
-                        ) ||
-                      date <=
-                        new Date(
-                          new Date().setDate(new Date(startDate).getDate())
-                        )
+                        ) || date <= new Date(new Date(startDate))
                     )
                   }
                   if (range && range == "future") {

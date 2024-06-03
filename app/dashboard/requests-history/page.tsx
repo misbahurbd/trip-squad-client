@@ -3,7 +3,7 @@ import EmptyRes from "@/components/shared/empty-res"
 import { IBuddyRequest } from "@/interface"
 import { axiosInstance } from "@/lib/axios"
 import { AiOutlineHistory } from "react-icons/ai"
-import RequestHistoryCard from "@/components/shared/request-history"
+import RequestHistoryCard from "@/components/shared/request-history-card"
 import PaginationComponent from "@/components/shared/pagination"
 import { Metadata } from "next"
 
