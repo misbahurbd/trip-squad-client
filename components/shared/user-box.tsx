@@ -46,7 +46,7 @@ const UserBox = ({ user }: UserBoxProps) => {
             fill
             alt={user.name}
             src={user.profilePhoto || avatar}
-            className="rounded-full"
+            className="rounded-full object-cover"
           />
         </Button>
       </DropdownMenuTrigger>
