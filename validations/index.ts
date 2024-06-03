@@ -126,49 +126,81 @@ export const profilePhotoUPloadFormSchema = z.object({
   profilePhoto: imgSchema,
 })
 
-export const createTripFormSchema = z.object({
-  images: z
-    .custom<FileList>()
-    .refine(fileList => {
-      if (!fileList?.length || fileList.length === 0) return false
-      return Array.from(fileList).every(file => file.size <= MAX_UPLOAD_SIZE)
-    }, "Trip images is required!")
-    .refine(fileList => {
-      if (!fileList?.length || fileList.length === 0) return false
-      return Array.from(fileList).every(file => file.size <= MAX_UPLOAD_SIZE)
-    }, "Each file size should be less than 10MB.")
-    .refine(fileList => {
-      if (!fileList?.length || fileList.length === 0) return false
-      return Array.from(fileList).every(file =>
-        ACCEPTED_FILE_TYPES.includes(file.type)
+export const createTripFormSchema = z
+  .object({
+    images: z
+      .custom<FileList>()
+      .refine(fileList => {
+        if (!fileList?.length || fileList.length === 0) return false
+        return Array.from(fileList).every(file => file.size <= MAX_UPLOAD_SIZE)
+      }, "Trip images is required!")
+      .refine(fileList => {
+        if (!fileList?.length || fileList.length === 0) return false
+        return Array.from(fileList).every(file => file.size <= MAX_UPLOAD_SIZE)
+      }, "Each file size should be less than 10MB.")
+      .refine(fileList => {
+        if (!fileList?.length || fileList.length === 0) return false
+        return Array.from(fileList).every(file =>
+          ACCEPTED_FILE_TYPES.includes(file.type)
+        )
+      }, "Only these types are allowed: .jpg, .jpeg, .png, .webp")
+      .refine(fileList => {
+        if (!fileList?.length || fileList.length < 3) return false
+        return Array.from(fileList).every(file =>
+          ACCEPTED_FILE_TYPES.includes(file.type)
+        )
+      }, "You have to add minimum 3 photo for your trip"),
+    destination: z.string().min(1, { message: "Destination is required" }),
+    description: z.string().min(1, { message: "Description is required" }),
+    startDate: z.date({ required_error: "Start date is required" }),
+    endDate: z.date({ required_error: "Start date is required" }),
+    tripType: z.string().min(1, { message: "Trip type is required" }),
+    budget: z.string().min(1, { message: "Budget is required" }),
+    location: z.string().min(1, { message: "Location is required" }),
+    itinerary: z.string().min(1, { message: "Itinerary is required" }),
+  })
+  .refine(
+    values => {
+      if (!values.endDate || !values.startDate) return false
+    },
+    { message: "Select trip date", path: ["startDate", "endDate"] }
+  )
+  .refine(
+    values => {
+      return (
+        new Date(values.endDate).getTime() >
+        new Date(values.startDate).getTime()
       )
-    }, "Only these types are allowed: .jpg, .jpeg, .png, .webp")
-    .refine(fileList => {
-      if (!fileList?.length || fileList.length < 3) return false
-      return Array.from(fileList).every(file =>
-        ACCEPTED_FILE_TYPES.includes(file.type)
-      )
-    }, "You have to add minimum 3 photo for your trip"),
-  destination: z.string().min(1, { message: "Destination is required" }),
-  description: z.string().min(1, { message: "Description is required" }),
-  startDate: z.date({ required_error: "Start date is required" }),
-  endDate: z.date({ required_error: "Start date is required" }),
-  tripType: z.string().min(1, { message: "Trip type is required" }),
-  budget: z.string().min(1, { message: "Budget is required" }),
-  location: z.string().min(1, { message: "Location is required" }),
-  itinerary: z.string().min(1, { message: "Itinerary is required" }),
-})
+    },
+    { message: "End date must be getter then start date", path: ["endDate"] }
+  )
 
-export const editTripFormSchema = z.object({
-  destination: z.string().min(1, { message: "Destination is required" }),
-  description: z.string().min(1, { message: "Description is required" }),
-  startDate: z.date({ required_error: "Start date is required" }),
-  endDate: z.date({ required_error: "Start date is required" }),
-  tripType: z.string().min(1, { message: "Trip type is required" }),
-  budget: z.string().min(1, { message: "Budget is required" }),
-  location: z.string().min(1, { message: "Location is required" }),
-  itinerary: z.string().min(1, { message: "Itinerary is required" }),
-})
+export const editTripFormSchema = z
+  .object({
+    destination: z.string().min(1, { message: "Destination is required" }),
+    description: z.string().min(1, { message: "Description is required" }),
+    startDate: z.date({ required_error: "Start date is required" }),
+    endDate: z.date({ required_error: "Start date is required" }),
+    tripType: z.string().min(1, { message: "Trip type is required" }),
+    budget: z.string().min(1, { message: "Budget is required" }),
+    location: z.string().min(1, { message: "Location is required" }),
+    itinerary: z.string().min(1, { message: "Itinerary is required" }),
+  })
+  .refine(
+    values => {
+      if (!values.endDate || !values.startDate) return false
+    },
+    { message: "Select trip date", path: ["startDate", "endDate"] }
+  )
+  .refine(
+    values => {
+      return (
+        new Date(values.endDate).getTime() >
+        new Date(values.startDate).getTime()
+      )
+    },
+    { message: "End date must be getter then start date", path: ["endDate"] }
+  )
 
 export const contactUsFormSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),

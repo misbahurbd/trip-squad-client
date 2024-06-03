@@ -30,6 +30,7 @@ interface FormInputProps {
   fieldClassName?: string
   disabled: boolean
   range?: "future" | "past" | "range"
+  startDate?: string | null
 }
 
 const FormDatePicker: React.FC<FormInputProps> = ({
@@ -43,6 +44,7 @@ const FormDatePicker: React.FC<FormInputProps> = ({
   fieldClassName,
   required,
   disabled,
+  startDate,
   range,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -87,6 +89,7 @@ const FormDatePicker: React.FC<FormInputProps> = ({
                 captionLayout="dropdown-buttons"
                 required={required || true}
                 selected={field.value}
+                defaultMonth={startDate ? new Date(startDate) : new Date()}
                 fromYear={
                   range === "range"
                     ? new Date().getFullYear() - 10
@@ -105,6 +108,18 @@ const FormDatePicker: React.FC<FormInputProps> = ({
                   if (onUpdate) onUpdate()
                 }}
                 disabled={date => {
+                  if (startDate) {
+                    return (
+                      date >
+                        new Date(
+                          new Date().setFullYear(new Date().getFullYear() + 3)
+                        ) ||
+                      date <=
+                        new Date(
+                          new Date().setDate(new Date(startDate).getDate())
+                        )
+                    )
+                  }
                   if (range && range == "future") {
                     return (
                       date >

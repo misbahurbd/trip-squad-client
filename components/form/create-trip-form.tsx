@@ -44,7 +44,6 @@ const CreateTripForm = () => {
       router.push("/dashboard/my-trips")
       router.refresh()
     } catch (error: any) {
-      console.log(error)
       toast.error(error.message || "Unable to create trip", { id: toastid })
     } finally {
       setIsLoading(false)
@@ -94,6 +93,10 @@ const CreateTripForm = () => {
             label="End Date"
             name="endDate"
             range="future"
+            startDate={
+              form.watch("startDate") &&
+              form.watch("startDate").toLocaleString()
+            }
             disabled={isLoading}
           />
           <FormInput

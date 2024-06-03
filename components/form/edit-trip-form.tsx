@@ -128,6 +128,7 @@ const EditTripForm = ({
             label="End Date"
             name="endDate"
             range="future"
+            startDate={form.watch("startDate")?.toLocaleString()}
             disabled={isLoading}
           />
           <FormInput
