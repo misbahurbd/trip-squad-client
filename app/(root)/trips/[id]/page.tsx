@@ -27,7 +27,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: trip?.data?.destination + " - Trip Squad" || "Trip Details Page",
-    description: getPlainText(trip?.data?.description) || "Trip descriptoin...",
+    description:
+      getPlainText(trip?.data?.description)?.slice(0, 160) ||
+      "Trip descriptoin...",
   }
 }
 
