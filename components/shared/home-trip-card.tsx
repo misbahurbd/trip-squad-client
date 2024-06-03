@@ -24,7 +24,7 @@ const HomeTripCard: React.FC<HomeTripProps> = ({ trip }) => {
         href={`/trips/${trip.id}`}
         className="transition hover:text-primary block pt-0.5"
       >
-        <div>
+        <div className="space-y-0.5">
           <h2 className="font-bold text-lg leading-tight">
             {trip.destination}
           </h2>

@@ -18,7 +18,7 @@ const TripCardProfile = ({ trip }: { trip: ITrip }) => {
         </div>
         <div className="space-y-1 w-full flex items-center gap-3">
           <div className="grow space-y-2">
-            <div>
+            <div className="space-y-0.5">
               <h3 className="font-semibold leading-tight">
                 {trip.destination}
               </h3>

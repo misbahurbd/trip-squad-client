@@ -68,7 +68,7 @@ const TripCard: React.FC<TripCardProps> = ({ trip }) => {
         })}
       </div>
       <div className="space-y-2">
-        <div>
+        <div className="space-y-0.5">
           <h3 className="font-semibold leading-tight">{trip.destination}</h3>
           <p className="text-xs text-muted-foreground leading-tight flex items-center gap-1">
             <LuMapPin className="size-2.5" />
