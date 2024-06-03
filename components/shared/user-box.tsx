@@ -61,7 +61,7 @@ const UserBox = ({ user }: UserBoxProps) => {
           <div>
             <h3 className="font-bold">{user.name}</h3>
             <p className="text-xs text-muted-foreground font-normal">
-              {user.email}
+              @{user.username}
             </p>
           </div>
         </DropdownMenuLabel>
