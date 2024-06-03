@@ -40,7 +40,7 @@ const RequestHistoryCard = ({ request }: { request: IBuddyRequest }) => {
         <div className="space-y-1 w-full flex items-center gap-3">
           <div className="grow space-y-2">
             <div>
-              <h2 className="text-lg font-semibold">
+              <h2 className="text-lg font-semibold line-clamp-1">
                 {request.trip.destination}
               </h2>
               <p className="text-xs text-muted-foreground">

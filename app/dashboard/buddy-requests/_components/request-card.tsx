@@ -59,7 +59,7 @@ const RequestCard = ({ buddyRequest }: { buddyRequest: IBuddyRequest }) => {
       </div>
       <div className="basis-3/4">
         <div className="p-3 space-y-1">
-          <div className="flex items-center gap-1 text-sm">
+          <div className="flex items-center gap-1 text-sm line-clamp-1">
             <LuMap className="mr-1 text-muted-foreground" />
             <span className="text-muted-foreground">Destenation:</span>
             <span className="text-foreground">

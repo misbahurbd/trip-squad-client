@@ -41,7 +41,7 @@ const ProfileHistoryCard = ({ request }: { request: IBuddyRequest }) => {
         <div className="space-y-1 w-full flex items-center gap-3">
           <div className="grow space-y-2">
             <div className="space-y-0.5">
-              <h2 className="font-semibold leading-tight">
+              <h2 className="font-semibold leading-tight line-clamp-1">
                 {request.trip.destination}
               </h2>
               <p className="text-xs text-muted-foreground leading-tight flex items-center gap-1">

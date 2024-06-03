@@ -53,7 +53,9 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
   return (
     <aside className="bg-background rounded-xl sticky top-20 p-3 space-y-3">
       <div className="space-y-1">
-        <h1 className="font-bold text-xl leading-tight">{trip.destination}</h1>
+        <h1 className="font-bold text-xl leading-tight line-clamp-1">
+          {trip.destination}
+        </h1>
         <p className="text-sm flex text-muted-foreground items-center gap-1 leading-tight">
           <LuMapPin />
           {trip.location}

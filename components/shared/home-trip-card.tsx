@@ -25,7 +25,7 @@ const HomeTripCard: React.FC<HomeTripProps> = ({ trip }) => {
         className="transition hover:text-primary block pt-0.5"
       >
         <div className="space-y-0.5">
-          <h2 className="font-bold text-lg leading-tight">
+          <h2 className="font-bold text-lg leading-tight line-clamp-1">
             {trip.destination}
           </h2>
           <p className="text-xs leading-tight text-muted-foreground flex items-center gap-1">
