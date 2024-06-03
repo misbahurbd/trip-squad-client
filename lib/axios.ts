@@ -1,5 +1,4 @@
-import { refreshToken } from "@/services/auth.action"
-import { getAccessToken, logout } from "@/services/auth.service"
+import { getAccessToken } from "@/services/auth.service"
 import axios from "axios"
 
 export const axiosInstance = axios.create({
@@ -32,14 +31,7 @@ axiosInstance.interceptors.response.use(
     }
     return { ...response, ...responseObj }
   },
-  async function (error) {
-    const config = error.config
-    if (error?.response?.status == 401 || error?.response?.status == 403) {
-      console.log("HI 1")
-      await refreshToken()
-      console.log("hi 2")
-      return
-    }
+  function (error) {
     return Promise.reject(error?.response?.data)
   }
 )
