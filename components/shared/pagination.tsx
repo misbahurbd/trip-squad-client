@@ -1,7 +1,5 @@
 "use client"
 
-import Link from "next/link"
-
 import { usePathname, useSearchParams } from "next/navigation"
 import {
   Pagination,
@@ -12,6 +10,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
+import { useEffect } from "react"
 
 const PaginationComponent = ({ totalPages }: { totalPages: number }) => {
   const pathname = usePathname()
@@ -47,6 +46,10 @@ const PaginationComponent = ({ totalPages }: { totalPages: number }) => {
   }
 
   const pageNavs = createPageArray(currentPage, totalPages)
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [searchParams])
 
   return (
     <Pagination>
