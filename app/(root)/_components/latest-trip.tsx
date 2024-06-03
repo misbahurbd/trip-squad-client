@@ -11,7 +11,9 @@ const LatestTrip = async () => {
     trips?.data?.length > 0
       ? trips?.data?.length < 8
         ? trips?.data?.slice(0, 4)
-        : trips?.data
+        : trips?.data.length < 12
+        ? trips?.data?.slice(0, 8)
+        : trips?.data?.slice(0, 12)
       : []
 
   return (
