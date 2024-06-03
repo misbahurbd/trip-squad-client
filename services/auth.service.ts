@@ -2,7 +2,6 @@
 
 import { jwtDecode } from "jwt-decode"
 import { cookies } from "next/headers"
-import { redirect } from "next/navigation"
 
 export const getSession = async () => {
   const session = cookies().get("session")?.value
@@ -18,7 +17,6 @@ export const getAccessToken = async () => {
 
 export const setSessionCookie = async (token: string) => {
   const oneDay = 24 * 60 * 60
-
   cookies().set("session", token, {
     secure: process.env.NODE_ENV === "production",
     maxAge: oneDay * 2,
@@ -26,9 +24,9 @@ export const setSessionCookie = async (token: string) => {
     sameSite: "lax",
   })
 }
+
 export const setRefreshToken = async (token: string) => {
   const oneDay = 24 * 60 * 60
-
   cookies().set("refreshToken", token, {
     secure: process.env.NODE_ENV === "production",
     maxAge: oneDay * 7,
@@ -37,7 +35,7 @@ export const setRefreshToken = async (token: string) => {
   })
 }
 
-export async function logout() {
+export const logout = async () => {
   cookies().delete("session")
   cookies().delete("refreshToken")
 }
