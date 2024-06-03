@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const RegisterPage = () => {
   return (
     <div className="max-w-3xl w-full mx-auto flex flex-col md:flex-row items-stretch gap-3">
-      <div className="md:w-1/2 aspect-video relative rounded-xl">
+      <div className="md:w-1/2 aspect-video relative rounded-xl bg-background">
         <Image
           fill
           src={authImg}

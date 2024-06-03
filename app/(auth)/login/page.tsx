@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const LoginPage = () => {
   return (
     <div className="max-w-3xl w-full mx-auto flex flex-col md:flex-row items-stretch gap-3">
-      <div className="aspect-video md:w-1/2 relative rounded-xl">
+      <div className="aspect-video md:w-1/2 relative rounded-xl bg-background">
         <Image
           fill
           src={authImg}
