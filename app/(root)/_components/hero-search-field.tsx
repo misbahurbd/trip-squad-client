@@ -149,8 +149,12 @@ const HeroSearchField = ({ tripTypes }: { tripTypes: ITripType[] }) => {
                           >
                             <Calendar
                               mode="single"
+                              captionLayout="dropdown-buttons"
                               selected={field.value}
                               onSelect={field.onChange}
+                              defaultMonth={new Date()}
+                              fromYear={new Date().getFullYear()}
+                              toYear={new Date().getFullYear() + 30}
                               disabled={date =>
                                 date >
                                   new Date(
