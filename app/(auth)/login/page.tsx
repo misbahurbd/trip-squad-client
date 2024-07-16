@@ -5,6 +5,9 @@ import LoginForm from "@/components/form/login-form"
 import { Suspense } from "react"
 import authImg from "@/assets/img/auth-img-01.jpg"
 import { Separator } from "@/components/ui/separator"
+import { Button } from "@/components/ui/button"
+import { LuCopy } from "react-icons/lu"
+import UserDemoAccountCredentials from "@/components/shared/user-demo-credentials"
 
 export const metadata: Metadata = {
   title: "Login | Trip Squad",
@@ -25,17 +28,7 @@ const LoginPage = () => {
       </div>
       <div className="md:w-1/2 bg-background rounded-xl py-8 md:py-12 px-8 md:px-10 flex flex-col items-center gap-8">
         <h2 className="text-2xl font-bold text-center">Login Your Account</h2>
-        <Separator />
-        <div className="">
-          <h4>Admin Credentials</h4>
-          <p>
-            <span>Username:</span> misbahurbd
-          </p>
-          <p>
-            <span>Password:</span> Pass@000
-          </p>
-        </div>
-        <Separator />
+        <UserDemoAccountCredentials />
         <Suspense>
           <LoginForm />
         </Suspense>
