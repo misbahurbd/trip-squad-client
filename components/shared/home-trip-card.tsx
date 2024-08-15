@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import ImageCarousel from "./image-carusel"
 import { LuMapPin } from "react-icons/lu"
 import { getPlainText } from "@/lib/utils"
+import { Skeleton } from "../ui/skeleton"
 
 interface HomeTripProps {
   trip: ITrip
@@ -99,4 +100,45 @@ const HomeTripCard: React.FC<HomeTripProps> = ({ trip }) => {
     </article>
   )
 }
+
+export const HomeTripCardSkeleton = () => {
+  return (
+    <article className="space-y-3 group p-3 rounded-xl bg-background border">
+      <Skeleton className="aspect-video" />
+
+      <div className="space-y-1">
+        <Skeleton className="w-2/4 h-6" />
+        <Skeleton className="w-3/5 h-3" />
+      </div>
+
+      <Skeleton className="w-3/6 h-3" />
+      <div className="space-y-1.5">
+        <Skeleton className="w-full h-3" />
+        <Skeleton className="w-3/4 h-3" />
+      </div>
+
+      <Separator className="opacity-50" />
+      <div className="grid grid-cols-2 gap-2 !mt-2">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <div
+            key={i}
+            className="flex items-center gap-2 text-foreground"
+          >
+            <Skeleton className="size-8" />
+            <div className="flex flex-col flex-1 space-y-0.5">
+              <Skeleton className="h-3 w-2/4" />
+              <Skeleton className="h-4 w-4/5" />
+            </div>
+          </div>
+        ))}
+      </div>
+      <Separator className="opacity-50 !mt-2" />
+      <div className="flex items-center justify-between !mt-2">
+        <Skeleton className="w-16 h-6" />
+        <Skeleton className="w-32 h-9" />
+      </div>
+    </article>
+  )
+}
+
 export default HomeTripCard

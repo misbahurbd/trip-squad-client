@@ -1,7 +1,9 @@
 import Link from "next/link"
 import { ITrip } from "@/interface"
 import SectionHeader from "@/components/shared/section-header"
-import HomeTripCard from "@/components/shared/home-trip-card"
+import HomeTripCard, {
+  HomeTripCardSkeleton,
+} from "@/components/shared/home-trip-card"
 import { Button } from "@/components/ui/button"
 import { getTrips } from "@/services/trip.service"
 
@@ -39,4 +41,26 @@ const LatestTrip = async () => {
     </section>
   )
 }
+
+export const LatestTripSkeleton = () => {
+  return (
+    <section className="space-y-8">
+      <SectionHeader
+        title="Explore Latest Destinations"
+        subTitle="Dive into the freshest travel experiences shared by our community. Find inspiration for your next getaway!"
+      />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <HomeTripCardSkeleton key={`home-trip-card-skle-${i}`} />
+        ))}
+      </div>
+      <div className="text-center">
+        <Button asChild>
+          <Link href={"/trips"}>See More Trip</Link>
+        </Button>
+      </div>
+    </section>
+  )
+}
+
 export default LatestTrip

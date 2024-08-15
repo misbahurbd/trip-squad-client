@@ -1,5 +1,9 @@
-import SectionHeader from "@/components/shared/section-header"
-import TripTypeItem from "@/app/(root)/_components/trip-type-item"
+import SectionHeader, {
+  SectionHeaderSkeleton,
+} from "@/components/shared/section-header"
+import TripTypeItem, {
+  TripTypeItemSkeleton,
+} from "@/app/(root)/_components/trip-type-item"
 import { getTripType } from "@/services/trip.service"
 
 const TopTripTypes = async () => {
@@ -21,6 +25,19 @@ const TopTripTypes = async () => {
             />
           )
         )}
+      </div>
+    </section>
+  )
+}
+
+export const TopTripTypesSkeleton = () => {
+  return (
+    <section className="space-y-8">
+      <SectionHeaderSkeleton />
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <TripTypeItemSkeleton key={`trip-item-ske-${i}`} />
+        ))}
       </div>
     </section>
   )

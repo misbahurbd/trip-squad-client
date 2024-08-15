@@ -1,6 +1,8 @@
 import HeroSection from "./_components/hero"
-import LatestTrip from "./_components/latest-trip"
-import TopTripTypes from "./_components/top-trip-types"
+import LatestTrip, { LatestTripSkeleton } from "./_components/latest-trip"
+import TopTripTypes, {
+  TopTripTypesSkeleton,
+} from "./_components/top-trip-types"
 import HowItWork from "./_components/how-it-work"
 import { Metadata } from "next"
 import { Suspense } from "react"
@@ -17,10 +19,10 @@ const Home = () => {
     <>
       <HeroSection />
       <div className="container space-y-12">
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<TopTripTypesSkeleton />}>
           <TopTripTypes />
         </Suspense>
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<LatestTripSkeleton />}>
           <LatestTrip />
         </Suspense>
         <HowItWork />

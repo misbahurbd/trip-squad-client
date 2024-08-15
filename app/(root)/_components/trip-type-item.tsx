@@ -1,3 +1,4 @@
+import { Skeleton } from "@/components/ui/skeleton"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -30,6 +31,18 @@ const TripTypeItem: React.FC<TripTypeItemProps> = ({ tripType }) => {
         </div>
       </div>
     </Link>
+  )
+}
+
+export const TripTypeItemSkeleton = () => {
+  return (
+    <Skeleton className="aspect-[4/3] md:aspect-[5/6] rounded-2xl shadow-lg transition relative group">
+      <span className="absolute opacity-20 rounded-2xl transition-all w-full h-full left-0 top-0 bg-gradient-to-t from-black/80 to-black/0 to-50%" />
+      <div className="absolute w-full left-0 bottom-0 p-3 md:p-5 space-y-0.5">
+        <Skeleton className="w-2/5 h-4 mb-2" />
+        <Skeleton className="w-3/5 h-3" />
+      </div>
+    </Skeleton>
   )
 }
 export default TripTypeItem

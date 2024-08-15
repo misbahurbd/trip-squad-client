@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils"
+import { Skeleton } from "../ui/skeleton"
 
 interface SectionHeaderProps {
   title: string
@@ -24,4 +25,19 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
     </section>
   )
 }
+
+export const SectionHeaderSkeleton = () => {
+  return (
+    <section
+      className={cn(
+        "max-w-3xl w-full border mx-auto flex flex-col items-center justify-center"
+      )}
+    >
+      <Skeleton className="w-3/5 h-8 mb-4" />
+      <Skeleton className="w-5/6 h-4 mb-2" />
+      <Skeleton className="w-3/4 h-4" />
+    </section>
+  )
+}
+
 export default SectionHeader
