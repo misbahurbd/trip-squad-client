@@ -28,6 +28,20 @@ export interface IProfile {
   updatedAt: Date
 }
 
+export interface IReview {
+  id: string
+  content: string
+  rating: number
+  tripId: string
+  trip: ITrip
+  userId: string
+  user: {
+    profile: IProfile
+  }
+  createdAt: Date
+  updatedAt: Date
+}
+
 export interface ITrip {
   id: string
   destination: string
@@ -61,6 +75,7 @@ export interface ITrip {
     profile: IProfile
     _count: { trip: number }
   }
+  reviews: IReview[]
   createdAt: string
   updatedAt: string
 }
