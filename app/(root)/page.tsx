@@ -7,6 +7,9 @@ import HowItWork from "./_components/how-it-work"
 import { Metadata } from "next"
 import { Suspense } from "react"
 import Loading from "./loading"
+import TopTripReviews, {
+  TopTripReviewsSkeleton,
+} from "./_components/top-trip-reviews"
 
 export const metadata: Metadata = {
   title: "Trip Squad - Your Ultimate Tavel Pattern",
@@ -24,6 +27,9 @@ const Home = () => {
         </Suspense>
         <Suspense fallback={<LatestTripSkeleton />}>
           <LatestTrip />
+        </Suspense>
+        <Suspense fallback={<TopTripReviewsSkeleton />}>
+          <TopTripReviews />
         </Suspense>
         <HowItWork />
       </div>

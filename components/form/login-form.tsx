@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import { loginUser } from "@/services/auth.action"
 import { useRouter, useSearchParams } from "next/navigation"
+import UserDemoAccountCredentials from "../shared/user-demo-credentials"
 
 const LoginForm = () => {
   const router = useRouter()
@@ -49,6 +50,7 @@ const LoginForm = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-3"
       >
+        <UserDemoAccountCredentials form={form} />
         <FormInput
           form={form}
           placeholder="Email or Username"
@@ -73,7 +75,9 @@ const LoginForm = () => {
         <Button
           className="mt-2"
           variant={"default"}
-          disabled={isLoading || !form.formState.isDirty}
+          disabled={
+            isLoading || !form.watch("username") || !form.watch("password")
+          }
         >
           Login
         </Button>

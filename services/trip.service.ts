@@ -9,6 +9,15 @@ export const getTripType = async () => {
   }
 }
 
+export const getTopReviews = async () => {
+  try {
+    const tripReviews = await axiosInstance.get("/trips/reviews")
+    return tripReviews
+  } catch (error) {
+    return null
+  }
+}
+
 export const getTrips = async (limit?: number) => {
   try {
     const trips = await axiosInstance.get(

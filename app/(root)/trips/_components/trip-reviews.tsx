@@ -24,7 +24,11 @@ interface TripReviewsProps {
 
 const reviewSchema = z.object({
   rating: z.string().min(1, { message: "Rating is required" }),
-  content: z.string().min(1, "Content is required"),
+  content: z
+    .string()
+    .min(1, "Review content is required")
+    .min(90, "Review length must be more then 90 characters")
+    .max(160, "Review length can be maximum 160 characters"),
 })
 
 const TripReviews: React.FC<TripReviewsProps> = ({ trip, currentUser }) => {
@@ -42,10 +46,10 @@ const TripReviews: React.FC<TripReviewsProps> = ({ trip, currentUser }) => {
 
   const onSubmit = async (values: z.infer<typeof reviewSchema>) => {
     setIsLoading(true)
-    const toaster = toast.loading("Login account...", { id: "login" })
+    const toaster = toast.loading("Review submiting...", { id: "login" })
     try {
       const res = await axiosInstance.post(`/trips/${trip.id}/review`, values)
-      toast.success(res?.data?.message || "Trip created successfully!", {
+      toast.success(res?.data?.message || "Review posted successfully!", {
         id: toaster,
       })
       form.reset()
@@ -54,7 +58,7 @@ const TripReviews: React.FC<TripReviewsProps> = ({ trip, currentUser }) => {
         setLeaveReview(false)
       }
     } catch (error: any) {
-      toast.error(error.message || "Unable to create trip", { id: toaster })
+      toast.error(error.message || "Unable to post review", { id: toaster })
     } finally {
       setIsLoading(false)
     }
@@ -144,6 +148,9 @@ const TripReviews: React.FC<TripReviewsProps> = ({ trip, currentUser }) => {
                     <FormTextArea
                       form={form}
                       name="content"
+                      counter
+                      minLength={90}
+                      maxLength={160}
                       label="Your review"
                       disabled={isLoading}
                       placeholder="Write your review..."

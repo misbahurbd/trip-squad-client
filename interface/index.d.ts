@@ -172,3 +172,17 @@ export interface IBuddies {
     profile: IProfile
   }
 }
+
+export interface IReview {
+  id: string
+  content: string
+  rating: number
+  tripId: string
+  userId: string
+  parentId: string | null
+  createdAt: string
+  updatedAt: string
+  user: {
+    profile: IProfile
+  }
+}

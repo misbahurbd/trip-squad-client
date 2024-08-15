@@ -17,6 +17,9 @@ interface FormTextAreaProps {
   placeholder: string
   className?: string
   disabled: boolean
+  counter?: boolean
+  minLength?: number
+  maxLength?: number
 }
 
 const FormTextArea: React.FC<FormTextAreaProps> = ({
@@ -27,6 +30,9 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
   className,
   rows,
   disabled,
+  counter = false,
+  minLength = 0,
+  maxLength,
 }) => {
   return (
     <FormField
@@ -41,11 +47,20 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
               placeholder={placeholder}
               disabled={disabled}
               rows={rows || 4}
+              maxLength={maxLength || undefined}
               {...field}
             />
           </FormControl>
-
-          <FormMessage />
+          <div className="flex items-center gap-4">
+            <div className="flex-1">
+              <FormMessage />
+            </div>
+            {counter && (
+              <div className="w-max text-muted-foreground text-xs">
+                {form.watch(name).length}
+              </div>
+            )}
+          </div>
         </FormItem>
       )}
     />

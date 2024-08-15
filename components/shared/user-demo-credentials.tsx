@@ -1,8 +1,9 @@
 "use client"
 
-import { LuCopy } from "react-icons/lu"
+import { UseFormReturn } from "react-hook-form"
 import { Button } from "../ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
+import { ScrollArea } from "../ui/scroll-area"
 
 const userCredentials = [
   {
@@ -11,13 +12,38 @@ const userCredentials = [
     password: "Pass@000",
   },
   {
+    role: "user",
+    username: "emon000",
+    password: "Emon@123",
+  },
+  {
+    role: "user",
+    username: "joynalabedin",
+    password: "Aaaa@1122",
+  },
+  {
+    role: "user",
+    username: "mizanur_r",
+    password: "Mizanur@2425",
+  },
+  {
+    role: "user",
+    username: "rakibul",
+    password: "Rakibul@2021",
+  },
+  {
     role: "admin",
     username: "pxlhut",
     password: "Admin@000",
   },
+  {
+    role: "admin",
+    username: "sumon43",
+    password: "Pass@123",
+  },
 ]
 
-const UserDemoAccountCredentials = () => {
+const UserDemoAccountCredentials = ({ form }: { form: UseFormReturn<any> }) => {
   return (
     <div className="w-full space-y-3">
       <h4 className="font-bold text-center">Demo Account</h4>
@@ -26,46 +52,39 @@ const UserDemoAccountCredentials = () => {
           <TabsTrigger value="user">User</TabsTrigger>
           <TabsTrigger value="admin">Admin</TabsTrigger>
         </TabsList>
-        {userCredentials.map((data, idx) => (
-          <TabsContent
-            value={data.role}
-            key={"data" + idx}
-            className="p-3 rounded-md bg-secondary"
-          >
-            <p className="flex items-center gap-2 text-sm">
-              <span>Username:</span>
-              <span>{data.username}</span>
-              <Button
-                onClick={() => {
-                  if (navigator.clipboard) {
-                    navigator.clipboard.writeText(data.username)
-                  }
-                }}
-                size="icon"
-                variant="secondary"
-                className="size-5"
-              >
-                <LuCopy />
-              </Button>
-            </p>
-            <p className="flex items-center gap-2 text-sm">
-              <span>Password:</span>
-              <span>{data.password}</span>
-              <Button
-                onClick={() => {
-                  if (navigator.clipboard) {
-                    navigator.clipboard.writeText(data.password)
-                  }
-                }}
-                size="icon"
-                variant="secondary"
-                className="size-5"
-              >
-                <LuCopy />
-              </Button>
-            </p>
-          </TabsContent>
-        ))}
+        <ScrollArea className="h-32">
+          {userCredentials.map((data, idx) => (
+            <TabsContent
+              value={data.role}
+              key={"data" + idx}
+              className="px-2 py-1.5 rounded-md bg-secondary"
+            >
+              <div className="flex gap-2 items-center">
+                <div className="flex-1">
+                  <p className="flex items-center gap-2 text-sm">
+                    <span>Username:</span>
+                    <span>{data.username}</span>
+                  </p>
+                  <p className="flex items-center gap-2 text-sm">
+                    <span>Password:</span>
+                    <span>{data.password}</span>
+                  </p>
+                </div>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  type="button"
+                  onClick={() => {
+                    form.setValue("username", data.username)
+                    form.setValue("password", data.password)
+                  }}
+                >
+                  USE
+                </Button>
+              </div>
+            </TabsContent>
+          ))}
+        </ScrollArea>
       </Tabs>
     </div>
   )
