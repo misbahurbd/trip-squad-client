@@ -13,6 +13,8 @@ import avatar from "@/assets/img/avatar.jpeg"
 import { format } from "date-fns"
 import { HiStar } from "react-icons/hi2"
 import { cn } from "@/lib/utils"
+import { Separator } from "@/components/ui/separator"
+import { CgQuote } from "react-icons/cg"
 
 const ReviewSlider = ({ tripReviewData }: { tripReviewData: IReview[] }) => {
   return (
@@ -44,10 +46,22 @@ const ReviewSlider = ({ tripReviewData }: { tripReviewData: IReview[] }) => {
             {({ isActive }) => (
               <div
                 className={cn(
-                  "py-6 px-10 rounded-xl text-center space-y-5 border border-border transition bg-background/40",
+                  "py-6 px-10 relative rounded-xl text-center space-y-5 border border-border transition bg-background/40",
                   isActive && "bg-background"
                 )}
               >
+                <CgQuote
+                  className={cn(
+                    "absolute right-0 size-32 -bottom-12 text-foreground/10",
+                    isActive && "text-primary/20"
+                  )}
+                />
+                <CgQuote
+                  className={cn(
+                    "absolute left-0 size-32 -top-16 text-foreground/10",
+                    isActive && "text-primary/20"
+                  )}
+                />
                 <div className="grid place-items-center">
                   <Image
                     src={review?.user?.profile?.profilePhoto || avatar}
@@ -73,6 +87,7 @@ const ReviewSlider = ({ tripReviewData }: { tripReviewData: IReview[] }) => {
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   {review.content}
                 </p>
+                <Separator className="w-20 mx-auto" />
                 <div className="text-center space-y-0.5">
                   <h3 className="text-foreground font-bold text-center">
                     {review.user.profile.name}

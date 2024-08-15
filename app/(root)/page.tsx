@@ -10,6 +10,9 @@ import Loading from "./loading"
 import TopTripReviews, {
   TopTripReviewsSkeleton,
 } from "./_components/top-trip-reviews"
+import PhotoGallery, {
+  PhotoGallerySkeleton,
+} from "@/components/shared/photo-gallery"
 
 export const metadata: Metadata = {
   title: "Trip Squad - Your Ultimate Tavel Pattern",
@@ -28,10 +31,13 @@ const Home = () => {
         <Suspense fallback={<LatestTripSkeleton />}>
           <LatestTrip />
         </Suspense>
+        <Suspense fallback={<PhotoGallerySkeleton />}>
+          <PhotoGallery />
+        </Suspense>
+        <HowItWork />
         <Suspense fallback={<TopTripReviewsSkeleton />}>
           <TopTripReviews />
         </Suspense>
-        <HowItWork />
       </div>
     </>
   )

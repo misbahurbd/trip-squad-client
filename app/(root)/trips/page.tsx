@@ -63,4 +63,5 @@ const TripsPage: React.FC<TripsPageProps> = async ({ searchParams }) => {
     </div>
   )
 }
+
 export default TripsPage

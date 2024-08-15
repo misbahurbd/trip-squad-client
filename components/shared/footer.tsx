@@ -74,7 +74,7 @@ const Footer = () => {
         </div>
         <Separator />
         <p className="text-center text-muted-foreground">
-          &copy; 2024 Trip Squad | Designed by Misbahur Rahman
+          &copy; 2024 Trip Squad | Developed by Misbahur Rahman
         </p>
       </div>
     </footer>

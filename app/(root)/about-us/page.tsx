@@ -6,8 +6,11 @@ import { whyTravelWithUsContent } from "@/constant"
 import HowItWork from "@/app/(root)/_components/how-it-work"
 import OurTeam from "@/components/shared/our-team"
 import { Metadata } from "next"
-import PhotoGallery from "@/components/shared/photo-gallery"
+import PhotoGallery, {
+  PhotoGallerySkeleton,
+} from "@/components/shared/photo-gallery"
 import aboutImg from "@/assets/img/about-us.jpg"
+import { Suspense } from "react"
 
 export const metadata: Metadata = {
   title: "About Us | Trip Squad",
@@ -76,7 +79,9 @@ const AboutUs = () => {
           ))}
         </div>
       </section>
-      <PhotoGallery />
+      <Suspense fallback={<PhotoGallerySkeleton />}>
+        <PhotoGallery />
+      </Suspense>
       <HowItWork />
       <OurTeam />
     </article>
