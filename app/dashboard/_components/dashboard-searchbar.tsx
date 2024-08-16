@@ -36,9 +36,11 @@ const DashboardSearchbar = ({ className }: { className?: string }) => {
       setIsSearching(true)
       if (values.searchTerm) {
         params.set("searchTerm", values.searchTerm)
+        params.delete("page")
         router.replace(`${pathname}?${params.toString()}`)
       } else {
         params.delete("searchTerm")
+        params.delete("page")
         router.replace(`${pathname}?${params.toString()}`)
       }
     } catch (error) {

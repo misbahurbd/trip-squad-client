@@ -79,6 +79,7 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
           } else {
             params.delete("tripType")
           }
+          params.delete("page")
           router.replace(`${pathname}?${params.toString()}`)
           return newTripType
         })
@@ -86,6 +87,7 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
         setSelectedType(data => {
           const newTripType = [...data, type.label]
           params.set("tripType", newTripType.join(","))
+          params.delete("page")
           router.replace(`${pathname}?${params.toString()}`)
           return newTripType
         })
@@ -104,6 +106,7 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
     } else {
       params.delete("searchTerm")
     }
+    params.delete("page")
     router.replace(`${pathname}?${params.toString()}`)
     setIsSearching(false)
   }
@@ -121,12 +124,14 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
       params.delete("startDate")
       params.delete("endDate")
     }
+    params.delete("page")
     router.replace(`${pathname}?${params.toString()}`)
     router.refresh()
   }
 
   const onBudgetChange = (value: z.infer<typeof budgetRangeFormSchema>) => {
     const params = new URLSearchParams(searchParams)
+
     if (value.minBudget && value.maxBudget) {
       params.set("minBudget", value.minBudget)
       params.set("maxBudget", value.maxBudget)
@@ -134,6 +139,7 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
       params.delete("minBudget")
       params.delete("maxBudget")
     }
+    params.delete("page")
     router.replace(`${pathname}?${params.toString()}`)
   }
 

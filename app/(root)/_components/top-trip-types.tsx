@@ -33,7 +33,10 @@ const TopTripTypes = async () => {
 export const TopTripTypesSkeleton = () => {
   return (
     <section className="space-y-8">
-      <SectionHeaderSkeleton />
+      <SectionHeader
+        title="Explore Our Top Travel Destinations"
+        subTitle="Discover the most popular trip types chosen by our travelers. Find your next adventure!"
+      />
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
         {Array.from({ length: 4 }).map((_, i) => (
           <TripTypeItemSkeleton key={`trip-item-ske-${i}`} />

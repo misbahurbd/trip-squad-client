@@ -33,9 +33,11 @@ const DashboardTopSearchbar = () => {
       const params = new URLSearchParams()
       if (values.searchTerm) {
         params.set("searchTerm", values.searchTerm)
+        params.delete("page")
         router.replace(`${pathname}?${params.toString()}`)
       } else {
         params.delete("searchTerm")
+        params.delete("page")
         router.replace(`${pathname}?${params.toString()}`)
       }
     } catch (error) {

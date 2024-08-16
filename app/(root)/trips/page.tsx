@@ -37,7 +37,7 @@ const TripsPage: React.FC<TripsPageProps> = async ({ searchParams }) => {
       <MobileTripAside tripTypes={tripTypes?.data || []} />
       <aside className="w-[320px] shrink-0 hidden lg:block">
         <TripAside
-          className="sticky top-20"
+          className="sticky top-16"
           tripTypes={tripTypes?.data || []}
         />
       </aside>

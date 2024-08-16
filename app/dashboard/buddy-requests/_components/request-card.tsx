@@ -20,8 +20,6 @@ import { toast } from "sonner"
 import avatar from "@/assets/img/avatar.jpeg"
 
 const RequestCard = ({ buddyRequest }: { buddyRequest: IBuddyRequest }) => {
-  console.log({ buddyRequest })
-
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const onResponse = async (response: "Approved" | "Rejected") => {
