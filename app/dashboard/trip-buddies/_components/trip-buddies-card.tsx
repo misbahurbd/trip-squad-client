@@ -6,14 +6,33 @@ import { formatedDate } from "@/lib/utils"
 import { LuMapPin } from "react-icons/lu"
 import BuddiesInfoCard from "./buddies-info-card"
 import Link from "next/link"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { IBuddies } from "@/interface"
+import ImageCarousel from "@/components/shared/image-carusel"
 
 interface TripBuddiesProps {
   trip: IBuddies
+  userId: string
 }
 
-const TripBuddiesCard: React.FC<TripBuddiesProps> = ({ trip }) => {
+const TripBuddiesCard: React.FC<TripBuddiesProps> = ({ trip, userId }) => {
+  const tripBuddies = trip.tripBuddy
+    .map(buddy => ({
+      id: buddy.id,
+      email: buddy.email,
+      name: buddy.name,
+      mobile: buddy.mobile,
+      profilePhoto: buddy.user.profile.profilePhoto,
+    }))
+    .concat([
+      {
+        id: trip.createdBy.profile.userId,
+        email: trip.createdBy.profile.email,
+        name: trip.createdBy.profile.name,
+        mobile: trip.createdBy.profile.mobile,
+        profilePhoto: trip.createdBy.profile.profilePhoto,
+      },
+    ])
+
   return (
     <article className="p-3 @container/buddy rounded-lg bg-background flex flex-col gap-5">
       <div className="h-full aspect-video relative flex items-center">
@@ -40,14 +59,12 @@ const TripBuddiesCard: React.FC<TripBuddiesProps> = ({ trip }) => {
         })}
       </div>
       <div className="space-y-2">
-        <div>
+        <div className="space-y-1">
           <Link
-            className="transition hover:text-primary"
+            className="transition text-foreground hover:text-primary"
             href={`/trips/${trip?.id}`}
           >
-            <h3 className="font-semibold text-foreground leading-tight">
-              {trip?.destination}
-            </h3>
+            <h3 className="font-semibold leading-tight">{trip?.destination}</h3>
           </Link>
           <p className="text-xs text-muted-foreground leading-tight flex items-center gap-1">
             <LuMapPin className="size-2.5" />
@@ -76,28 +93,23 @@ const TripBuddiesCard: React.FC<TripBuddiesProps> = ({ trip }) => {
         <Separator className="opacity-50" />
         <h4 className="text-sm font-medium text-foreground flex items-center justify-between">
           <span>Trip Buddies</span>
-          <span>({trip?.tripBuddy?.length + 1})</span>
+          <span>({tripBuddies.length - 1})</span>
         </h4>
         <Separator className="opacity-50" />
-        <ScrollArea className="h-28">
-          <div className="grid gap-3">
-            <BuddiesInfoCard
-              name={trip?.createdBy?.profile?.name}
-              email={trip?.createdBy?.profile?.email}
-              mobile={trip?.createdBy?.profile?.mobile}
-              profilePhoto={trip?.createdBy?.profile?.profilePhoto}
-            />
-            {trip?.tripBuddy?.map(buddy => (
+
+        <div className="grid gap-3">
+          {tripBuddies
+            .filter(buddy => buddy.id !== userId)
+            .map(buddy => (
               <BuddiesInfoCard
                 key={buddy?.id + "buddy-info"}
                 name={buddy?.name}
                 email={buddy?.email}
                 mobile={buddy?.mobile}
-                profilePhoto={buddy?.user?.profile?.profilePhoto}
+                profilePhoto={buddy?.profilePhoto}
               />
             ))}
-          </div>
-        </ScrollArea>
+        </div>
       </div>
     </article>
   )

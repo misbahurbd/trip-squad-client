@@ -5,7 +5,7 @@ import { Country, ICountry } from "country-state-city"
 import { CurrentUser } from "@/interface"
 import { tripRequestFormSchema } from "@/validations"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useState } from "react"
+import { use, useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -35,15 +35,16 @@ const BuddyRequestForm = ({
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const countries = Country.getAllCountries() as ICountry[]
+
   const form = useForm<z.infer<typeof tripRequestFormSchema>>({
     resolver: zodResolver(tripRequestFormSchema),
     defaultValues: {
       name: user.name || "",
       email: user.email || "",
       mobile: user.mobile || "",
-      address: "",
-      city: "",
-      country: "",
+      address: user.address || "",
+      city: user.city || "",
+      country: user.country || "",
     },
   })
 
@@ -149,6 +150,7 @@ const BuddyRequestForm = ({
                       href="/terms-and-conditions"
                       target="_blank"
                       className="hover:text-primary"
+                      tabIndex={0}
                     >
                       terms and conditions
                     </Link>

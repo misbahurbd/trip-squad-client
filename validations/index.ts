@@ -63,6 +63,9 @@ export const personalInfoFormSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
   mobile: z.string().min(1, { message: "Mobile is required" }),
   dateOfBirth: z.date({ required_error: "Date of Birth is required" }),
+  address: z.string().optional(),
+  city: z.string().optional(),
+  country: z.string().optional(),
   bio: z.string().optional(),
 })
 

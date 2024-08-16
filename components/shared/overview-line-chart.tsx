@@ -41,13 +41,13 @@ export function Component({ data }: { data: any }) {
           dataKey="label"
           tickLine={false}
           axisLine={false}
-          tickMargin={8}
+          tickMargin={10}
           minTickGap={50}
         />
         <YAxis
           tickLine={false}
           axisLine={false}
-          tickMargin={2}
+          tickMargin={10}
           minTickGap={4}
           width={40}
         />

@@ -9,6 +9,9 @@ export interface CurrentUser {
   status: "Active" | "Deactivated"
   profilePhoto?: string
   dateOfBirth?: date
+  address?: string
+  city?: string
+  country?: string
   bio?: string
   userId?: string
   createdAt: date

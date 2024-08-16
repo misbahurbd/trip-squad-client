@@ -25,9 +25,6 @@ const BuddiesInfoCard = ({
           alt={name}
           className="rounded-lg object-cover"
         />
-        <span className="text-xs bg-background text-muted-foreground py-0.5 px-1 rounded text-center shadow absolute top-0 left-1/2 -translate-x-1/2 z-10 -translate-y-[90%] opacity-0 invisible transition group-hover:opacity-100 group-hover:-translate-y-[110%] group-hover:visible">
-          {name}
-        </span>
       </div>
       <div className="flex-1">
         <h4 className="text-sm font-medium text-foreground">{name}</h4>

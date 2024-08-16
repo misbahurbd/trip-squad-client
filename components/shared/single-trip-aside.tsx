@@ -40,6 +40,17 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
     }
   }
 
+  const getButtonStatus = () => {
+    if (user?.role == "Admin") return true
+    if (trip.creatorId == user?.userId) return true
+
+    if (buddy) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   const getButtonText = () => {
     if (trip.creatorId == user?.userId) return "You can't join your own trip."
     if (user?.role === "Admin") return "Admin can't send trip buddy requests."
@@ -135,7 +146,7 @@ const SingleTripAside: React.FC<SingleTripAsideProps> = ({ trip, user }) => {
 
       <Button
         onClick={() => router.push(`/trips/${trip.id}/request`)}
-        disabled={trip.creatorId == user?.userId || user?.role == "Admin"}
+        disabled={getButtonStatus()}
         className="w-full"
         variant={getButtonVarient()}
       >

@@ -15,10 +15,14 @@ import FormTextArea from "@/components/form-ui/form-textarea"
 import FormDatePicker from "@/components/form-ui/form-date-picker"
 import { axiosInstance } from "@/lib/axios"
 import { useRouter } from "next/navigation"
+import FormSelect from "../form-ui/form-select"
+import { Country, ICountry } from "country-state-city"
 
 const PersonalInfoForm = ({ currentUser }: { currentUser: CurrentUser }) => {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
+  const countries = Country.getAllCountries() as ICountry[]
+
   const form = useForm<z.infer<typeof personalInfoFormSchema>>({
     resolver: zodResolver(personalInfoFormSchema),
     defaultValues: {
@@ -27,6 +31,9 @@ const PersonalInfoForm = ({ currentUser }: { currentUser: CurrentUser }) => {
       email: currentUser.email || "",
       mobile: currentUser.mobile || "",
       dateOfBirth: currentUser.dateOfBirth && new Date(currentUser.dateOfBirth),
+      address: currentUser.address || "",
+      city: currentUser.city || "",
+      country: currentUser.country || "",
       bio: currentUser.bio || "",
     },
   })
@@ -91,6 +98,32 @@ const PersonalInfoForm = ({ currentUser }: { currentUser: CurrentUser }) => {
             label="Date of Birth"
             name="dateOfBirth"
             range="past"
+            disabled={isLoading}
+          />
+          <FormInput
+            form={form}
+            placeholder="State Address"
+            className="sm:col-span-2"
+            label="State Address"
+            name="address"
+            disabled={isLoading}
+          />
+          <FormInput
+            form={form}
+            placeholder="City"
+            label="City"
+            name="city"
+            disabled={isLoading}
+          />
+          <FormSelect
+            form={form}
+            name="country"
+            label="Country"
+            data={countries.map(country => ({
+              label: country.name,
+              value: country.name,
+            }))}
+            placeholder="Country"
             disabled={isLoading}
           />
           <FormTextArea

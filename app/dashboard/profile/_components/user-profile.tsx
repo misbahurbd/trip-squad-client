@@ -20,10 +20,13 @@ import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import avatar from "@/assets/img/avatar.jpeg"
 import profileCover from "@/assets/img/profile-cover.jpeg"
+import { Country, ICountry } from "country-state-city"
+import FormSelect from "@/components/form-ui/form-select"
 
 const UserProfile = ({ currentUser }: { currentUser: CurrentUser }) => {
   const [isEditing, setIsEditing] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const countries = Country.getAllCountries() as ICountry[]
   const router = useRouter()
 
   const personalInfoForm = useForm<z.infer<typeof personalInfoFormSchema>>({
@@ -178,9 +181,7 @@ const UserProfile = ({ currentUser }: { currentUser: CurrentUser }) => {
                   placeholder="Mobile Number"
                 />
               ) : (
-                <p className="text-foreground">
-                  {currentUser.mobile || "null"}
-                </p>
+                <p className="text-foreground">{currentUser.mobile || "n/a"}</p>
               )}
             </div>
             <div className="space-y-1">
@@ -196,7 +197,57 @@ const UserProfile = ({ currentUser }: { currentUser: CurrentUser }) => {
                 <p className="text-foreground">
                   {currentUser.dateOfBirth
                     ? format(new Date(currentUser.dateOfBirth), "d MMM, yyyy")
-                    : "null"}
+                    : "n/a"}
+                </p>
+              )}
+            </div>
+
+            <div className="space-y-1 sm:col-span-2">
+              <p className="text-sm text-muted-foreground">State Address</p>
+              {isEditing ? (
+                <FormInput
+                  form={personalInfoForm}
+                  name="address"
+                  disabled={isLoading}
+                  placeholder="State address"
+                />
+              ) : (
+                <p className="text-foreground">
+                  {currentUser.address || "n/a"}
+                </p>
+              )}
+            </div>
+
+            <div className="space-y-1">
+              <p className="text-sm text-muted-foreground">City</p>
+              {isEditing ? (
+                <FormInput
+                  form={personalInfoForm}
+                  name="city"
+                  disabled={isLoading}
+                  placeholder="City"
+                />
+              ) : (
+                <p className="text-foreground">{currentUser.city || "n/a"}</p>
+              )}
+            </div>
+
+            <div className="space-y-1">
+              <p className="text-sm text-muted-foreground">Country</p>
+              {isEditing ? (
+                <FormSelect
+                  form={personalInfoForm}
+                  name="country"
+                  data={countries.map(country => ({
+                    label: country.name,
+                    value: country.name,
+                  }))}
+                  placeholder="Country"
+                  disabled={isLoading}
+                />
+              ) : (
+                <p className="text-foreground">
+                  {currentUser.country || "n/a"}
                 </p>
               )}
             </div>
@@ -210,7 +261,7 @@ const UserProfile = ({ currentUser }: { currentUser: CurrentUser }) => {
                   disabled={isLoading}
                 />
               ) : (
-                <p className="text-foreground">{currentUser.bio || "null"}</p>
+                <p className="text-foreground">{currentUser.bio || "n/a"}</p>
               )}
             </div>
           </div>
