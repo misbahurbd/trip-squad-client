@@ -17,7 +17,7 @@ const Navbar = () => {
             <Link
               href={link.href}
               className={cn(
-                "flex font-medium transition relative h-16 px-5 items-center justify-center text-foreground/70 text-base hover:bg-primary/5 hover:text-primary before:h-1 before:w-full before:left-0 before:bottom-0 before:bg-primary before:absolute before:transition before:scale-y-0 before:origin-bottom hover:before:scale-y-100",
+                "flex font-medium transition relative h-14 px-5 items-center justify-center text-foreground/70 text-base hover:bg-primary/5 hover:text-primary before:h-1 before:w-full before:left-0 before:bottom-0 before:bg-primary before:absolute before:transition before:scale-y-0 before:origin-bottom hover:before:scale-y-100",
                 link.active && "before:scale-y-100 text-primary"
               )}
             >

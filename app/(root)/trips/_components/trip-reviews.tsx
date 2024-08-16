@@ -68,7 +68,7 @@ const TripReviews: React.FC<TripReviewsProps> = ({ trip, currentUser }) => {
     <div className="bg-background p-3 space-y-4 rounded-xl">
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h4 className="font-semibold text-xl">
+          <h4 className="font-semibold text-xl text-foreground">
             Reviews ({trip.reviews.length})
           </h4>
           <Button
@@ -133,7 +133,9 @@ const TripReviews: React.FC<TripReviewsProps> = ({ trip, currentUser }) => {
             <>
               <Separator />
               <div className="space-y-3">
-                <h4 className="font-semibold text-xl">Leave a Review</h4>
+                <h4 className="font-semibold text-foreground text-lg">
+                  Leave a Review
+                </h4>
                 <form
                   className="flex flex-col gap-1"
                   onSubmit={form.handleSubmit(onSubmit)}

@@ -18,7 +18,7 @@ const ProfileSubsection = async () => {
     <div className="flex flex-col @2xl/profile-aside:flex-row gap-3">
       <div className="@container/trips flex-1 space-y-3">
         <div className="flex justify-between items-center">
-          <h3 className="font-semibold">My Trips</h3>
+          <h3 className="font-semibold text-foreground">My Trips</h3>
           <Button
             asChild
             size="sm"
@@ -46,7 +46,7 @@ const ProfileSubsection = async () => {
       </div>
       <div className="@container/trips flex-1 space-y-3">
         <div className="flex justify-between items-center">
-          <h3 className="font-semibold">Request History</h3>
+          <h3 className="font-semibold text-foreground">Request History</h3>
           <Button
             asChild
             size="sm"

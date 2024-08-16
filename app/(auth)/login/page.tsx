@@ -23,13 +23,15 @@ const LoginPage = () => {
         />
       </div>
       <div className="md:w-1/2 bg-background rounded-xl py-8 md:py-12 px-8 md:px-10 flex flex-col items-center gap-8">
-        <h2 className="text-2xl font-bold text-center">Login Your Account</h2>
+        <h2 className="text-2xl font-bold text-center text-foreground">
+          Login Your Account
+        </h2>
 
         <Suspense>
           <LoginForm />
         </Suspense>
 
-        <div className="text-sm text-center flex gap-2 items-center">
+        <div className="text-sm text-center flex gap-2 items-center text-muted-foreground">
           <span>Don&apos;t have an account?</span>
           <Link
             href={"/register"}

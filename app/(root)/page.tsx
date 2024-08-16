@@ -13,6 +13,7 @@ import TopTripReviews, {
 import PhotoGallery, {
   PhotoGallerySkeleton,
 } from "@/components/shared/photo-gallery"
+import CtaSection from "./_components/cta-section"
 
 export const metadata: Metadata = {
   title: "Trip Squad - Your Ultimate Tavel Pattern",
@@ -31,13 +32,11 @@ const Home = () => {
         <Suspense fallback={<LatestTripSkeleton />}>
           <LatestTrip />
         </Suspense>
-        <Suspense fallback={<PhotoGallerySkeleton />}>
-          <PhotoGallery />
-        </Suspense>
-        <HowItWork />
         <Suspense fallback={<TopTripReviewsSkeleton />}>
           <TopTripReviews />
         </Suspense>
+        <HowItWork />
+        <CtaSection />
       </div>
     </>
   )

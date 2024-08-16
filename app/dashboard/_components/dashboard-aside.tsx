@@ -51,7 +51,7 @@ const DashboardAside = ({ currentUser }: { currentUser: CurrentUser }) => {
           <DashboardMobileNavbar navLinks={dasboardNavs} />
           <div className={cn("mr-auto", isCollapsed && "md:hidden")}>
             <Link
-              className="text-lg font-semibold"
+              className="text-lg font-semibold text-foreground"
               href={"/"}
             >
               Trip Squad
@@ -61,7 +61,7 @@ const DashboardAside = ({ currentUser }: { currentUser: CurrentUser }) => {
             variant="outline"
             size="icon"
             onClick={onCollapse}
-            className="hidden md:flex"
+            className="hidden text-foreground md:flex"
           >
             <LuAlignJustify className="w-6 h-6" />
           </Button>

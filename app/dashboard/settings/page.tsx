@@ -23,17 +23,17 @@ const Profile = async () => {
       <div className="grow">
         <div className="space-y-4">
           <div className="space-y-2 p-4 rounded-md bg-background">
-            <h3 className="font-bold">Profile Photo</h3>
+            <h3 className="font-bold text-foreground">Profile Photo</h3>
             <Separator />
             <ProfilePhotoUploadForm currentUser={currentUser} />
           </div>
           <div className="space-y-2 p-4 rounded-md bg-background">
-            <h3 className="font-bold">Personal Information</h3>
+            <h3 className="font-bold text-foreground">Personal Information</h3>
             <Separator />
             <PersonalInfoForm currentUser={currentUser} />
           </div>
           <div className="space-y-2 p-4 rounded-md bg-background">
-            <h3 className="font-bold">Change Password</h3>
+            <h3 className="font-bold text-foreground">Change Password</h3>
             <Separator />
             <ChangePasswordForm />
           </div>

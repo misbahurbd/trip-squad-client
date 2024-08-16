@@ -6,7 +6,7 @@ const AuthLayout = ({ children }: PropsWithChildren) => {
     <div className="min-h-screen space-y-8 container flex justify-center flex-col py-12 md:py-20">
       <Link
         href={"/"}
-        className="text-center text-3xl font-bold w-fit mx-auto"
+        className="text-center text-3xl font-bold w-fit mx-auto text-foreground"
       >
         Trip Squad
       </Link>

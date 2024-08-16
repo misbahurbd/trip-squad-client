@@ -33,7 +33,7 @@ const UserListItem = ({ user }: { user: IUser }) => {
       <div className="grow">
         <div>
           <h3 className="font-semibold leading-tight flex items-center gap-2">
-            <span>{user.name}</span>
+            <span className="text-foreground">{user.name}</span>
             <Badge
               variant={user.emailVerified ? "active" : "destructive"}
               className="text-xs px-1 py-0.5 leading-tight"

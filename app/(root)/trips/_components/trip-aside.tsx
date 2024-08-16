@@ -68,7 +68,6 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
 
   const handleSelectType = (type: ITripType) => {
     setIsLoading(true)
-
     try {
       const params = new URLSearchParams(searchParams)
 
@@ -157,7 +156,7 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
   return (
     <div className={cn("rounded-lg p-3 bg-background space-y-4", className)}>
       <div className="space-y-2">
-        <h2 className="font-semibold text-sm">Search</h2>
+        <h2 className="font-semibold text-foreground text-sm">Search</h2>
         <Separator />
         <Form {...searchForm}>
           <form
@@ -205,7 +204,7 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
       </div>
 
       <div className="space-y-2">
-        <h4 className="font-semibold text-sm">Trip Type</h4>
+        <h4 className="font-semibold text-foreground text-sm">Trip Type</h4>
         <Separator />
 
         <ScrollArea className="max-h-96">
@@ -228,7 +227,7 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
       </div>
 
       <div className="space-y-2">
-        <h4 className="font-semibold text-sm">Budget Range</h4>
+        <h4 className="font-semibold text-foreground text-sm">Budget Range</h4>
         <Separator />
         <Form {...budgetRangeForm}>
           <form
@@ -282,7 +281,7 @@ const TripAside: React.FC<TripAsideProps> = ({ className, tripTypes }) => {
       </div>
 
       <div className="space-y-2">
-        <h4 className="font-semibold text-sm">Date Range</h4>
+        <h4 className="font-semibold text-foreground text-sm">Date Range</h4>
         <Separator />
         <Form {...dateRangeForm}>
           <form

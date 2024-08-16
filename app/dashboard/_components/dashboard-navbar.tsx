@@ -25,7 +25,7 @@ const DashboardNavbar = ({
           <Link
             href={nav.href}
             className={cn(
-              "relative transition group hover:bg-secondary rounded-lg w-full p-2 flex items-center gap-2",
+              "relative transition text-foreground group hover:bg-secondary rounded-lg w-full p-2 flex items-center gap-2",
               nav.active &&
                 "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"
             )}

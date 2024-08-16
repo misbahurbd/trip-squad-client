@@ -45,7 +45,9 @@ const TripBuddiesCard: React.FC<TripBuddiesProps> = ({ trip }) => {
             className="transition hover:text-primary"
             href={`/trips/${trip?.id}`}
           >
-            <h3 className="font-semibold leading-tight">{trip?.destination}</h3>
+            <h3 className="font-semibold text-foreground leading-tight">
+              {trip?.destination}
+            </h3>
           </Link>
           <p className="text-xs text-muted-foreground leading-tight flex items-center gap-1">
             <LuMapPin className="size-2.5" />
@@ -72,7 +74,7 @@ const TripBuddiesCard: React.FC<TripBuddiesProps> = ({ trip }) => {
           </div>
         </div>
         <Separator className="opacity-50" />
-        <h4 className="text-sm font-medium flex items-center justify-between">
+        <h4 className="text-sm font-medium text-foreground flex items-center justify-between">
           <span>Trip Buddies</span>
           <span>({trip?.tripBuddy?.length + 1})</span>
         </h4>

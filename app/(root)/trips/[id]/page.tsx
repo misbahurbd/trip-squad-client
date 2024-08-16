@@ -59,7 +59,7 @@ const TripPage = async ({ params }: { params: { id: string } }) => {
                   />
                 </div>
                 <div className="space-y-1">
-                  <h4 className="font-bold text-lg leading-tight">
+                  <h4 className="font-bold text-lg text-foreground leading-tight">
                     {tripData?.createdBy?.profile?.name}
                   </h4>
                   <div className="flex flex-col sm:flex-row gap-x-5">
@@ -119,14 +119,18 @@ const TripPage = async ({ params }: { params: { id: string } }) => {
             </div>
 
             <div>
-              <h4 className="font-semibold text-xl">Trip Itinerary</h4>
+              <h4 className="font-semibold text-foreground text-xl">
+                Trip Itinerary
+              </h4>
               <p className="leading-normal text-muted-foreground">
                 {tripData?.itinerary}
               </p>
             </div>
 
             <div>
-              <h4 className="font-semibold text-xl">Trip Details</h4>
+              <h4 className="font-semibold text-foreground text-xl">
+                Trip Details
+              </h4>
               <p className="leading-normal text-muted-foreground">
                 <Preview value={tripData?.description} />
               </p>

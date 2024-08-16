@@ -8,7 +8,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
     <>
       <Header />
       <Suspense fallback={<Loading />}>
-        <main className="pb-12 flex-1 pt-[4.5rem] md:pt-20">{children}</main>
+        <main className="pb-12 flex-1 pt-[4.5rem] md:pt-16">{children}</main>
       </Suspense>
       <Footer />
     </>

@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="space-y-4 grow w-full md:w-auto">
             <Link
               href={"/"}
-              className="text-2xl font-bold mb-6 block"
+              className="text-2xl font-bold mb-6 block text-foreground"
             >
               Trip Squad
             </Link>
@@ -41,7 +41,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="space-y-4 grow">
-            <h3 className="font-bold text-lg">Quick Links</h3>
+            <h3 className="font-bold text-lg text-foreground">Quick Links</h3>
             <ul className="text-muted-foreground space-y-2">
               {footerNavs.map(link => (
                 <li key={link.href}>
@@ -56,7 +56,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="space-y-4 grow">
-            <h3 className="font-bold text-lg">Social Links</h3>
+            <h3 className="font-bold text-lg text-foreground">Social Links</h3>
             <ul className="text-muted-foreground space-y-2">
               {footerSocialLinks.map(link => (
                 <li key={link.href}>

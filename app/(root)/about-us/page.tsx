@@ -38,7 +38,7 @@ const AboutUs = () => {
             />
           </div>
           <div className="lg:w-3/5 flex flex-col justify-center space-y-4 items-start sm:w-[90%] sm:px-6 sm:py-5 sm:bg-background sm:rounded-lg sm:-mt-32 relative mx-auto lg:mt-0 lg:bg-transparent lg:p-0 lg:m-0">
-            <h3 className="text-xl md:text-2xl font-bold mb-2">
+            <h3 className="text-xl md:text-2xl font-bold mb-2 text-foreground">
               Trip With Like-minded Travelers
             </h3>
             <p className="text-muted-foreground">
@@ -71,7 +71,9 @@ const AboutUs = () => {
               className="p-6 bg-background rounded-lg"
               key={content.title.replace(" ", "-")}
             >
-              <h3 className="font-bold mb-3">{content.title}</h3>
+              <h3 className="font-bold mb-3 text-foreground">
+                {content.title}
+              </h3>
               <p className="text-muted-foreground text-sm">
                 {content.description}
               </p>

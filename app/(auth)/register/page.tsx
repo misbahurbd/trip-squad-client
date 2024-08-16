@@ -22,13 +22,13 @@ const RegisterPage = () => {
         />
       </div>
       <div className="md:w-1/2 bg-background rounded-xl py-8 md:py-12 px-8 md:px-10 flex flex-col items-center gap-8">
-        <h2 className="text-2xl font-bold text-center">
+        <h2 className="text-2xl font-bold text-center text-foreground">
           Register Your Account
         </h2>
 
         <RegisterForm />
 
-        <div className="text-sm text-center flex gap-2 items-center">
+        <div className="text-sm text-center flex gap-2 items-center text-muted-foreground">
           <span>Already have an account?</span>
           <Link
             href={"/login"}

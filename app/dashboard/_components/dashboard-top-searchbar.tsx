@@ -54,7 +54,7 @@ const DashboardTopSearchbar = () => {
             variant="secondary"
             onClick={() => setIsShowing(true)}
           >
-            <LuSearch className="w-5 h-5" />
+            <LuSearch className="w-5 h-5 text-foreground" />
           </Button>
           <div
             className={cn(
@@ -79,7 +79,7 @@ const DashboardTopSearchbar = () => {
                   size="icon"
                   variant="outline"
                 >
-                  <LuSearch className="w-5 h-5" />
+                  <LuSearch className="w-5 h-5 text-foreground" />
                 </Button>
               </form>
             </Form>
@@ -89,7 +89,7 @@ const DashboardTopSearchbar = () => {
               className="shrink-0"
               onClick={() => setIsShowing(false)}
             >
-              <LuX className="w-6 h-6" />
+              <LuX className="w-6 h-6 text-foreground" />
             </Button>
           </div>
         </>

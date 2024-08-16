@@ -36,19 +36,19 @@ export async function middleware(request: NextRequest) {
       return Response.redirect(new URL(`/login?next=${pathname}`, request.url))
     }
 
-    if (currentUser && pathname === "/dashboard") {
-      const user = jwtDecode(currentUser) as {
-        role: string
-        id: string
-        email: string
-      } | null
+    // if (currentUser && pathname === "/dashboard") {
+    //   const user = jwtDecode(currentUser) as {
+    //     role: string
+    //     id: string
+    //     email: string
+    //   } | null
 
-      if (user?.role != "User") {
-        return Response.redirect(new URL("/dashboard/trips", request.url))
-      } else {
-        return Response.redirect(new URL("/dashboard/my-trips", request.url))
-      }
-    }
+    //   if (user?.role != "User") {
+    //     return Response.redirect(new URL("/dashboard/trips", request.url))
+    //   } else {
+    //     return Response.redirect(new URL("/dashboard/my-trips", request.url))
+    //   }
+    // }
 
     if (currentUser && adminOnlyRoutes.some(route => pathname.match(route))) {
       const user = await getCurrentUser()

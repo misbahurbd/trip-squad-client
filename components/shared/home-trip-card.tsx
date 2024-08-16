@@ -26,7 +26,7 @@ const HomeTripCard: React.FC<HomeTripProps> = ({ trip }) => {
         className="transition hover:text-primary block pt-0.5"
       >
         <div className="space-y-0.5">
-          <h2 className="font-bold text-lg leading-tight line-clamp-1">
+          <h2 className="font-bold text-lg leading-tight line-clamp-1 text-foreground hover:text-primary">
             {trip.destination}
           </h2>
           <p className="text-xs leading-tight text-muted-foreground flex items-center gap-1">
@@ -71,7 +71,7 @@ const HomeTripCard: React.FC<HomeTripProps> = ({ trip }) => {
           </div>
         </div>
 
-        <div className="flex items-center col-span-2 gap-2">
+        <div className="flex items-center col-span-2 gap-2 text-foreground">
           <span className="size-8 rounded bg-secondary flex items-center justify-center">
             <HiOutlineBriefcase className="size-5" />
           </span>

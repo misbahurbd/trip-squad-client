@@ -26,7 +26,9 @@ const OurTeam = () => {
               className="aspect-square object-cover rounded-lg w-24 h-24"
             />
             <div className="text-center">
-              <h3 className="text-lg font-bold">{member.name}</h3>
+              <h3 className="text-lg font-bold text-foreground">
+                {member.name}
+              </h3>
               <p className="text-sm text-muted-foreground">
                 {member.designation}
               </p>

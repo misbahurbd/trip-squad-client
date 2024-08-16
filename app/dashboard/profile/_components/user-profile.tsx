@@ -80,7 +80,9 @@ const UserProfile = ({ currentUser }: { currentUser: CurrentUser }) => {
             />
           </div>
           <div className="text-center sm:text-start">
-            <h1 className="font-semibold">{currentUser.name}</h1>
+            <h1 className="font-semibold text-foreground">
+              {currentUser.name}
+            </h1>
             <p className="text-sm text-muted-foreground">
               @{currentUser.username}
             </p>
@@ -122,7 +124,7 @@ const UserProfile = ({ currentUser }: { currentUser: CurrentUser }) => {
           onSubmit={personalInfoForm.handleSubmit(onPersonalInfoSubmit)}
           className="space-y-3"
         >
-          <h3 className="font-bold">Personal Information</h3>
+          <h3 className="font-bold text-foreground">Personal Information</h3>
           <Separator />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="space-y-1 sm:col-span-2">

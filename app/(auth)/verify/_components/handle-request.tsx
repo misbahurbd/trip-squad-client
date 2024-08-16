@@ -43,14 +43,18 @@ const HandleVerifyRequest = ({ token }: { token: string }) => {
       {!isVerified && error ? (
         <>
           <BsEnvelopeExclamation className="size-20" />
-          <h2 className="text-2xl font-bold">Unable to verify your account</h2>
+          <h2 className="text-2xl font-bold text-foreground">
+            Unable to verify your account
+          </h2>
           <p>{error}</p>
         </>
       ) : (
         <>
           <BsEnvelopeCheck className="size-20" />
-          <h2 className="text-2xl font-bold">Your account has been verified</h2>
-          <p>
+          <h2 className="text-2xl font-bold text-foreground">
+            Your account has been verified
+          </h2>
+          <p className="text-muted-foreground">
             Your account has been verified successfully. Now you can access your
             account.
           </p>

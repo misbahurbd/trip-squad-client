@@ -46,7 +46,7 @@ const userCredentials = [
 const UserDemoAccountCredentials = ({ form }: { form: UseFormReturn<any> }) => {
   return (
     <div className="w-full space-y-3">
-      <h4 className="font-bold text-center">Demo Account</h4>
+      <h4 className="font-bold text-center text-foreground">Demo Account</h4>
       <Tabs defaultValue="user">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="user">User</TabsTrigger>

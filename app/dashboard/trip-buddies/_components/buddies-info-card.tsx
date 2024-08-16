@@ -30,7 +30,7 @@ const BuddiesInfoCard = ({
         </span>
       </div>
       <div className="flex-1">
-        <h4 className="text-sm font-medium">{name}</h4>
+        <h4 className="text-sm font-medium text-foreground">{name}</h4>
         <p className="text-xs text-muted-foreground flex items-center gap-1">
           <LuMail className="size-3" /> {email}
         </p>
@@ -44,7 +44,7 @@ const BuddiesInfoCard = ({
         asChild
       >
         <Link href={`tel:${mobile}`}>
-          <FaPhone />
+          <FaPhone className="text-muted-foreground" />
         </Link>
       </Button>
     </div>

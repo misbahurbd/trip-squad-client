@@ -136,7 +136,9 @@ const Contact = () => {
           </div>
           <div className="bg-background flex-1 p-8 rounded-lg flex flex-col justify-center space-y-8 sm:space-y-12">
             <div>
-              <h3 className="font-semibold text-xl">Get In Touch</h3>
+              <h3 className="font-bold text-foreground text-xl">
+                Get In Touch
+              </h3>
               <p className="text-sm text-muted-foreground">
                 Fill out the form below and we&apos;ll get back to you as soon
                 as possible.

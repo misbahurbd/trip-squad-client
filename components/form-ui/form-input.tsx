@@ -57,7 +57,7 @@ const FormInput: React.FC<FormInputProps> = ({
             <div className="w-full relative">
               <Input
                 className={cn(
-                  "bg-background",
+                  "bg-background text-foreground",
                   type == "password" && "pr-10",
                   fieldClassName
                 )}

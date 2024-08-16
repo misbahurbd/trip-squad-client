@@ -9,7 +9,7 @@ const Header = async () => {
   const currentUser = await getCurrentUser()
 
   return (
-    <header className="flex items-center h-14 md:h-16 bg-background/80 fixed left-0 right-0 top-0 z-50 backdrop-blur-sm border-b">
+    <header className="flex items-center h-14 md:h-14 bg-background/80 fixed left-0 right-0 top-0 z-50 backdrop-blur-sm border-b">
       <nav className="container flex items-center gap-1">
         <div className="md:hidden">
           <MobileNav />
@@ -17,7 +17,7 @@ const Header = async () => {
         <div className="flex-1">
           <Link
             href="/"
-            className="font-bold text-lg md:text-xl"
+            className="font-bold text-lg text-foreground md:text-xl"
           >
             Trip Squad
           </Link>

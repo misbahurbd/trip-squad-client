@@ -88,7 +88,9 @@ const RequestCard = ({ buddyRequest }: { buddyRequest: IBuddyRequest }) => {
 
         <Separator className="opacity-50" />
 
-        <h3 className="px-3 py-2 font-semibold">Buddy Information</h3>
+        <h3 className="px-3 py-2 font-semibold text-foreground">
+          Buddy Information
+        </h3>
 
         <Separator className="opacity-50" />
 
