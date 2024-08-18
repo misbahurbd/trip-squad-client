@@ -36,7 +36,7 @@ export function Component({ data }: { data: any }) {
           bottom: 10,
         }}
       >
-        <CartesianGrid vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" />
         <XAxis
           dataKey="label"
           tickLine={false}

@@ -53,7 +53,10 @@ const DashboardPage = async ({
             value={overviewData.summary?.buddy}
           />
         </div>
-        <div className="grid">
+        <div className="grid gap-3">
+          <h3 className="text-xl font-semibold text-foreground">
+            Trip Statistics
+          </h3>
           <div className="p-4 bg-background rounded-md">
             <LineChart data={overviewData.chartData} />
           </div>
